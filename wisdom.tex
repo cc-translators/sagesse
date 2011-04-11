@@ -8,8 +8,16 @@
 
 \usepackage{lipsum}
 
-\setlength{\parindent}{0mm}
-\pagestyle{plain}
+\setlength{\parindent}{5mm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\pagestyle{empty}
+
+% setting lettrines
+\usepackage{type1cm} % scalable fonts
+\usepackage{lettrine}
+\usepackage{xcolor}
+\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
+\newcommand{\mylettrine}[2]{\lettrine[lines=2, lhang=0.33, loversize=0.25]{#1}{#2}}
 
 \usepackage{titlesec}
 % Make day number in month, in french
@@ -43,14 +51,23 @@
   [\end{center}]
 
 \newcommand{\myquote}[2]{
-  \begin{center}\parbox{4in}{\begin{itshape}#1\end{itshape}\\
-  \flushright-- \textsc{#2}}\end{center}}
+  \begin{center}\parbox{90mm}{
+    \begin{center}
+    \begin{itshape}#1\end{itshape}\\
+    -- \textsc{#2}
+    \end{center}
+  }\end{center}}
 
-\newcommand{\prayer}[1]{
-  \begin{center}\parbox{4in}{\begin{itshape}#1\end{itshape}}\end{center}}
+\newcommand{\prayer}[2]{
+  \begin{center}\parbox{4in}{
+    \begin{center}
+    \begin{itshape}#1\end{itshape}\\
+    \scshape#2
+    \end{center}
+  }\end{center}}
 
 \newcommand{\mybox}[1]{
-  \begin{center}\framebox{\parbox{4in}{#1}}\end{center}}
+  \begin{center}\framebox{\parbox{4in}{\textsc{#1}}}\end{center}}
 
 
 \newcommand{\myrule}{
@@ -84,15 +101,14 @@ Dieu dit : \og Faisons l'homme à Notre image selon Notre ressemblance\dots\fg{}
 Dieu créa l'homme à Son image: Il le créa à l'image de Dieu, homme et femme Il les créa.
 }{\bibleverse{Gen}(1:26-27)}
 
-\myrule
 
-Pourquoi Dieu voudrait-Il nous créer à Son image? 
+\mylettrine{P}{ourquoi} Dieu voudrait-Il nous créer à Son image? 
 
 Il a agi ainsi parce qu'Il désirait une relation pleine d'amour et de sens avec nous. Parce qu'Il est amour, Dieu nous a donné la capacité d'aimer. Parce qu'Il s'auto-détermine, Il nous a donné la capacité de choisir. Il nous a rendus capables d'aimer et de choisir, afin que nous puissions Lui amener du plaisir - non seulement en recevant Son amour, mais aussi en choisissant de L'aimer en retour. 
 
 Beaucoup de gens choisissent de ne pas aimer Dieu. Ce faisant, ils ratent le but même de leur vie et ne devraient pas être surpris quand la vie leur paraît vide, frustrante et sans valeur.
 
-\mybox{LA CAPACITÉ DE CHOIX EST UNE CHOSE MERVEILLEUSE QUI PEUT AUSSI AVOIR DES CONSÉQUENCES DÉVASTATRICES.}
+\mybox{La capacité de choix est une chose merveilleuse qui peut aussi avoir des conséquences dévastatrices.}
 
 L'exercice du libre arbitre de l'homme dans le jardin a amené la chute qui l'a éloigné de l'image de Dieu. Cela a entraîné la mort spirituelle et a conduit l'homme à vivre comme un animal - absorbé seulement par la satisfaction de ses appétits physiques. Mais l'homme ne pourra jamais être satisfait en ne se revendiquant que du royaume animal. Il ne peut seulement trouver le contentement réel que lorsqu'il a une relation avec Dieu. 
 
@@ -102,8 +118,8 @@ Choisissez en faisant bien attention, car Dieu respecte et honore nos choix.
 
 \myrule
 
-\prayer{Père, merci car en contemplant Ta gloire, nous sommes transformés en Ton image par l'Esprit Saint qui agit en nous. 
-\\Amen}
+\prayer{Père, merci car en contemplant Ta gloire, nous sommes transformés en Ton
+ image par l'Esprit Saint qui agit en nous.}{Amen}
 
 
 
@@ -115,25 +131,26 @@ car la terre est pleine de violence à cause d'eux ;
 Je vais donc les détruire avec la terre.\fg{}
 }{\bibleverse{Gen}(6:13)}
 
-\myrule
 
-Dans les temps qui ont précédé le déluge, l'humanité s'était détournée de Dieu et vivait comme s'Il n'existait pas. Les moeurs étaient dissolues. Les pensées des hommes étaient corrompues et ils avaient adopté des pratiques sexuelles anormales. La violence recouvrait la terre et les hommes avaient commencé à vivre comme des animaux. C'est dans ces conditions, que Dieu ayant regardé la situation, déclara: "Mon esprit ne débattra pas toujours avec l’homme" (Genèse 6:3 - version "King James Française"). 
+\mylettrine{D}{ans} les temps qui ont précédé le déluge, l'humanité s'était détournée de Dieu et vivait comme s'Il n'existait pas. Les moeurs étaient dissolues. Les pensées des hommes étaient corrompues et ils avaient adopté des pratiques sexuelles anormales. La violence recouvrait la terre et les hommes avaient commencé à vivre comme des animaux. C'est dans ces conditions, que Dieu ayant regardé la situation, déclara: "Mon esprit ne débattra pas toujours avec l’homme" (Genèse 6:3 - version "King James Française"). 
 
 Vous voyez, il arrive finalement un temps où la patience de Dieu arrive à son terme. 
 
 Nous vivons, nous aussi, dans un monde rempli de violence et de corruption. Ce n'est qu'une question de temps avant que Dieu ne redise "Ça suffit!" Matthieu 24:37 nous dit "Comme aux jours de Noé ainsi en sera-t-il à l'avènement du Fils de l'homme." Comme Il l'a fait la première fois, Dieu dira à Son peuple, "Venez, entrez dans l'arche." Merci à Dieu, car Il nous a offert cet endroit de refuge. Cet arche, aujourd'hui, c'est Jésus-Christ.
 
 
-\mybox{VOUS FAITES PARTIE, SOIT DU SYSTÈME QUI CORROMPT LE MONDE ET LE FAIT COULER, SOIT DU SYSTÈME QUI SURNAGERA QUAND L'AUTRE AURA COULÉ.}
+\mybox{Vous faites partie, soit du système qui corrompt le monde et le fait couler, soit du système qui surnagera quand l'autre aura coulé.}
 
 
 Dieu a établi des normes absolues définissant ce qui est juste, et nous devons nous soumettre à Son autorité, parce que Jésus revient bientôt pour juger le monde selon la justice.
 
 \myrule
 
-\prayer{Père, puissions-nous prendre en compte ces choses que nous avons entendues, de peur que nous nous en éloignions en partant à la dérive. Aide-nous à effectuer une rupture décisive et définitive d'avec ce monde corrompu, afin que nous puissions tenir debout et être comptés avec ceux qui T'aiment et Te servent. 
-Dans le Nom de Jésus, 
-\\Amen}
+\prayer{Père, puissions-nous prendre en compte ces choses que nous avons
+ entendues, de peur que nous nous en éloignions en partant à la dérive.
+ Aide-nous à effectuer une rupture décisive et définitive d'avec ce monde
+ corrompu, afin que nous puissions tenir debout et être comptés avec ceux
+ qui T'aiment et Te servent.}{Dans le Nom de Jésus, Amen}
 
 
 
