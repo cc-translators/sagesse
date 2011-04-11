@@ -8,6 +8,9 @@
 
 \usepackage{lipsum}
 
+\setlength{\parindent}{0mm}
+\pagestyle{plain}
+
 \usepackage{titlesec}
 % Make day number in month, in french
 \usepackage{ifthen}
@@ -23,6 +26,13 @@
     \renewcommand\temphead{#2}%
     \renewcommand\chaphead{#2}%
     \oldchapter[#1]{#2}}
+
+% Tune chapter headings
+\titleformat{\chapter}[block]
+  {\scshape\Huge}
+  {}{10pt}
+  {\begin{center}}
+  [\end{center}]
 
 % Tune section headings
 \renewcommand\thesection{\arabic{section}}
@@ -53,9 +63,6 @@
 \renewcommand*{\BRchvsep}{.}%
 % We say "Esaïe" in the Colombe ve
 \setbooktitle{Is}{Esaïe}%
-
-\setlength{\parindent}{0mm}
-\pagestyle{plain}
 
 
 % Make indexes
