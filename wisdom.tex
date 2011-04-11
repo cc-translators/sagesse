@@ -1,0 +1,64 @@
+\documentclass{scrbook}
+
+\usepackage[utf8x]{inputenc}
+
+\usepackage[french]{babel} %language selection
+\selectlanguage{french}
+
+\usepackage{lipsum}
+
+\usepackage{titlesec}
+
+
+% Make day number in month, in french
+\usepackage{ifthen}
+\newcommand{\makedate}[1]{
+  \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
+}
+
+% Define \chaphead to be used in section headings
+\let\oldchapter\chapter
+\newcommand\temphead{}
+\newcommand\chaphead{}
+\renewcommand\chapter[2][\temphead]{%
+    \renewcommand\temphead{#2}%
+    \renewcommand\chaphead{#2}%
+    \oldchapter[#1]{#2}}
+
+% Tune section headings
+\renewcommand\thesection{\arabic{section}}
+\titleformat{\section}[display]
+  {\newpage\scshape\Huge}
+  {\large\makedate{\thesection}~\chaphead}{10pt}
+  {\begin{center}}
+  [\end{center}]
+
+%\newenvironment{myquote}[1]%
+%  {\begin{center}\begin{itshape}}
+%  {\end{itshape}\\ -- #1\end{center}}
+
+
+\newcommand{\myquote}[2]{\begin{center}\begin{itshape}#1\end{itshape}\\
+ -- \textsc{#2}\end{center}}
+
+
+\begin{document}
+
+\chapter{Janvier}
+\section{Créé à son image}
+
+\myquote{
+Dieu dit : \og Faisons l'homme à Notre image selon Notre ressemblance\dots\fg{} 
+Dieu créa l'homme à Son image: Il le créa à l'image de Dieu, homme et femme Il les créa.
+}{Genèse 1.26-27}
+
+
+\lipsum
+
+
+\section{Breaking Away}
+
+\lipsum
+
+
+\end{document}
