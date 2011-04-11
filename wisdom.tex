@@ -9,8 +9,6 @@
 \usepackage{lipsum}
 
 \usepackage{titlesec}
-
-
 % Make day number in month, in french
 \usepackage{ifthen}
 \newcommand{\makedate}[1]{
@@ -34,11 +32,6 @@
   {\begin{center}}
   [\end{center}]
 
-%\newenvironment{myquote}[1]%
-%  {\begin{center}\begin{itshape}}
-%  {\end{itshape}\\ -- #1\end{center}}
-
-
 \newcommand{\myquote}[2]{
   \begin{center}\parbox{4in}{\begin{itshape}#1\end{itshape}\\
   \flushright-- \textsc{#2}}\end{center}}
@@ -53,6 +46,13 @@
 \newcommand{\myrule}{
   \begin{center}\rule{2cm}{.1pt}\end{center}}
 
+% bibleref settings
+\usepackage{bibleref-french}
+\AtBeginDocument{\shorthandoff{:}}
+% Redefine chapter/verse separator
+\renewcommand*{\BRchvsep}{.}%
+% We say "Esaïe" in the Colombe ve
+\setbooktitle{Is}{Esaïe}%
 
 % Make indexes
 \usepackage{makeidx}
@@ -66,7 +66,7 @@
 \myquote{
 Dieu dit : \og Faisons l'homme à Notre image selon Notre ressemblance\dots\fg{} 
 Dieu créa l'homme à Son image: Il le créa à l'image de Dieu, homme et femme Il les créa.
-}{Genèse 1.26-27}
+}{\bibleverse{Gen}(1:26-27)}
 
 \myrule
 
@@ -91,10 +91,34 @@ Choisissez en faisant bien attention, car Dieu respecte et honore nos choix.
 
 
 
+\section{Rupture}
 
-\section{Breaking Away}
+\myquote{
+Alors Dieu dit à Noé : \og J'ai décidé de mettre fin à tous les êtres vivants ; 
+car la terre est pleine de violence à cause d'eux ; 
+Je vais donc les détruire avec la terre.\fg{}
+}{\bibleverse{Gen}(6:13)}
 
-\lipsum
+\myrule
+
+Dans les temps qui ont précédé le déluge, l'humanité s'était détournée de Dieu et vivait comme s'Il n'existait pas. Les moeurs étaient dissolues. Les pensées des hommes étaient corrompues et ils avaient adopté des pratiques sexuelles anormales. La violence recouvrait la terre et les hommes avaient commencé à vivre comme des animaux. C'est dans ces conditions, que Dieu ayant regardé la situation, déclara: "Mon esprit ne débattra pas toujours avec l’homme" (Genèse 6:3 - version "King James Française"). 
+
+Vous voyez, il arrive finalement un temps où la patience de Dieu arrive à son terme. 
+
+Nous vivons, nous aussi, dans un monde rempli de violence et de corruption. Ce n'est qu'une question de temps avant que Dieu ne redise "Ça suffit!" Matthieu 24:37 nous dit "Comme aux jours de Noé ainsi en sera-t-il à l'avènement du Fils de l'homme." Comme Il l'a fait la première fois, Dieu dira à Son peuple, "Venez, entrez dans l'arche." Merci à Dieu, car Il nous a offert cet endroit de refuge. Cet arche, aujourd'hui, c'est Jésus-Christ.
+
+
+\mybox{VOUS FAITES PARTIE, SOIT DU SYSTÈME QUI CORROMPT LE MONDE ET LE FAIT COULER, SOIT DU SYSTÈME QUI SURNAGERA QUAND L'AUTRE AURA COULÉ.}
+
+
+Dieu a établi des normes absolues définissant ce qui est juste, et nous devons nous soumettre à Son autorité, parce que Jésus revient bientôt pour juger le monde selon la justice.
+
+\myrule
+
+\prayer{Père, puissions-nous prendre en compte ces choses que nous avons entendues, de peur que nous nous en éloignions en partant à la dérive. Aide-nous à effectuer une rupture décisive et définitive d'avec ce monde corrompu, afin que nous puissions tenir debout et être comptés avec ceux qui T'aiment et Te servent. 
+Dans le Nom de Jésus, 
+\\Amen}
+
 
 
 \end{document}
