@@ -1,85 +1,10 @@
 \documentclass[paper=6.13in:9.21in,pagesize=pdftex,10pt,DIV=calc]{scrbook}
 
-
 \usepackage[utf8x]{inputenc}
-
 \usepackage[french]{babel} %language selection
 \selectlanguage{french}
 
-\usepackage{lipsum}
-
-\setlength{\parindent}{5mm}
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-\pagestyle{empty}
-
-% setting lettrines
-\usepackage{type1cm} % scalable fonts
-\usepackage{lettrine}
-\usepackage{xcolor}
-\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
-\newcommand{\mylettrine}[2]{\lettrine[lines=2, lhang=0.33, loversize=0.25]{#1}{#2}}
-
-\usepackage{titlesec}
-% Make day number in month, in french
-\usepackage{ifthen}
-\newcommand{\makedate}[1]{
-  \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
-}
-
-% Define \chaphead to be used in section headings
-\let\oldchapter\chapter
-\newcommand\temphead{}
-\newcommand\chaphead{}
-\renewcommand\chapter[2][\temphead]{%
-    \renewcommand\temphead{#2}%
-    \renewcommand\chaphead{#2}%
-    \oldchapter[#1]{#2}}
-
-% Tune chapter headings
-\titleformat{\chapter}[block]
-  {\scshape\Huge}
-  {}{10pt}
-  {\begin{center}}
-  [\end{center}]
-
-% Tune section headings
-\renewcommand\thesection{\arabic{section}}
-\titleformat{\section}[display]
-  {\newpage\scshape\Huge}
-  {\large\makedate{\thesection}~\chaphead}{10pt}
-  {\begin{center}}
-  [\end{center}]
-
-\newcommand{\myquote}[2]{
-  \begin{center}\parbox{90mm}{
-    \begin{center}
-    \begin{itshape}#1\end{itshape}\\
-    -- \textsc{#2}
-    \end{center}
-  }\end{center}}
-
-\newcommand{\prayer}[2]{
-  \begin{center}\parbox{4in}{
-    \begin{center}
-    \begin{itshape}#1\end{itshape}\\
-    \scshape#2
-    \end{center}
-  }\end{center}}
-
-\newcommand{\mybox}[1]{
-  \begin{center}\framebox{\parbox{4in}{\textsc{#1}}}\end{center}}
-
-
-\newcommand{\myrule}{
-  \begin{center}\rule{2cm}{.1pt}\end{center}}
-
-% bibleref settings
-\usepackage{bibleref-french}
-\AtBeginDocument{\shorthandoff{:}}
-% Redefine chapter/verse separator
-\renewcommand*{\BRchvsep}{.}%
-% We say "Esaïe" in the Colombe ve
-\setbooktitle{Is}{Esaïe}%
+\usepackage{devotional}
 
 
 % Make indexes
@@ -93,22 +18,22 @@
 
 \maketitle
 
-\chapter{Janvier}
-\section{Créé à son image}
+\dvmonth{Janvier}
+\dvday{Créé à son image}
 
-\myquote{
+\dvquote{
 Dieu dit : \og Faisons l'homme à Notre image selon Notre ressemblance\dots\fg{} 
 Dieu créa l'homme à Son image: Il le créa à l'image de Dieu, homme et femme Il les créa.
 }{\bibleverse{Gen}(1:26-27)}
 
 
-\mylettrine{P}{ourquoi} Dieu voudrait-Il nous créer à Son image? 
+\dvlettrine{P}{ourquoi} Dieu voudrait-Il nous créer à Son image? 
 
 Il a agi ainsi parce qu'Il désirait une relation pleine d'amour et de sens avec nous. Parce qu'Il est amour, Dieu nous a donné la capacité d'aimer. Parce qu'Il s'auto-détermine, Il nous a donné la capacité de choisir. Il nous a rendus capables d'aimer et de choisir, afin que nous puissions Lui amener du plaisir - non seulement en recevant Son amour, mais aussi en choisissant de L'aimer en retour. 
 
 Beaucoup de gens choisissent de ne pas aimer Dieu. Ce faisant, ils ratent le but même de leur vie et ne devraient pas être surpris quand la vie leur paraît vide, frustrante et sans valeur.
 
-\mybox{La capacité de choix est une chose merveilleuse qui peut aussi avoir des conséquences dévastatrices.}
+\dvbox{La capacité de choix est une chose merveilleuse qui peut aussi avoir des conséquences dévastatrices.}
 
 L'exercice du libre arbitre de l'homme dans le jardin a amené la chute qui l'a éloigné de l'image de Dieu. Cela a entraîné la mort spirituelle et a conduit l'homme à vivre comme un animal - absorbé seulement par la satisfaction de ses appétits physiques. Mais l'homme ne pourra jamais être satisfait en ne se revendiquant que du royaume animal. Il ne peut seulement trouver le contentement réel que lorsqu'il a une relation avec Dieu. 
 
@@ -116,35 +41,35 @@ Jésus est venu dans ce but. Il a pris notre péché et il est mort à notre pla
 
 Choisissez en faisant bien attention, car Dieu respecte et honore nos choix. 
 
-\myrule
+\dvrule
 
 \prayer{Père, merci car en contemplant Ta gloire, nous sommes transformés en Ton
  image par l'Esprit Saint qui agit en nous.}{Amen}
 
 
 
-\section{Rupture}
+\dvday{Rupture}
 
-\myquote{
+\dvquote{
 Alors Dieu dit à Noé : \og J'ai décidé de mettre fin à tous les êtres vivants ; 
 car la terre est pleine de violence à cause d'eux ; 
 Je vais donc les détruire avec la terre.\fg{}
 }{\bibleverse{Gen}(6:13)}
 
 
-\mylettrine{D}{ans} les temps qui ont précédé le déluge, l'humanité s'était détournée de Dieu et vivait comme s'Il n'existait pas. Les moeurs étaient dissolues. Les pensées des hommes étaient corrompues et ils avaient adopté des pratiques sexuelles anormales. La violence recouvrait la terre et les hommes avaient commencé à vivre comme des animaux. C'est dans ces conditions, que Dieu ayant regardé la situation, déclara: "Mon esprit ne débattra pas toujours avec l’homme" (Genèse 6:3 - version "King James Française"). 
+\dvlettrine{D}{ans} les temps qui ont précédé le déluge, l'humanité s'était détournée de Dieu et vivait comme s'Il n'existait pas. Les moeurs étaient dissolues. Les pensées des hommes étaient corrompues et ils avaient adopté des pratiques sexuelles anormales. La violence recouvrait la terre et les hommes avaient commencé à vivre comme des animaux. C'est dans ces conditions, que Dieu ayant regardé la situation, déclara: "Mon esprit ne débattra pas toujours avec l’homme" (Genèse 6:3 - version "King James Française"). 
 
 Vous voyez, il arrive finalement un temps où la patience de Dieu arrive à son terme. 
 
 Nous vivons, nous aussi, dans un monde rempli de violence et de corruption. Ce n'est qu'une question de temps avant que Dieu ne redise "Ça suffit!" Matthieu 24:37 nous dit "Comme aux jours de Noé ainsi en sera-t-il à l'avènement du Fils de l'homme." Comme Il l'a fait la première fois, Dieu dira à Son peuple, "Venez, entrez dans l'arche." Merci à Dieu, car Il nous a offert cet endroit de refuge. Cet arche, aujourd'hui, c'est Jésus-Christ.
 
 
-\mybox{Vous faites partie, soit du système qui corrompt le monde et le fait couler, soit du système qui surnagera quand l'autre aura coulé.}
+\dvbox{Vous faites partie, soit du système qui corrompt le monde et le fait couler, soit du système qui surnagera quand l'autre aura coulé.}
 
 
 Dieu a établi des normes absolues définissant ce qui est juste, et nous devons nous soumettre à Son autorité, parce que Jésus revient bientôt pour juger le monde selon la justice.
 
-\myrule
+\dvrule
 
 \prayer{Père, puissions-nous prendre en compte ces choses que nous avons
  entendues, de peur que nous nous en éloignions en partant à la dérive.
@@ -153,5 +78,7 @@ Dieu a établi des normes absolues définissant ce qui est juste, et nous devons
  qui T'aiment et Te servent.}{Dans le Nom de Jésus, Amen}
 
 
+\dvmonth{Février}
+\dvday{Les Exigences du Seigneur}
 
 \end{document}
