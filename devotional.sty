@@ -58,7 +58,11 @@
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
   {\begin{center}} %before
-  [\end{center}] %after
+  [\end{center}
+% Add a vertical tab to the right side of the page
+% if it is an odd page
+%\ifthispageodd{oddpage}{evenpage}
+] %after
 
 
 % opening quote
