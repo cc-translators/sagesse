@@ -53,11 +53,11 @@
 % Tune section headings
 \renewcommand\thesection{\arabic{section}}
 \titleformat{\section}[display]
-  {\newpage\scshape\Huge} % format
+  {\newpage\scshape\LARGE} % format
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
-  {\begin{center}} %before
-  [\end{center}
+  {\vspace{-7mm}\begin{center}} %before
+  [\end{center}\vspace{-10mm}
 % Add a vertical tab to the right side of the page
 % if it is an odd page
 %\ifthispageodd{oddpage}{evenpage}
@@ -71,7 +71,7 @@
     \begin{itshape}#1\end{itshape}\\
     -- \textsc{#2}
     \end{center}
-  }\end{center}}
+  }\end{center}\vspace{-5mm}}
 
 % central quote
 \newcommand{\dvbox}[1]{
