@@ -13,6 +13,8 @@
 
 % no headings, no page numbers
 \pagestyle{empty}
+% also for chapter pages
+\renewcommand*{\chapterpagestyle}{empty}
 
 % font
 \usepackage[T1]{fontenc}
@@ -53,15 +55,16 @@
 % Tune section headings
 \renewcommand\thesection{\arabic{section}}
 \titleformat{\section}[display]
-  {\newpage\scshape\LARGE} % format
+  {\newpage\scshape\Huge} % format
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
   {\vspace{-7mm}\begin{center}} %before
-  [\end{center}\vspace{-10mm}
+  [\end{center}
 % Add a vertical tab to the right side of the page
 % if it is an odd page
 %\ifthispageodd{oddpage}{evenpage}
 ] %after
+\titlespacing{\section}{0pt}{*-8}{*-5}
 
 
 % opening quote
