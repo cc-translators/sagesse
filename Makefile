@@ -1,4 +1,4 @@
-BOOK_NAME=wisdom
+BOOK_NAME=sagesse
 BOOK_TEX=$(BOOK_NAME).tex
 BOOK_PDF=$(BOOK_NAME).pdf
 BOOK_IDX=$(BOOK_NAME).idx
@@ -39,8 +39,7 @@ booklet: $(BOOKLET_PS)
 clean:
 	rm -f *.pdf *.ps *.aux *.log *.out *.lol
 	rm -f *.idx *.ind *.ilg *.toc *.dvi
-	rm -f chapters/*.aux
-	rm -f settings/*.aux
+	rm -f mois/*.aux
 
 help:
 	@echo "To build the book type:"
