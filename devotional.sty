@@ -63,22 +63,12 @@
 
 \newcommand{\monthtab}[2]{
   \shorthandoff{;}
-  \ifthenelse{#2<7}{
   \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=-3*{#2}cm,xshift=-0.5cm] at (current page.north east) {
+    \node[yshift={-3*(mod(#2-1,6)+1)*1cm},xshift=-0.5cm] at (current page.north east) {
       \tikz\shade[shading=axis,bottom color=white,top color=gray!50,shading angle=-90] 
         (0,0) rectangle (1cm,3cm) node[rotate=90,pos=0.5] {\Large\scshape #1};
     };
   \end{tikzpicture}
-  }
-  {
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=18cm-3*{#2}cm,xshift=-0.5cm] at (current page.north east) {
-      \tikz\shade[shading=axis,bottom color=white,top color=gray!50,shading angle=-90] 
-        (0,0) rectangle (1cm,3cm) node[rotate=90,pos=0.5] {\Large\scshape #1};
-    };
-  \end{tikzpicture}
-  }
 }
 
 \newcommand{\secstyle}{\scshape\Huge}
@@ -95,7 +85,7 @@
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
   {\vspace{-5mm}\filcenter\textls[-50]} %before
-  [\monthtab{\chaphead}{\arabic{chapter}}\vspace{-1.2cm}] % after
+  [\monthtab{\chaphead}{\arabic{chapter}}\vspace{-\baselineskip}] % after
 \titlespacing{\section}{0pt}{*}{*-2}
 
 
