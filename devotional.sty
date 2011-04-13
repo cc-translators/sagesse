@@ -52,13 +52,33 @@
   {\begin{center}}
   [\end{center}]
 
+% Make tabs for sections
+\usepackage{tikz}
+\newcommand{\monthtab}[2]{
+  \shorthandoff{;}
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-3*{#2}cm,xshift=-0.5cm] at (current page.north east) {
+      \tikz\shade[shading=axis,bottom color=white,top color=gray!50,shading angle=-90] 
+        (0,0) rectangle (1cm,3cm) node[rotate=90,pos=0.5] {\Large\scshape #1};
+    };
+  \end{tikzpicture}
+}
+
+\newcommand{\secstyle}{\scshape\huge}
+
 % Tune section headings
 \renewcommand\thesection{\arabic{section}}
-\titleformat{\section}[display]
-  {\newpage\scshape\Huge} % format
+\titleformat{name=\section,page=even}[display]
+  {\newpage\secstyle} % format
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
   {\vspace{-5mm}\filcenter\textls[-35]} %before
+\titleformat{name=\section,page=odd}[display]
+  {\newpage\secstyle} % format
+  {\large\makedate{\thesection}~\chaphead} % label
+  {10pt} %sep
+  {\vspace{-5mm}\filcenter\textls[-35]} %before
+  [\monthtab{\chaphead}{\arabic{chapter}}] % after
 \titlespacing{\section}{0pt}{*}{*-2}
 
 
