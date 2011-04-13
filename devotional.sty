@@ -55,20 +55,14 @@
 % Make tabs for sections
 \usepackage{tikz}
 
-%\def\monthtabpos#1%
-%  {\ifthenelse{#1<7}
-%     {\dimexpr \numexpr -3*#1 \relax cm}
-%     {\dimexpr \numexpr -3*(#1-6) \relax cm}
-%  }
-
-\newcommand{\monthtab}[2]{
-  \shorthandoff{;}
+\newcommand{\monthtab}[2]{%
+  \shorthandoff{;}%
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift={-3*(mod(#2-1,6)+1)*1cm},xshift=-0.5cm] at (current page.north east) {
       \tikz\shade[shading=axis,bottom color=white,top color=gray!50,shading angle=-90] 
         (0,0) rectangle (1cm,3cm) node[rotate=90,pos=0.5] {\Large\scshape #1};
     };
-  \end{tikzpicture}
+  \end{tikzpicture}%
 }
 
 \newcommand{\secstyle}{\scshape\Huge}
@@ -84,8 +78,7 @@
   {\newpage\secstyle} % format
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
-  {\vspace{-5mm}\filcenter\textls[-50]} %before
-  [\monthtab{\chaphead}{\arabic{chapter}}\vspace{-\baselineskip}] % after
+  {\vspace{-5mm}\monthtab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
 \titlespacing{\section}{0pt}{*}{*-2}
 
 
