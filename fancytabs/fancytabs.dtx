@@ -1,0 +1,178 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2011 by Raphaël Pinson
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.2 of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.2 or later is part of all distributions of
+% LaTeX version 1999/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{fancytabs}
+%<package>   [2011/04/14 0.1 Fancy page border tabs]
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\OnlyDescription
+\begin{document}
+ \DocInput{fancytabs.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \changes{v1.0}{2011/04/14}{Initial version}
+%
+% \GetFileInfo{fancytabs.dtx}
+%
+% \title{The \textsf{fancytabs} package\thanks{This document
+%  corresponds to \textsf{fancytabs}~\fileversion,
+%  dated~\filedate.}}
+% \author{Rapha\"el Pinson \\ \texttt{raphink@gmail.com}}
+%
+% \maketitle
+% 
+% \begin{abstract}
+%  The \textsf{fancytabs} package allows to insert tabs
+%  on the border of pages.
+% \end{abstract}
+%
+% \section{Usage}
+%
+% \subsection{Adding a tab}
+%
+% \DescribeMacro{\fancytab}
+%  The |\fancytab| macro adds a new tab.
+%  It takes two arguments:
+%  |\fancytab{<text>}{<position>}|
+%  and displays the text in the tab, on given vertical position.
+%
+% \subsection{Adding a tab to all odd pages with scrpage2}
+%
+% The following code adds a tab with the chapter name, positioned by chapter order, on each odd page.
+%
+% \begin{verbatim}
+% \documentclass{scrbook}
+% \usepackage{scrpage2}
+% \usepackage{fancytabs}
+% \usepackage{lipsum}
+% 
+% % Capture chapter head
+% \let\oldchapter\chapter
+% \newcommand\temphead{}
+% \newcommand\chaphead{}
+% \renewcommand\chapter[2][\temphead]{%
+%    \renewcommand\temphead{#2}%
+%    \renewcommand\chaphead{#2}%
+%    \oldchapter[#1]{#2}}
+%
+% % Set central right header to display tab
+% % for both scrplain and scrheadings
+% \cohead[\fancytab{\chaphead}{\thechapter}]
+%        {\fancytab{\chaphead}{\thechapter}}
+% \renewcommand*{\chapterpagestyle}{scrplain}
+% \pagestyle{scrheadings}
+% 
+% \begin{document}
+% \chapter{My sample chapter}
+% 
+% \lipsum
+% \lipsum
+%
+% \end{document}
+% \end{verbatim}
+%
+% \subsection{Parameters}
+%
+% \DescribeMacro{\tabstyle}
+%  The style of for the text in the tab.
+%  Default is |\Large\scshape|.
+%  You can set this value with:
+%  |\renewcommand{\tabstyle}{<value>}|.
+%
+% \DescribeMacro{\tabheight}
+%  Define the height of the tab.
+%  Default is |4cm|.
+%  You can set this value with
+%  |\renewcommand{\tabheight}{<value>}|.
+%
+% \DescribeMacro{\tabwidth}
+%  Define the height of the tab.
+%  Default is |1cm|.
+%  You can set this value with
+%  |\renewcommand{\tabwidth}{<value>}|.
+%
+% \DescribeMacro{\tabcount}
+%  Define the maximum amount of tabs on a page.
+%  After |\tabcount| tabs are displayed, the next tab is displayed on top of the page again.
+%  Default is |6|.
+%  You can set this value with
+%  |\renewcommand{\tabcount}{<value>}|.
+%
+% \DescribeMacro{\tableftcolor}
+%  Define the left color for the tab gradient.
+%  Default is |white|.
+%  You can set this value with
+%  |\renewcommand{\tableftcolor}{<value>}|.
+%
+% \DescribeMacro{\tabrightcolor}
+%  Define the right color for the tab gradient.
+%  Default is |gray!50|.
+%  You can set this value with
+%  |\renewcommand{\tabrightcolor}{<value>}|.
+%
+% \DescribeMacro{\tabtop}
+%  Define margin on top of the top tab.
+%  Default is |\tabheight|.
+%  You can set this value with
+%  |\renewcommand{\tabtop}{<value>}|.
+%
+% \StopEventually{\PrintIndex}
+%
+% \section{Implementation}
+% 
+% \begin{macrocode}
+\RequirePackage{tikz}
+\newcommand{\tabstyle}{\Large\scshape}
+\newcommand{\tabheight}{4cm}
+\newcommand{\tabwidth}{1cm}
+\newcommand{\tabcount}{6}
+\newcommand{\tableftcolor}{white}
+\newcommand{\tabrightcolor}{gray!50}
+\newcommand{\tabtop}{\tabheight}
+% \end{macrocode}
+%
+% \being{macro}{\fancytab}
+% We define the |\fancytab| macro to generate a new tab.
+% \begin{macrocode}
+\newcommand{\fancytab}[2]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift={-\tabtop-1*mod(#2-1,\tabcount)*\tabheight},
+                  xshift=-0.5*\tabwidth]
+      at (current page.north east) {
+      \tikz\shade[shading=axis,bottom color=\tableftcolor,
+                  top color=\tabrightcolor,shading angle=-90] 
+        (0,0) rectangle (\tabwidth,\tabheight)
+           node[rotate=90,pos=0.5] {\tabstyle#1};
+    };
+  \end{tikzpicture}%
+}
+% \end{macrocode}
+% \end{macro}
+%
+% \Finale
+\endinput
+
+

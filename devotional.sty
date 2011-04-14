@@ -53,17 +53,9 @@
   [\end{center}]
 
 % Make tabs for sections
-\usepackage{tikz}
-
-\newcommand{\monthtab}[2]{%
-  \shorthandoff{;}%
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift={-3*(mod(#2-1,6)+1)*1cm},xshift=-0.5cm] at (current page.north east) {
-      \tikz\shade[shading=axis,bottom color=white,top color=gray!50,shading angle=-90] 
-        (0,0) rectangle (1cm,3cm) node[rotate=90,pos=0.5] {\Large\scshape #1};
-    };
-  \end{tikzpicture}%
-}
+\usepackage{fancytabs}
+\AtBeginDocument{\shorthandoff{;}}
+\renewcommand{\tabheight}{3cm}
 
 \newcommand{\secstyle}{\scshape\Huge}
 
@@ -78,7 +70,7 @@
   {\newpage\secstyle} % format
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
-  {\vspace{-5mm}\monthtab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
+  {\vspace{-5mm}\fancytab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
 \titlespacing{\section}{0pt}{*}{*-2}
 
 

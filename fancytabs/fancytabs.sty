@@ -1,0 +1,48 @@
+%%
+%% This is file `fancytabs.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% fancytabs.dtx  (with options: `package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2011 by Raphaël Pinson
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.2 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.2 or later is part of all distributions of
+%% LaTeX version 1999/12/01 or later.
+%% 
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{fancytabs}
+   [2011/04/14 0.1 Fancy page border tabs]
+\RequirePackage{tikz}
+\newcommand{\tabstyle}{\Large\scshape}
+\newcommand{\tabheight}{4cm}
+\newcommand{\tabwidth}{1cm}
+\newcommand{\tabcount}{6}
+\newcommand{\tableftcolor}{white}
+\newcommand{\tabrightcolor}{gray!50}
+\newcommand{\tabtop}{\tabheight}
+\newcommand{\fancytab}[2]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift={-\tabtop-1*mod(#2-1,\tabcount)*\tabheight},
+                  xshift=-0.5*\tabwidth]
+      at (current page.north east) {
+      \tikz\shade[shading=axis,bottom color=\tableftcolor,
+                  top color=\tabrightcolor,shading angle=-90]
+        (0,0) rectangle (\tabwidth,\tabheight)
+           node[rotate=90,pos=0.5] {\tabstyle#1};
+    };
+  \end{tikzpicture}%
+}
+\endinput
+%%
+%% End of file `fancytabs.sty'.
