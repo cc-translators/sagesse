@@ -2,7 +2,7 @@
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{\chapter{#1}\cleardoublepage}
-\newcommand{\dvday}[1]{\section{#1}}
+\newcommand{\dvday}[1]{\newpage\section{#1}}
 
 % bibleref settings
 \usepackage{bibleref-french-colombe}
@@ -62,7 +62,7 @@
 % Tune section headings
 \renewcommand\thesection{\arabic{section}}
 \titleformat{name=\section,page=even}[display]
-  {\newpage\secstyle} % format
+  {\secstyle} % format
   {\large\makedate{\thesection}~\chaphead} % label
   {10pt} %sep
   {\vspace{-5mm}\filcenter\textls[-35]} %before
