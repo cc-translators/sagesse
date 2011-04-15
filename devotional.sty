@@ -117,11 +117,14 @@
   {\secstyle} % format
   {} % label
   {10pt} %sep
-  {\vspace{-15mm}%
-\ifthenelse{\isodd{\thepage}}%
-  {\fancytab{\chaphead}{\arabic{chapter}}}%
-  {}%
-\filcenter\textls[-35]} %before
+  {
+  \vspace{-15mm}%
+  \ifthenelse{\isodd{\thepage}}%
+    {\fancytab{\chaphead}{\arabic{chapter}}}%
+    {}%
+  \filcenter\textls[-35]
+  } %before
+\titlespacing{\section}{0pt}{*}{*-2}
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}
