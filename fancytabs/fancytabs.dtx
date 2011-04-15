@@ -143,7 +143,7 @@
 %
 % \section{Implementation}
 % 
-% \begin{macrocode}
+%  \begin{macrocode}
 \RequirePackage{tikz}
 \newcommand{\tabstyle}{\Large\scshape}
 \newcommand{\tabheight}{4cm}
@@ -152,11 +152,11 @@
 \newcommand{\tableftcolor}{white}
 \newcommand{\tabrightcolor}{gray!50}
 \newcommand{\tabtop}{\tabheight}
-% \end{macrocode}
+%  \end{macrocode}
 %
-% \being{macro}{\fancytab}
+% \begin{macro}{\fancytab}
 % We define the |\fancytab| macro to generate a new tab.
-% \begin{macrocode}
+%  \begin{macrocode}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift={-\tabtop-1*mod(#2-1,\tabcount)*\tabheight},
@@ -169,7 +169,7 @@
     };
   \end{tikzpicture}%
 }
-% \end{macrocode}
+%  \end{macrocode}
 % \end{macro}
 %
 % \Finale
