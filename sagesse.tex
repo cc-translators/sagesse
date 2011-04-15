@@ -1,7 +1,8 @@
 % Royal        => 156mm:234mm = 6.13x9.21
 %  this is 6.14x9.21 on createspace
 \documentclass[paper=6.14in:9.21in,pagesize=pdftex,
-               10pt,DIV15,BCOR0.1cm]{scrbook}
+               10pt,DIV=calc,BCOR=0.25in,twoside,
+               headinclude=false,footinclude=false]{scrbook}
 
 \usepackage[french]{babel} %language selection
 \selectlanguage{french}
@@ -22,6 +23,8 @@
            pdftex}
 \usepackage{url}
 \usepackage[activate={true,nocompatibility}]{microtype}
+\usepackage{typearea}
+\areaset{5in}{7in}
 
 \usepackage{devotional}
 
@@ -32,6 +35,11 @@
 \usepackage{makeidx}
 \makeindex
 
+% shorthandoff ; for tikz
+\AtBeginDocument{\shorthandoff{;}}
+% shorthandoff : for bibleref
+\AtBeginDocument{\shorthandoff{:}}
+
 \title{Sagesse pour Aujourd'hui}
 \author{Chuck Smith}
 
@@ -39,10 +47,10 @@
 
 %\maketitle
 \input{title}
-
 \input{copyright}
 \input{introduction}
 
+\begin{devotional}
 \input{mois/janvier.tex}
 \input{mois/fevrier.tex}
 \input{mois/mars.tex}
@@ -55,7 +63,9 @@
 \input{mois/octobre.tex}
 \input{mois/novembre.tex}
 \input{mois/decembre.tex}
+\end{devotional}
 
 
 \end{document}
+
 

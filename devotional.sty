@@ -1,9 +1,5 @@
 \ProvidesPackage{devotional}
 
-% Define useful aliases
-\newcommand{\dvmonth}[1]{\chapter{#1}\cleardoublepage}
-\newcommand{\dvday}[1]{\section{#1}}
-
 % bibleref settings
 \usepackage{bibleref-french-colombe}
 
@@ -11,10 +7,8 @@
 \setlength{\parindent}{5mm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
-% no headings, no page numbers
-\pagestyle{empty}
-% also for chapter pages
-\renewcommand*{\chapterpagestyle}{empty}
+% Package scrpage2 for headers
+\usepackage{scrpage2}
 
 % font
 \usepackage[T1]{fontenc}
@@ -24,16 +18,18 @@
 \usepackage{type1cm} % scalable fonts
 \usepackage{lettrine}
 \usepackage{xcolor}
-\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
-\newcommand{\dvlettrine}[3][]{
-   \lettrine[lines=2,lhang=0.33,loversize=0.25,#1]{#2}{#3}
-}
 
 % Make day number in month, in french
 \usepackage{ifthen}
 \newcommand{\makedate}[1]{
   \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
 }
+
+% Tune chapter headings
+\usepackage{titlesec}
+\usepackage{fancytabs}
+\usepackage{fancybox}
+\usepackage{fourier-orns}
 
 % Define \chaphead to be used in section headings
 \let\oldchapter\chapter
@@ -44,35 +40,21 @@
     \renewcommand\chaphead{#2}%
     \oldchapter[#1]{#2}}
 
-% Tune chapter headings
-\usepackage{titlesec}
-\titleformat{\chapter}[block]
-  {\scshape\Huge}
-  {}{10pt}
-  {\begin{center}}
-  [\end{center}]
 
-% Make tabs for sections
-\usepackage{fancytabs}
-\AtBeginDocument{\shorthandoff{;}}
-\renewcommand{\tabheight}{3cm}
 
-\newcommand{\secstyle}{\scshape\Huge}
+% Note du traducteur
+\newcommand{\NdT}[1]{\footnote{NdT~: #1}}
+% Use footnote package when footnotes (or NdT)
+% are called from within \dvquote
+% Warning:Load footnote after xcolor
+\usepackage{footnote}
 
-% Tune section headings
-\renewcommand\thesection{\arabic{section}}
-\titleformat{name=\section,page=even}[display]
-  {\newpage\secstyle} % format
-  {\large\makedate{\thesection}~\chaphead} % label
-  {10pt} %sep
-  {\vspace{-5mm}\filcenter\textls[-35]} %before
-\titleformat{name=\section,page=odd}[display]
-  {\newpage\secstyle} % format
-  {\large\makedate{\thesection}~\chaphead} % label
-  {10pt} %sep
-  {\vspace{-5mm}\fancytab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
-\titlespacing{\section}{0pt}{*}{*-2}
 
+% Lettrines
+\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
+\newcommand{\dvlettrine}[3][]{
+   \lettrine[lines=2,lhang=0.33,loversize=0.25,#1]{#2}{#3}
+}
 
 % opening quote
 \newcommand{\dvquote}[2]{
@@ -84,7 +66,6 @@
   }\end{center}\vspace{-5mm}}
 
 % central quote
-\usepackage{fancybox}
 \newcommand{\dvbox}[1]{
   \begin{center}\doublebox{
     \parbox{10cm}{
@@ -96,7 +77,6 @@
     }
   }\end{center}}
 
-
 % ending prayer
 \newcommand{\dvprayer}[2]{
   \begin{center}\parbox{4in}{
@@ -107,19 +87,57 @@
   }\end{center}}
 
 % Rule sep
-\usepackage{fourier-orns}
 \newcommand{\dvrule}{
   \begin{center}
     \rule{1cm}{.3pt}~~\floweroneleft\floweroneright~~\rule{1cm}{.3pt}
   \end{center}
 }
 
+% Tune section headings and use tabs
+% I'd like that to go inside the devotional environment
+\renewcommand{\tabheight}{3cm}
+\newcommand{\secstyle}{\scshape\huge}
+\renewcommand\thesection{\arabic{section}}
+\titleformat{name=\section,page=even}[display]
+  {\secstyle} % format
+  {} % label
+  {10pt} %sep
+  {\vspace{-15mm}\filcenter\textls[-35]} %before
+\titleformat{name=\section,page=odd}[display]
+  {\secstyle} % format
+  {} % label
+  {10pt} %sep
+  {\vspace{-15mm}\fancytab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
+\titlespacing{\section}{0pt}{*}{*-2}
 
-% Note du traducteur
-\newcommand{\NdT}[1]{\footnote{NdT~: #1}}
-% Use footnote package when footnotes (or NdT)
-% are called from within \dvquote
-% Warning:Load footnote after xcolor
-\usepackage{footnote}
+\newenvironment{devotional}%
+{%
+% Set headers and footers
+\newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
+\lehead{\seclbl}
+\lohead{\seclbl}
+\rehead{}
+\rohead{}
+\ofoot{}
+\pagestyle{scrheadings}
+% also for chapter pages
+\renewcommand*{\chapterpagestyle}{empty}
+
+% Define useful aliases
+\newcommand{\dvmonth}[1]{\chapter{##1}\cleardoublepage}
+\newcommand{\dvday}[1]{\newpage\section{##1}}
+
+% Set chapter pages
+\titleformat{\chapter}[block]
+  {\scshape\Huge}
+  {}{10pt}
+  {\begin{center}}
+  [\end{center}]
+
+
+} % end of \begin{devotional}
+{} % end of \end{devotional}
+
+
 
 
