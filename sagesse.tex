@@ -7,8 +7,25 @@
 %\documentclass[paper=6.125in:9.25in,pagesize=pdftex,
 % US Trade => 6x9
 \documentclass[paper=6in:9in,pagesize=pdftex,
-               headinclude=on,
-               10pt]{scrbook}
+               headinclude=on,10pt]{scrbook}
+% Margin calculations for US Trade
+% Note: headinclude=on required on this document (in documentlclass)
+%   because we have no footer, and we need an absolute margin
+%
+% Paper width
+% W = 6in
+% Paper height
+% H = 9in
+% Paper gutter
+% BCOR = 0.5in
+% Margin (0.5in imposed on lulu, recommended on createspace)
+% m = 0.5in
+% Text height
+% h = H - 2m = 8in
+% Text width
+% w = W - 2m - BCOR = 4.5in
+\areaset[0.50in]{4.5in}{8in}
+
 
 \usepackage[french]{babel} %language selection
 \selectlanguage{french}
@@ -30,7 +47,6 @@
 \usepackage{url}
 \usepackage[activate={true,nocompatibility}]{microtype}
 \usepackage{typearea}
-\areaset[0.50in]{4.5in}{8in}
 
 % font
 \usepackage[T1]{fontenc}
