@@ -1,8 +1,7 @@
 % Royal        => 156mm:234mm = 6.13x9.21
 %  this is 6.14x9.21 on createspace
 \documentclass[paper=6.14in:9.21in,pagesize=pdftex,
-               10pt,DIV=calc,BCOR=0.25in,twoside,
-               headinclude=false,footinclude=false]{scrbook}
+               10pt]{scrbook}
 
 \usepackage[french]{babel} %language selection
 \selectlanguage{french}
@@ -24,9 +23,23 @@
 \usepackage{url}
 \usepackage[activate={true,nocompatibility}]{microtype}
 \usepackage{typearea}
-\areaset{5in}{7in}
+\areaset[0.50in]{4.5in}{7.5in}
+
+% font
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% set paragraphs
+\setlength{\parindent}{5mm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% bibleref settings
+\usepackage{bibleref-french-colombe}
+\AtBeginDocument{\shorthandoff{:}}
 
 \usepackage{devotional}
+% shorthandoff ; for tikz
+\AtBeginDocument{\shorthandoff{;}}
 
 % prerender for chapter titles
 \PrerenderUnicode{À}
@@ -35,10 +48,6 @@
 \usepackage{makeidx}
 \makeindex
 
-% shorthandoff ; for tikz
-\AtBeginDocument{\shorthandoff{;}}
-% shorthandoff : for bibleref
-\AtBeginDocument{\shorthandoff{:}}
 
 \title{Sagesse pour Aujourd'hui}
 \author{Chuck Smith}

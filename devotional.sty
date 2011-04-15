@@ -1,35 +1,25 @@
 \ProvidesPackage{devotional}
 
-% bibleref settings
-\usepackage{bibleref-french-colombe}
-
-% set paragraphs
-\setlength{\parindent}{5mm}
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
 % Package scrpage2 for headers
 \usepackage{scrpage2}
-
-% font
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
 
 % setting lettrines
 \usepackage{type1cm} % scalable fonts
 \usepackage{lettrine}
 \usepackage{xcolor}
 
-% Make day number in month, in french
-\usepackage{ifthen}
-\newcommand{\makedate}[1]{
-  \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
-}
-
 % Tune chapter headings
 \usepackage{titlesec}
 \usepackage{fancytabs}
 \usepackage{fancybox}
 \usepackage{fourier-orns}
+
+% Make day number in month, in french
+\usepackage{ifthen}
+\newcommand{\makedate}[1]{
+  \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
+}
 
 % Define \chaphead to be used in section headings
 \let\oldchapter\chapter
@@ -39,8 +29,6 @@
     \renewcommand\temphead{#2}%
     \renewcommand\chaphead{#2}%
     \oldchapter[#1]{#2}}
-
-
 
 % Note du traducteur
 \newcommand{\NdT}[1]{\footnote{NdT~: #1}}
@@ -68,10 +56,10 @@
 % central quote
 \newcommand{\dvbox}[1]{
   \begin{center}\doublebox{
-    \parbox{10cm}{
+    \parbox{11cm}{
       \vspace{3mm}
         \begin{center}
-          \parbox{9cm}{\textsc{#1}}
+          \parbox{10.5cm}{\textsc{#1}}
         \end{center}
       \vspace{3mm}
     }
@@ -93,25 +81,11 @@
   \end{center}
 }
 
-% Tune section headings and use tabs
-% I'd like that to go inside the devotional environment
-\renewcommand{\tabheight}{3cm}
-\newcommand{\secstyle}{\scshape\huge}
-\renewcommand\thesection{\arabic{section}}
-\titleformat{name=\section,page=even}[display]
-  {\secstyle} % format
-  {} % label
-  {10pt} %sep
-  {\vspace{-15mm}\filcenter\textls[-35]} %before
-\titleformat{name=\section,page=odd}[display]
-  {\secstyle} % format
-  {} % label
-  {10pt} %sep
-  {\vspace{-15mm}\fancytab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
-\titlespacing{\section}{0pt}{*}{*-2}
 
 \newenvironment{devotional}%
 {%
+% Reset chapter counter for tabs
+\setcounter{chapter}{0}
 % Set headers and footers
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \lehead{\seclbl}
@@ -134,10 +108,22 @@
   {\begin{center}}
   [\end{center}]
 
+% Tune section headings and use tabs
+% I'd like that to go inside the devotional environment
+\renewcommand{\tabheight}{3cm}
+\newcommand{\secstyle}{\scshape\huge}
+\renewcommand\thesection{\arabic{section}}
+\titleformat{\section}[display]
+  {\secstyle} % format
+  {} % label
+  {10pt} %sep
+  {\vspace{-15mm}%
+\ifthenelse{\isodd{\thepage}}%
+  {\fancytab{\chaphead}{\arabic{chapter}}}%
+  {}%
+\filcenter\textls[-35]} %before
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}
-
-
 
 
