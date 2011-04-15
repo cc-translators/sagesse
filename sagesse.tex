@@ -71,6 +71,14 @@
 \usepackage{makeidx}
 \makeindex
 
+% Make a nice introduction chapter heading
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\scshape\Huge}
+  {}{10pt}
+  {\filcenter\textls[-35]}
+\renewcommand*{\chapterpagestyle}{scrheadings}
+
 
 \title{Sagesse pour Aujourd'hui}
 \author{Chuck Smith}
