@@ -102,7 +102,18 @@
 
 % Tune section headings and use tabs
 % I'd like that to go inside the devotional environment
-\renewcommand{\tabheight}{3cm}
+\renewcommand{\tabheight}{1.2in}
+
+% WITHOUT BLEED
+% \renewcommand{\tabwidth}{0.40in}
+% WITH BLEED
+% Add 0.125 for the bleed
+\renewcommand{\tabwidth}{0.525in}
+% Put text more inside
+% (0.4/2)/0.525 = 0.38
+\renewcommand{\tabtextvpos}{0.5}
+\renewcommand{\tabtexthpos}{0.38}
+
 \newcommand{\secstyle}{\scshape\huge}
 \renewcommand\thesection{\arabic{section}}
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
