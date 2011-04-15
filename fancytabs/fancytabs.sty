@@ -31,6 +31,8 @@
 \newcommand{\tableftcolor}{white}
 \newcommand{\tabrightcolor}{gray!50}
 \newcommand{\tabtop}{\tabheight}
+\newcommand{\tabtextvpos}{0.5}
+\newcommand{\tabtexthpos}{\tabtextvpos}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift={-\tabtop-1*mod(#2-1,\tabcount)*\tabheight},
@@ -39,7 +41,9 @@
       \tikz\shade[shading=axis,bottom color=\tableftcolor,
                   top color=\tabrightcolor,shading angle=-90]
         (0,0) rectangle (\tabwidth,\tabheight)
-           node[rotate=90,pos=0.5] {\tabstyle#1};
+           node[rotate=90]
+                  at (\tabtexthpos*\tabwidth,\tabtextvpos*\tabheight)
+                      {\tabstyle#1};
     };
   \end{tikzpicture}%
 }

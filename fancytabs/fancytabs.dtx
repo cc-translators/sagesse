@@ -139,6 +139,20 @@
 %  You can set this value with
 %  |\renewcommand{\tabtop}{<value>}|.
 %
+% \DescribeMacro{\tabtextvpos}
+%  Define the relative vertical position
+%  of the text in the tab.
+%  Default is |0.5|.
+%  You can set this value with
+%  |\renewcommand{\tabtextvpos}{<value>}|.
+%
+% \DescribeMacro{\tabtexthpos}
+%  Define the relative horizontal position
+%  of the text in the tab.
+%  Default is |\tabtextvpos|.
+%  You can set this value with
+%  |\renewcommand{\tabtexthpos}{<value>}|.
+%
 % \StopEventually{\PrintIndex}
 %
 % \section{Implementation}
@@ -152,6 +166,8 @@
 \newcommand{\tableftcolor}{white}
 \newcommand{\tabrightcolor}{gray!50}
 \newcommand{\tabtop}{\tabheight}
+\newcommand{\tabtextvpos}{0.5}
+\newcommand{\tabtexthpos}{\tabtextvpos}
 %  \end{macrocode}
 %
 % \begin{macro}{\fancytab}
@@ -165,7 +181,9 @@
       \tikz\shade[shading=axis,bottom color=\tableftcolor,
                   top color=\tabrightcolor,shading angle=-90] 
         (0,0) rectangle (\tabwidth,\tabheight)
-           node[rotate=90,pos=0.5] {\tabstyle#1};
+           node[rotate=90]
+                  at (\tabtexthpos*\tabwidth,\tabtextvpos*\tabheight)
+                      {\tabstyle#1};
     };
   \end{tikzpicture}%
 }
