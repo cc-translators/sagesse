@@ -86,39 +86,31 @@
 {%
 % Reset chapter counter for tabs
 \setcounter{chapter}{0}
-% Set headers and footers
-\newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
-\lehead{\seclbl}
-\lohead{\seclbl}
-\rehead{}
-\rohead{}
-\ofoot{}
-\pagestyle{scrheadings}
-% also for chapter pages
+\pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 
 % Define useful aliases
-\newcommand{\dvmonth}[1]{\chapter{##1}\cleardoublepage}
-\newcommand{\dvday}[1]{\newpage\section{##1}}
+\newcommand{\dvmonth}[1]{\chapter{##1}}
+\newcommand{\dvday}[1]{\section{##1}}
 
 % Set chapter pages
 \titleformat{\chapter}[block]
   {\scshape\Huge}
   {}{10pt}
   {\begin{center}}
-  [\end{center}]
+  [\end{center}\cleardoublepage]
 
 % Tune section headings and use tabs
 % I'd like that to go inside the devotional environment
 \renewcommand{\tabheight}{3cm}
 \newcommand{\secstyle}{\scshape\huge}
 \renewcommand\thesection{\arabic{section}}
+\newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
-  {\secstyle} % format
-  {} % label
+  {\newpage\secstyle} % format
+  {\seclbl} % label
   {10pt} %sep
   {
-  \vspace{-15mm}%
   \ifthenelse{\isodd{\thepage}}%
     {\fancytab{\chaphead}{\arabic{chapter}}}%
     {}%
@@ -128,5 +120,6 @@
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}
+
 
 

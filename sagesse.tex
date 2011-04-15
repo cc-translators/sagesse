@@ -7,10 +7,8 @@
 %\documentclass[paper=6.125in:9.25in,pagesize=pdftex,
 % US Trade => 6x9
 \documentclass[paper=6in:9in,pagesize=pdftex,
-               headinclude=on,10pt]{scrbook}
+               10pt]{scrbook}
 % Margin calculations for US Trade
-% Note: headinclude=on required on this document (in documentlclass)
-%   because we have no footer, and we need an absolute margin
 %
 % Paper width
 % W = 6in
@@ -77,7 +75,8 @@
   {\scshape\Huge}
   {}{10pt}
   {\filcenter\textls[-35]}
-\renewcommand*{\chapterpagestyle}{scrheadings}
+\pagestyle{empty}
+\renewcommand*{\chapterpagestyle}{empty}
 
 
 \title{Sagesse pour Aujourd'hui}
