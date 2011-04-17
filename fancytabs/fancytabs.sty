@@ -36,8 +36,6 @@
 \newcommand{\tabgap}{0in}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
-    % Nodes are positioned by their center,
-    %  so add \tabheight/2 to \tabtop
     \node[yshift={-1*(\tabtop+\tabheight/2+mod(#2-1,\tabcount)*(\tabheight+\tabgap))},
                   xshift=-0.5*\tabwidth]
       at (current page.north east) {
