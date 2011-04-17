@@ -109,6 +109,14 @@
 % Tune section headings and use tabs
 % I'd like that to go inside the devotional environment
 \renewcommand{\tabheight}{1.2in}
+% WITHOUT BLEED
+% 6*1.2 + 2*0.6 + 5*0.12 = 9
+%\renewcommand{\tabtop}{0.6in}
+%\renewcommand{\tabgap}{0.12in}
+% WITH BLEED
+% 6*1.2 + 2*0.725 + 5*0.12 = 9.25
+\renewcommand{\tabtop}{0.725in}
+\renewcommand{\tabgap}{0.12in}
 
 % WITHOUT BLEED
 % \renewcommand{\tabwidth}{0.40in}
