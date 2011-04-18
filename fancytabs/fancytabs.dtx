@@ -33,7 +33,7 @@
 %
 % \CheckSum{0}
 %
-% \changes{v1.3}{2011/04/18}{Add tabfloor}
+% \changes{v1.3}{2011/04/18}{Add tabfloor and accessors}
 % \changes{v1.2}{2011/04/17}{Add tabgap. Fix tabtop by adding tabheight/2}
 % \changes{v1.1}{2011/04/16}{Add tabtextvpos and tabtexthpos macros}
 % \changes{v1.0}{2011/04/14}{Initial version}
@@ -64,7 +64,8 @@
 %
 % \subsection{Adding a tab to all odd pages with scrpage2}
 %
-% The following code adds a tab with the chapter name, positioned by chapter order, on each odd page.
+% The following code adds a tab with the chapter name,
+% positioned by chapter order, on each odd page.
 %
 % \begin{verbatim}
 % \documentclass{scrbook}
@@ -99,82 +100,63 @@
 %
 % \subsection{Parameters}
 %
-% \DescribeMacro{\tabstyle}
+% \DescribeMacro{\fancytabsStyle}
 %  The style of for the text in the tab.
 %  Default is |\Large\scshape|.
-%  You can set this value with:
-%  |\renewcommand{\tabstyle}{<value>}|.
 %
-% \DescribeMacro{\tabheight}
+% \DescribeMacro{\fancytabsHeight}
 %  Define the height of the tab.
 %  Default is |4cm|.
-%  You can set this value with
-%  |\renewcommand{\tabheight}{<value>}|.
 %
-% \DescribeMacro{\tabwidth}
+% \DescribeMacro{\fancytabsWidth}
 %  Define the height of the tab.
 %  Default is |1cm|.
-%  You can set this value with
-%  |\renewcommand{\tabwidth}{<value>}|.
 %
-% \DescribeMacro{\tabcount}
+% \DescribeMacro{\fancytabsCount}
 %  Define the maximum amount of tabs on a page.
-%  After |\tabcount| tabs are displayed, the next tab is displayed on top of the page again.
+%  After |\tabcount| tabs are displayed,
+%  the next tab is displayed on top of the page again.
 %  Default is |6|.
-%  You can set this value with
-%  |\renewcommand{\tabcount}{<value>}|.
 %
-% \DescribeMacro{\tableftcolor}
+% \DescribeMacro{\fancytabsLeftColor}
 %  Define the left color for the tab gradient.
 %  Default is |white|.
-%  You can set this value with
-%  |\renewcommand{\tableftcolor}{<value>}|.
 %
-% \DescribeMacro{\tabrightcolor}
+% \DescribeMacro{\fancytabsRightColor}
 %  Define the right color for the tab gradient.
 %  Default is |gray!50|.
-%  You can set this value with
-%  |\renewcommand{\tabrightcolor}{<value>}|.
 %
-% \DescribeMacro{\tabtop}
+% \DescribeMacro{\fancytabsTop}
 %  Define margin on top of the top tab.
 %  Default is |\tabheight|.
-%  You can set this value with
-%  |\renewcommand{\tabtop}{<value>}|.
 %
-% \DescribeMacro{\tabtextvpos}
+% \DescribeMacro{\fancytabsTextVPos}
 %  Define the relative vertical position
 %  of the text in the tab.
 %  Default is |0.5|.
-%  You can set this value with
-%  |\renewcommand{\tabtextvpos}{<value>}|.
 %
-% \DescribeMacro{\tabtexthpos}
+% \DescribeMacro{\fancytabsTextHPos}
 %  Define the relative horizontal position
 %  of the text in the tab.
 %  Default is |\tabtextvpos|.
-%  You can set this value with
-%  |\renewcommand{\tabtexthpos}{<value>}|.
 %
-% \DescribeMacro{\tabgap}
+% \DescribeMacro{\fancytabsGap}
 %  Define the gap between two tabs.
 %  Default is |0in|.
-%  You can set this value with
-%  |\renewcommand{\tabgap}{<value>}|.
 %
-% \DescribeMacro{\tabfloor}
+% \DescribeMacro{\fancytabsFloor}
 %  Define the starting number for incrementation.
 %  This is useful if you want to pass for example
 %  |\arabic{chapter}| as counter but not put tabs
 %  for previous chapters.
 %  Default is |0|.
-%  You can set this value with
-%  |\renewcommand{\tabfloor}{<value>}|.
 %
 % \StopEventually{\PrintIndex}
 %
 % \section{Implementation}
 % 
+% \subsection{Variables}
+%
 %  \begin{macrocode}
 \RequirePackage{tikz}
 \newcommand{\tabstyle}{\Large\scshape}
@@ -188,6 +170,22 @@
 \newcommand{\tabtexthpos}{\tabtextvpos}
 \newcommand{\tabgap}{0in}
 \newcommand{\tabfloor}{0}
+%  \end{macrocode}
+%
+% \subsection{Accessors}
+%
+%  \begin{macrocode}
+\newcommand{\fancytabsStyle}[1]{\renewcommand{\tabstyle}{#1}}
+\newcommand{\fancytabsHeight}[1]{\renewcommand{\tabheight}{#1}}
+\newcommand{\fancytabsWidth}[1]{\renewcommand{\tabwidth}{#1}}
+\newcommand{\fancytabsCount}[1]{\renewcommand{\tabcount}{#1}}
+\newcommand{\fancytabsLeftColor}[1]{\renewcommand{\tableftcolor}{#1}}
+\newcommand{\fancytabsRightColor}[1]{\renewcommand{\tabrightcolor}{#1}}
+\newcommand{\fancytabsTop}[1]{\renewcommand{\tabtop}{#1}}
+\newcommand{\fancytabsTextVPos}[1]{\renewcommand{\tabtextvpos}{#1}}
+\newcommand{\fancytabsTextHPos}[1]{\renewcommand{\tabtexthpos}{#1}}
+\newcommand{\fancytabsGap}[1]{\renewcommand{\tabgap}{#1}}
+\newcommand{\fancytabsFloor}[1]{\renewcommand{\tabfloor}{#1}}
 %  \end{macrocode}
 %
 % \begin{macro}{\fancytab}

@@ -35,6 +35,17 @@
 \newcommand{\tabtexthpos}{\tabtextvpos}
 \newcommand{\tabgap}{0in}
 \newcommand{\tabfloor}{0}
+\newcommand{\fancytabsStyle}[1]{\renewcommand{\tabstyle}{#1}}
+\newcommand{\fancytabsHeight}[1]{\renewcommand{\tabheight}{#1}}
+\newcommand{\fancytabsWidth}[1]{\renewcommand{\tabwidth}{#1}}
+\newcommand{\fancytabsCount}[1]{\renewcommand{\tabcount}{#1}}
+\newcommand{\fancytabsLeftColor}[1]{\renewcommand{\tableftcolor}{#1}}
+\newcommand{\fancytabsRightColor}[1]{\renewcommand{\tabrightcolor}{#1}}
+\newcommand{\fancytabsTop}[1]{\renewcommand{\tabtop}{#1}}
+\newcommand{\fancytabsTextVPos}[1]{\renewcommand{\tabtextvpos}{#1}}
+\newcommand{\fancytabsTextHPos}[1]{\renewcommand{\tabtexthpos}{#1}}
+\newcommand{\fancytabsGap}[1]{\renewcommand{\tabgap}{#1}}
+\newcommand{\fancytabsFloor}[1]{\renewcommand{\tabfloor}{#1}}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift={-1*(\tabtop+\tabheight/2+

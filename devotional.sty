@@ -116,28 +116,28 @@
 
 % Tune section headings and use tabs
 % I'd like that to go inside the devotional environment
-\renewcommand{\tabheight}{1.2in}
+\fancytabsHeight{1.2in}
 % WITHOUT BLEED
 % 6*1.2 + 2*0.6 + 5*0.12 = 9
-%\renewcommand{\tabtop}{0.6in}
-%\renewcommand{\tabgap}{0.12in}
+%\fancytabsTop{0.6in}
+%\fancytabsGap{0.12in}
 % WITH BLEED
 % 6*1.2 + 2*0.725 + 5*0.12 = 9.25
-\renewcommand{\tabtop}{0.725in}
-\renewcommand{\tabgap}{0.12in}
+\fancytabsTop{0.725in}
+\fancytabsGap{0.12in}
 
 % WITHOUT BLEED
-% \renewcommand{\tabwidth}{0.40in}
+% \fancytabsWidth{0.40in}
 % WITH BLEED
 % Add 0.125 for the bleed
-\renewcommand{\tabwidth}{0.525in}
+\fancytabsWidth{0.525in}
 % Put text more inside
 % (0.4/2)/0.525 = 0.38
-\renewcommand{\tabtextvpos}{0.5}
-\renewcommand{\tabtexthpos}{0.38}
+\fancytabsTextVPos{0.5}
+\fancytabsTextHPos{0.38}
 
 % Set floor for tabs based on starting chapter
-\renewcommand{\tabfloor}{\thedvstartchapter}
+\fancytabsFloor{\thedvstartchapter}
 
 \newcommand{\secstyle}{\scshape\huge}
 \renewcommand\thesection{\arabic{section}}
