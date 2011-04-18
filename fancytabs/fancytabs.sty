@@ -34,9 +34,11 @@
 \newcommand{\tabtextvpos}{0.5}
 \newcommand{\tabtexthpos}{\tabtextvpos}
 \newcommand{\tabgap}{0in}
+\newcommand{\tabfloor}{0}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift={-1*(\tabtop+\tabheight/2+mod(#2-1,\tabcount)*(\tabheight+\tabgap))},
+    \node[yshift={-1*(\tabtop+\tabheight/2+mod(#2-1-\tabfloor,\tabcount)*
+                 (\tabheight+\tabgap))},
                   xshift=-0.5*\tabwidth]
       at (current page.north east) {
       \tikz\shade[shading=axis,bottom color=\tableftcolor,

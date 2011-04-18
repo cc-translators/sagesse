@@ -91,10 +91,13 @@
 \newenvironment{devotional}%
 {%
 % Reset chapter counter for tabs
-\part*{Devotional}
 %\setcounter{chapter}{0}
 \pagestyle{empty}
+\renewcommand*{\partpagestyle}{empty}
 \renewcommand*{\chapterpagestyle}{empty}
+% Record the starting chapter of the devotional
+\newcounter{dvstartchapter}
+\setcounter{dvstartchapter}{\arabic{chapter}}
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{\chapter{##1}}
@@ -128,6 +131,9 @@
 % (0.4/2)/0.525 = 0.38
 \renewcommand{\tabtextvpos}{0.5}
 \renewcommand{\tabtexthpos}{0.38}
+
+% Set floor for tabs based on starting chapter
+\renewcommand{\tabfloor}{\thedvstartchapter}
 
 \newcommand{\secstyle}{\scshape\huge}
 \renewcommand\thesection{\arabic{section}}
