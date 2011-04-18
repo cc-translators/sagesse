@@ -91,13 +91,14 @@
 \newenvironment{devotional}%
 {%
 % Reset chapter counter for tabs
-\setcounter{chapter}{0}
+\part*{Devotional}
+%\setcounter{chapter}{0}
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{\chapter{##1}}
-\newcommand{\dvday}[1]{\section{##1}}
+\newcommand{\dvday}[1]{\newpage\section{##1}}
 
 % Set chapter pages
 \titleformat{\chapter}[block]
@@ -132,7 +133,7 @@
 \renewcommand\thesection{\arabic{section}}
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
-  {\newpage\secstyle} % format
+  {\secstyle} % format
   {\seclbl} % label
   {10pt} %sep
   {
