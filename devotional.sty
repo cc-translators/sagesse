@@ -83,19 +83,27 @@
 
 
 % Dans le Nom de Jésus, Amen.
-\newcommand{\DlNdJ}{Dans le Nom de Jésus, Amen.}
+\newcommand{\Amen}{Amen.}
+\newcommand{\DlNdJ}{Dans le Nom de Jésus, \Amen}
+
+% YHWH
+\newcommand{\Seigneur}{\textsc{Seigneur}}
 
 
 \newenvironment{devotional}%
 {%
 % Reset chapter counter for tabs
-\setcounter{chapter}{0}
+%\setcounter{chapter}{0}
 \pagestyle{empty}
+\renewcommand*{\partpagestyle}{empty}
 \renewcommand*{\chapterpagestyle}{empty}
+% Record the starting chapter of the devotional
+\newcounter{dvstartchapter}
+\setcounter{dvstartchapter}{\arabic{chapter}}
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{\chapter{##1}}
-\newcommand{\dvday}[1]{\section{##1}}
+\newcommand{\dvday}[1]{\newpage\section{##1}}
 
 % Set chapter pages
 \titleformat{\chapter}[block]
@@ -126,11 +134,14 @@
 \renewcommand{\tabtextvpos}{0.5}
 \renewcommand{\tabtexthpos}{0.38}
 
+% Set floor for tabs based on starting chapter
+\renewcommand{\tabfloor}{\thedvstartchapter}
+
 \newcommand{\secstyle}{\scshape\huge}
 \renewcommand\thesection{\arabic{section}}
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
-  {\newpage\secstyle} % format
+  {\secstyle} % format
   {\seclbl} % label
   {10pt} %sep
   {

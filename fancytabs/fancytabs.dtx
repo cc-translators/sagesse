@@ -17,7 +17,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fancytabs}
-%<package>   [2011/04/14 0.1 Fancy page border tabs]
+%<package>   [2011/04/17 1.2 Fancy page border tabs]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -33,6 +33,9 @@
 %
 % \CheckSum{0}
 %
+% \changes{v1.3}{2011/04/18}{Add tabfloor}
+% \changes{v1.2}{2011/04/17}{Add tabgap. Fix tabtop by adding tabheight/2}
+% \changes{v1.1}{2011/04/16}{Add tabtextvpos and tabtexthpos macros}
 % \changes{v1.0}{2011/04/14}{Initial version}
 %
 % \GetFileInfo{fancytabs.dtx}
@@ -159,6 +162,15 @@
 %  You can set this value with
 %  |\renewcommand{\tabgap}{<value>}|.
 %
+% \DescribeMacro{\tabfloor}
+%  Define the starting number for incrementation.
+%  This is useful if you want to pass for example
+%  |\arabic{chapter}| as counter but not put tabs
+%  for previous chapters.
+%  Default is |0|.
+%  You can set this value with
+%  |\renewcommand{\tabfloor}{<value>}|.
+%
 % \StopEventually{\PrintIndex}
 %
 % \section{Implementation}
@@ -175,6 +187,7 @@
 \newcommand{\tabtextvpos}{0.5}
 \newcommand{\tabtexthpos}{\tabtextvpos}
 \newcommand{\tabgap}{0in}
+\newcommand{\tabfloor}{0}
 %  \end{macrocode}
 %
 % \begin{macro}{\fancytab}
@@ -182,7 +195,9 @@
 %  \begin{macrocode}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift={-1*(\tabtop+\tabheight/2+mod(#2-1,\tabcount)*(\tabheight+\tabgap))},
+    \node[yshift={-1*(\tabtop+\tabheight/2+
+                 mod(#2-1-\tabfloor,\tabcount)*
+                 (\tabheight+\tabgap))},
                   xshift=-0.5*\tabwidth]
       at (current page.north east) {
       \tikz\shade[shading=axis,bottom color=\tableftcolor,
