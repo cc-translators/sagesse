@@ -1,33 +1,18 @@
 \ProvidesPackage{devotional}
 
-% Define useful aliases
-\newcommand{\dvmonth}[1]{\chapter{#1}\cleardoublepage}
-\newcommand{\dvday}[1]{\newpage\section{#1}}
-
-% bibleref settings
-\usepackage{bibleref-french-colombe}
-
-% set paragraphs
-\setlength{\parindent}{5mm}
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-
-% no headings, no page numbers
-\pagestyle{empty}
-% also for chapter pages
-\renewcommand*{\chapterpagestyle}{empty}
-
-% font
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% Package scrpage2 for headers
+\usepackage{scrpage2}
 
 % setting lettrines
 \usepackage{type1cm} % scalable fonts
 \usepackage{lettrine}
 \usepackage{xcolor}
-\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
-\newcommand{\dvlettrine}[3][]{
-   \lettrine[lines=2,lhang=0.33,loversize=0.25,#1]{#2}{#3}
-}
+
+% Tune chapter headings
+\usepackage{titlesec}
+\usepackage{fancytabs}
+\usepackage{fancybox}
+\usepackage{fourier-orns}
 
 % Make day number in month, in french
 \usepackage{ifthen}
@@ -44,70 +29,52 @@
     \renewcommand\chaphead{#2}%
     \oldchapter[#1]{#2}}
 
-% Tune chapter headings
-\usepackage{titlesec}
-\titleformat{\chapter}[block]
-  {\scshape\Huge}
-  {}{10pt}
-  {\begin{center}}
-  [\end{center}]
+% Note du traducteur
+\newcommand{\NdT}[1]{\footnote{NdT~: #1}}
+% Use footnote package when footnotes (or NdT)
+% are called from within \dvquote
+% Warning:Load footnote after xcolor
+\usepackage{footnote}
 
-% Make tabs for sections
-\usepackage{fancytabs}
-\AtBeginDocument{\shorthandoff{;}}
-\renewcommand{\tabheight}{3cm}
-
-\newcommand{\secstyle}{\scshape\Huge}
-
-% Tune section headings
-\renewcommand\thesection{\arabic{section}}
-\titleformat{name=\section,page=even}[display]
-  {\secstyle} % format
-  {\large\makedate{\thesection}~\chaphead} % label
-  {10pt} %sep
-  {\vspace{-5mm}\filcenter\textls[-35]} %before
-\titleformat{name=\section,page=odd}[display]
-  {\newpage\secstyle} % format
-  {\large\makedate{\thesection}~\chaphead} % label
-  {10pt} %sep
-  {\vspace{-5mm}\fancytab{\chaphead}{\arabic{chapter}}\filcenter\textls[-50]} %before
-\titlespacing{\section}{0pt}{*}{*-2}
-
+% Lettrines
+\renewcommand{\LettrineFontHook}{\color[gray]{0.5}}
+\newcommand{\dvlettrine}[3][]{
+   \lettrine[lines=2,lhang=0.33,loversize=0.25,#1]{#2}{#3}
+}
 
 % opening quote
 \newcommand{\dvquote}[2]{
   \begin{center}\parbox{110mm}{
     \begin{center}
+    \hyphenpenalty=10000
     \begin{itshape}#1\end{itshape}\\
     ---~\textsc{#2}
     \end{center}
   }\end{center}\vspace{-5mm}}
 
 % central quote
-\usepackage{fancybox}
-\newcommand{\dvbox}[1]{
+\newcommand{\dvbox}[2][]{
   \begin{center}\doublebox{
     \parbox{10cm}{
       \vspace{3mm}
         \begin{center}
-          \parbox{9cm}{\textsc{#1}}
+          \parbox{9cm}{#1\textsc{#2}}
         \end{center}
       \vspace{3mm}
     }
   }\end{center}}
 
-
 % ending prayer
 \newcommand{\dvprayer}[2]{
   \begin{center}\parbox{4in}{
     \begin{center}
+    \hyphenpenalty=10000
     \begin{itshape}#1\end{itshape}\\
     \scshape#2
     \end{center}
   }\end{center}}
 
 % Rule sep
-\usepackage{fourier-orns}
 \newcommand{\dvrule}{
   \begin{center}
     \rule{1cm}{.3pt}~~\floweroneleft\floweroneright~~\rule{1cm}{.3pt}
@@ -115,11 +82,67 @@
 }
 
 
-% Note du traducteur
-\newcommand{\NdT}[1]{\footnote{NdT~: #1}}
-% Use footnote package when footnotes (or NdT)
-% are called from within \dvquote
-% Warning:Load footnote after xcolor
-\usepackage{footnote}
+% Dans le Nom de Jésus, Amen.
+\newcommand{\DlNdJ}{Dans le Nom de Jésus, Amen.}
+
+
+\newenvironment{devotional}%
+{%
+% Reset chapter counter for tabs
+\setcounter{chapter}{0}
+\pagestyle{empty}
+\renewcommand*{\chapterpagestyle}{empty}
+
+% Define useful aliases
+\newcommand{\dvmonth}[1]{\chapter{##1}}
+\newcommand{\dvday}[1]{\section{##1}}
+
+% Set chapter pages
+\titleformat{\chapter}[block]
+  {\scshape\Huge}
+  {}{10pt}
+  {\begin{center}}
+  [\end{center}\cleardoublepage]
+
+% Tune section headings and use tabs
+% I'd like that to go inside the devotional environment
+\renewcommand{\tabheight}{1.2in}
+% WITHOUT BLEED
+% 6*1.2 + 2*0.6 + 5*0.12 = 9
+%\renewcommand{\tabtop}{0.6in}
+%\renewcommand{\tabgap}{0.12in}
+% WITH BLEED
+% 6*1.2 + 2*0.725 + 5*0.12 = 9.25
+\renewcommand{\tabtop}{0.725in}
+\renewcommand{\tabgap}{0.12in}
+
+% WITHOUT BLEED
+% \renewcommand{\tabwidth}{0.40in}
+% WITH BLEED
+% Add 0.125 for the bleed
+\renewcommand{\tabwidth}{0.525in}
+% Put text more inside
+% (0.4/2)/0.525 = 0.38
+\renewcommand{\tabtextvpos}{0.5}
+\renewcommand{\tabtexthpos}{0.38}
+
+\newcommand{\secstyle}{\scshape\huge}
+\renewcommand\thesection{\arabic{section}}
+\newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
+\titleformat{\section}[display]
+  {\newpage\secstyle} % format
+  {\seclbl} % label
+  {10pt} %sep
+  {
+  \ifthenelse{\isodd{\thepage}}%
+    {\fancytab{\chaphead}{\arabic{chapter}}}%
+    {}%
+  \filcenter\textls[-35]
+  } %before
+\titlespacing{\section}{0pt}{*}{*-2}
+
+} % end of \begin{devotional}
+{} % end of \end{devotional}
+
 
 

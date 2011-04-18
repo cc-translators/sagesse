@@ -1,7 +1,47 @@
 % Royal        => 156mm:234mm = 6.13x9.21
 %  this is 6.14x9.21 on createspace
-\documentclass[paper=6.14in:9.21in,pagesize=pdftex,
-               10pt,DIV15,BCOR0.1cm]{scrbook}
+%\documentclass[paper=6.14in:9.21in,pagesize=pdftex,
+
+% WITH BLEED
+% US Trade => 6x9, with a 0.125 bleed
+% Adjust images size and gutter(?) so tabs bleed by .125
+% See https://www.createspace.com/Products/Book/InteriorPDF.jsp
+\documentclass[paper=6.125in:9.25in,pagesize=pdftex,
+               10pt]{scrbook}
+%
+% Paper width
+% W = 6.125in (6+0.125 --- bleed)
+% Paper height
+% H = 9.25in (9+2*.125 --- bleed)
+% Paper gutter
+% BCOR = 0.375in (0.5+0.5-0.625 --- margin with bleed)
+% Margin (0.5in imposed on lulu, recommended on createspace)
+% m = 0.625in (0.5+0.125 --- bleed)
+% Text height
+% h = H - 2m = 8in
+% Text width
+% w = W - 2m - BCOR = 4.5in
+\areaset[0.375in]{4.5in}{8in}
+
+% WITHOUT BLEED
+% US Trade => 6x9
+%\documentclass[paper=6in:9in,pagesize=pdftex,
+%               10pt]{scrbook}
+%
+% Paper width
+% W = 6in
+% Paper height
+% H = 9in
+% Paper gutter
+% BCOR = 0.5in
+% Margin (0.5in imposed on lulu, recommended on createspace)
+% m = 0.5in
+% Text height
+% h = H - 2m = 8in
+% Text width
+% w = W - 2m - BCOR = 4.5in
+%\areaset[0.50in]{4.5in}{8in}
+
 
 \usepackage[french]{babel} %language selection
 \selectlanguage{french}
@@ -22,8 +62,26 @@
            pdftex}
 \usepackage{url}
 \usepackage[activate={true,nocompatibility}]{microtype}
+\usepackage{typearea}
+
+% font
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% set paragraphs
+\setlength{\parindent}{5mm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% bibleref settings
+\usepackage{bibleref-french-colombe}
+\AtBeginDocument{\shorthandoff{:}}
+
+% Nicer centering
+\usepackage[newcommands]{ragged2e}
 
 \usepackage{devotional}
+% shorthandoff ; for tikz
+\AtBeginDocument{\shorthandoff{;}}
 
 % prerender for chapter titles
 \PrerenderUnicode{À}
@@ -32,6 +90,16 @@
 \usepackage{makeidx}
 \makeindex
 
+% Make a nice introduction chapter heading
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\scshape\Huge}
+  {}{10pt}
+  {\filcenter\textls[-35]}
+\pagestyle{empty}
+\renewcommand*{\chapterpagestyle}{empty}
+
+
 \title{Sagesse pour Aujourd'hui}
 \author{Chuck Smith}
 
@@ -39,10 +107,10 @@
 
 %\maketitle
 \input{title}
-
 \input{copyright}
 \input{introduction}
 
+\begin{devotional}
 \input{mois/janvier.tex}
 \input{mois/fevrier.tex}
 \input{mois/mars.tex}
@@ -55,7 +123,9 @@
 \input{mois/octobre.tex}
 \input{mois/novembre.tex}
 \input{mois/decembre.tex}
+\end{devotional}
 
 
 \end{document}
+
 

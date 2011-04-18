@@ -31,15 +31,20 @@
 \newcommand{\tableftcolor}{white}
 \newcommand{\tabrightcolor}{gray!50}
 \newcommand{\tabtop}{\tabheight}
+\newcommand{\tabtextvpos}{0.5}
+\newcommand{\tabtexthpos}{\tabtextvpos}
+\newcommand{\tabgap}{0in}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift={-\tabtop-1*mod(#2-1,\tabcount)*\tabheight},
+    \node[yshift={-1*(\tabtop+\tabheight/2+mod(#2-1,\tabcount)*(\tabheight+\tabgap))},
                   xshift=-0.5*\tabwidth]
       at (current page.north east) {
       \tikz\shade[shading=axis,bottom color=\tableftcolor,
                   top color=\tabrightcolor,shading angle=-90]
         (0,0) rectangle (\tabwidth,\tabheight)
-           node[rotate=90,pos=0.5] {\tabstyle#1};
+           node[rotate=90]
+                  at (\tabtexthpos*\tabwidth,\tabtextvpos*\tabheight)
+                      {\tabstyle#1};
     };
   \end{tikzpicture}%
 }
