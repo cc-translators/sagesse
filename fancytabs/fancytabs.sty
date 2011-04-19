@@ -24,55 +24,57 @@
 \ProvidesPackage{fancytabs}
    [2011/04/17 1.2 Fancy page border tabs]
 \RequirePackage{tikz}
-\newcommand{\tabstyle}{\Large\scshape}
-\newcommand{\tabheight}{4cm}
-\newcommand{\tabwidth}{1cm}
-\newcommand{\tabcount}{6}
-\newcommand{\tableftcolor}{white}
-\newcommand{\tabrightcolor}{gray!50}
-\newcommand{\tabtop}{\tabheight}
-\newcommand{\tabtextvpos}{0.5}
-\newcommand{\tabtexthpos}{\tabtextvpos}
-\newcommand{\tabgap}{0in}
-\newcommand{\tabfloor}{0}
-\newcommand{\fancytabsStyle}[1]{\renewcommand{\tabstyle}{#1}}
-\newcommand{\fancytabsHeight}[1]{\renewcommand{\tabheight}{#1}}
-\newcommand{\fancytabsWidth}[1]{\renewcommand{\tabwidth}{#1}}
-\newcommand{\fancytabsCount}[1]{\renewcommand{\tabcount}{#1}}
-\newcommand{\fancytabsLeftColor}[1]{\renewcommand{\tableftcolor}{#1}}
-\newcommand{\fancytabsRightColor}[1]{\renewcommand{\tabrightcolor}{#1}}
-\newcommand{\fancytabsTop}[1]{\renewcommand{\tabtop}{#1}}
-\newcommand{\fancytabsTextVPos}[1]{\renewcommand{\tabtextvpos}{#1}}
-\newcommand{\fancytabsTextHPos}[1]{\renewcommand{\tabtexthpos}{#1}}
-\newcommand{\fancytabsGap}[1]{\renewcommand{\tabgap}{#1}}
-\newcommand{\fancytabsFloor}[1]{\renewcommand{\tabfloor}{#1}}
+\makeatletter
+\newcommand{\tab@style}{\Large\scshape}
+\newcommand{\tab@height}{4cm}
+\newcommand{\tab@width}{1cm}
+\newcommand{\tab@count}{6}
+\newcommand{\tab@leftcolor}{white}
+\newcommand{\tab@rightcolor}{gray!50}
+\newcommand{\tab@top}{\tab@height}
+\newcommand{\tab@textvpos}{0.5}
+\newcommand{\tab@texthpos}{\tab@textvpos}
+\newcommand{\tab@gap}{0in}
+\newcommand{\tab@floor}{0}
+\newcommand{\fancytabsStyle}[1]{\renewcommand{\tab@style}{#1}}
+\newcommand{\fancytabsHeight}[1]{\renewcommand{\tab@height}{#1}}
+\newcommand{\fancytabsWidth}[1]{\renewcommand{\tab@width}{#1}}
+\newcommand{\fancytabsCount}[1]{\renewcommand{\tab@count}{#1}}
+\newcommand{\fancytabsLeftColor}[1]{\renewcommand{\tab@leftcolor}{#1}}
+\newcommand{\fancytabsRightColor}[1]{\renewcommand{\tab@rightcolor}{#1}}
+\newcommand{\fancytabsTop}[1]{\renewcommand{\tab@top}{#1}}
+\newcommand{\fancytabsTextVPos}[1]{\renewcommand{\tab@textvpos}{#1}}
+\newcommand{\fancytabsTextHPos}[1]{\renewcommand{\tab@texthpos}{#1}}
+\newcommand{\fancytabsGap}[1]{\renewcommand{\tab@gap}{#1}}
+\newcommand{\fancytabsFloor}[1]{\renewcommand{\tab@floor}{#1}}
 \AtBeginDocument{\@ifpackageloaded{babel}
   {%
     \g@addto@macro\tikz@installcommands{%
       \shorthandoff{;}%
-    }
+    }%
     \g@addto@macro\tikz@uninstallcommands{%
       \shorthandon{;}%
-    }
-  }
-  {\relax}
+    }%
+  }%
+  {}%
 }
 \newcommand{\fancytab}[2]{%
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift={-1*(\tabtop+\tabheight/2+
-                 mod(#2-1-\tabfloor,\tabcount)*
-                 (\tabheight+\tabgap))},
-                  xshift=-0.5*\tabwidth]
+  \begin{tikzpicture}[remember picture,overlay]%
+    \node[yshift={-1*(\tab@top+\tab@height/2+
+                 mod(#2-1-\tab@floor,\tab@count)*
+                 (\tab@height+\tab@gap))},
+                  xshift=-0.5*\tab@width]
       at (current page.north east) {
-      \tikz\shade[shading=axis,bottom color=\tableftcolor,
-                  top color=\tabrightcolor,shading angle=-90]
-        (0,0) rectangle (\tabwidth,\tabheight)
+      \tikz\shade[shading=axis,bottom color=\tab@leftcolor,
+                  top color=\tab@rightcolor,shading angle=-90]
+        (0,0) rectangle (\tab@width,\tab@height)
            node[rotate=90]
-                  at (\tabtexthpos*\tabwidth,\tabtextvpos*\tabheight)
-                      {\tabstyle#1};
-    };
+                  at (\tab@texthpos*\tab@width,\tab@textvpos*\tab@height)
+                      {\tab@style#1};%
+    };%
   \end{tikzpicture}%
 }
+\makeatother
 \endinput
 %%
 %% End of file `fancytabs.sty'.
