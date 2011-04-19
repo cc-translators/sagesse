@@ -14,6 +14,8 @@
 \usepackage{fancybox}
 \usepackage{fourier-orns}
 
+\usepackage{ragged2e}
+
 % Make day number in month, in french
 \usepackage{ifthen}
 \newcommand{\makedate}[1]{
@@ -43,35 +45,39 @@
 }
 
 % opening quote
-\newcommand{\dvquote}[2]{
-  \begin{center}\parbox{110mm}{
-    \begin{center}
-    \hyphenpenalty=10000
+\newcommand{\dvquote}[2]{%
+  \begin{center}\parbox{110mm}{%
+    \begin{Center}%
+    \hyphenpenalty=10000%
     \begin{itshape}#1\end{itshape}\\
-    ---~\textsc{#2}
-    \end{center}
+    ---~\textsc{#2}%
+    \end{Center}%
   }\end{center}\vspace{-5mm}}
 
 % central quote
-\newcommand{\dvbox}[2][]{
-  \begin{center}\doublebox{
-    \parbox{10cm}{
-      \vspace{3mm}
-        \begin{center}
-          \parbox{9cm}{#1\textsc{#2}}
-        \end{center}
-      \vspace{3mm}
+\newcommand{\dvbox}[2][]{%
+  \begin{center}\doublebox{%
+    \parbox{10cm}{%
+      \vspace{3mm}%
+        \begin{Center}%
+          \makeatletter
+          \@raggedtwoe@spaceskipfalse
+          \@raggedtwoe@everyselectfont
+          \makeatother
+          \parbox{9cm}{#1\textsc{#2}}%
+        \end{Center}%
+      \vspace{3mm}%
     }
   }\end{center}}
 
 % ending prayer
 \newcommand{\dvprayer}[2]{
-  \begin{center}\parbox{4in}{
-    \begin{center}
-    \hyphenpenalty=10000
+  \begin{center}\parbox{4in}{%
+    \begin{Center}%
+    \hyphenpenalty=10000%
     \begin{itshape}#1\end{itshape}\\
-    \scshape#2
-    \end{center}
+    \scshape#2%
+    \end{Center}%
   }\end{center}}
 
 % Rule sep
