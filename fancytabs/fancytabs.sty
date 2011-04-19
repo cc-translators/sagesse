@@ -46,6 +46,17 @@
 \newcommand{\fancytabsTextHPos}[1]{\renewcommand{\tabtexthpos}{#1}}
 \newcommand{\fancytabsGap}[1]{\renewcommand{\tabgap}{#1}}
 \newcommand{\fancytabsFloor}[1]{\renewcommand{\tabfloor}{#1}}
+\AtBeginDocument{\@ifpackageloaded{babel}
+  {%
+    \g@addto@macro\tikz@installcommands{%
+      \shorthandoff{;}%
+    }
+    \g@addto@macro\tikz@uninstallcommands{%
+      \shorthandon{;}%
+    }
+  }
+  {\relax}
+}
 \newcommand{\fancytab}[2]{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift={-1*(\tabtop+\tabheight/2+

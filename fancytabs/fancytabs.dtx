@@ -188,6 +188,26 @@
 \newcommand{\fancytabsFloor}[1]{\renewcommand{\tabfloor}{#1}}
 %  \end{macrocode}
 %
+% \subsection{Babel safety}
+%
+% Some |babel| packages (such as |frenchb|) handle semi-colons which
+% is incompatible with |tikz|. This part disables semi-colon handling
+% by babel locally.
+%
+%  \begin{macrocode}
+\AtBeginDocument{\@ifpackageloaded{babel}
+  {%
+    \g@addto@macro\tikz@installcommands{%
+      \shorthandoff{;}%
+    }
+    \g@addto@macro\tikz@uninstallcommands{%
+      \shorthandon{;}%
+    }
+  }
+  {\relax}
+}
+%  \end{macrocode}
+%
 % \begin{macro}{\fancytab}
 % We define the |\fancytab| macro to generate a new tab.
 %  \begin{macrocode}
