@@ -50,7 +50,7 @@
     \begin{Center}%
     \hyphenpenalty=10000%
     \begin{itshape}#1\end{itshape}\\
-    ---~\textsc{#2}%
+    \ocadr{}\textsc{#2}%
     \end{Center}%
   }\end{center}\vspace{-5mm}}
 
@@ -94,6 +94,18 @@
 
 % YHWH
 \newcommand{\Seigneur}{\textsc{Seigneur}}
+
+
+% cadratin
+\newcommand{\ocadr}{\mbox{---~}}
+\newcommand{\fcadr}{\mbox{~---}}
+
+% demi-cadratin
+\newcommand{\odcadr}{\mbox{--~}}
+\newcommand{\fdcadr}{\mbox{~--}}
+
+% King James Française
+\newcommand{\KJF}{\ocadr{}\emph{Version King James Française}}
 
 
 \newenvironment{devotional}%
