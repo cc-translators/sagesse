@@ -4,3 +4,7 @@ Requires:
   - minionpro, see
     http://carlo-hamalainen.net/blog/2007/12/11/installing-minion-pro-fonts/ on Ubuntu
     http://jetdl.com/download/Installation+guide+for+Minion+Pro+and+Myriad+Pro+on+MiKTeX/498h0 on Windows
+  - texlive-humanities for bibleref
+  - texlive-lang-french for French hyphenation
+  - texlive-latex-extra
+  - texlive-fonts-extra for MnSymbol needed by MinionPro
