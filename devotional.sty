@@ -80,10 +80,17 @@
     \end{Center}%
   }\end{center}}
 
+
+\usepackage{pifont}
+\usepackage{graphicx}
+% Minion ornaments, see MinionPro.pdf, page 6
+\newcommand{\rightrule}{\Pisymbol{MinionPro-Extra}{120}}
+\newcommand{\leftrule}{\reflectbox{\rightrule}}
+
 % Rule sep
 \newcommand{\dvrule}{
   \begin{center}
-    \rule{1cm}{.3pt}~~\floweroneleft\floweroneright~~\rule{1cm}{.3pt}
+    \leftrule~~\floweroneleft\floweroneright~~\rightrule
   \end{center}
 }
 
@@ -157,7 +164,7 @@
 % Set floor for tabs based on starting chapter
 \fancytabsFloor{\thedvstartchapter}
 
-\newcommand{\secstyle}{\scshape\huge}
+\newcommand{\secstyle}{\scshape\Huge}
 \renewcommand\thesection{\arabic{section}}
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
