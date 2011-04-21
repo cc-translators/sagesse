@@ -54,21 +54,30 @@
     \end{Center}%
   }\end{center}\vspace{-5mm}}
 
+
+\makeatletter
+% justify or center
+\newsavebox{\@justcentbox}%
+\newcommand{\justifyorcenter}[1]{%
+  \sbox \@justcentbox{#1}%
+  \ifdim \wd \@justcentbox >\hsize #1%
+  \else \centerline{\usebox{\@justcentbox}} \fi
+}
+
 % central quote
 \newcommand{\dvbox}[2][]{%
   \begin{center}\doublebox{%
     \parbox{10cm}{%
       \vspace{3mm}%
         \begin{Center}%
-          \makeatletter
           \@raggedtwoe@spaceskipfalse
           \@raggedtwoe@everyselectfont
-          \makeatother
-          \parbox{9cm}{#1\textsc{#2}}%
+          \parbox{9cm}{\justifyorcenter{#1\textsc{#2}}}%
         \end{Center}%
       \vspace{3mm}%
     }
   }\end{center}}
+\makeatother
 
 % ending prayer
 \newcommand{\dvprayer}[2]{
