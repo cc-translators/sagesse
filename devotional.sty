@@ -49,7 +49,7 @@
   \begin{center}\parbox{110mm}{%
     \begin{Center}%
     \hyphenpenalty=10000%
-    \begin{itshape}#1\end{itshape}\\
+    \begin{itshape}#1\end{itshape}\\[1.2mm]
     \ocadr{}\textsc{#2}%
     \end{Center}%
   }\end{center}\vspace{-5mm}}
@@ -75,7 +75,7 @@
   \begin{center}\parbox{4in}{%
     \begin{Center}%
     \hyphenpenalty=10000%
-    \begin{itshape}#1\end{itshape}\\
+    \begin{itshape}#1\end{itshape}\\[1.2mm]
     \scshape#2%
     \end{Center}%
   }\end{center}}
@@ -166,6 +166,8 @@
 \fancytabsFloor{\thedvstartchapter}
 
 % Set tabs text style
+% The original version uses uppercase
+%\fancytabsStyle{\Large\MakeUppercase}
 \fancytabsStyle{\LARGE\scshape}
 
 \newcommand{\secstyle}{\scshape\Huge}
@@ -173,7 +175,7 @@
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
   {\secstyle} % format
-  {\seclbl} % label
+  {\vspace{2cm}\seclbl} % label
   {10pt} %sep
   {
   \ifthenelse{\isodd{\thepage}}%
@@ -181,7 +183,7 @@
     {}%
   \filcenter\textls[-35]
   } %before
-\titlespacing{\section}{0pt}{*}{*-2}
+%\titlespacing{\section}{0pt}{*}{*-2}
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}
