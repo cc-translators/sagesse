@@ -95,12 +95,15 @@
 % Minion ornaments, see MinionPro.pdf, page 6
 \newcommand{\rightrule}{\Pisymbol{MinionPro-Extra}{121}}
 \newcommand{\leftrule}{\reflectbox{\rightrule}}
+\newcommand{\diamondone}{\Pisymbol{MinionPro-Extra}{119}}
 
 % Rule sep
-\newcommand{\dvrule}{
-  \begin{center}
+\newcommand{\dvrule}{%
+  \begin{center}%
     \leftrule~~\floweroneleft\floweroneright~~\rightrule
-  \end{center}
+%    \rule{1cm}{.3pt}~~\diamondone~~\rule{1cm}{.3pt}
+%    \diamondone
+  \end{center}%
 }
 
 
@@ -179,7 +182,7 @@
 %\fancytabsStyle{\Large\MakeUppercase}
 \fancytabsStyle{\LARGE\scshape}
 
-\newcommand{\secstyle}{\scshape\Huge}
+\newcommand{\secstyle}{\scshape\fontsize{32}{30}}
 \renewcommand\thesection{\arabic{section}}
 \newcommand{\seclbl}{\scshape\large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
@@ -190,7 +193,7 @@
   \ifthenelse{\isodd{\thepage}}%
     {\fancytab{\chaphead}{\arabic{chapter}}}%
     {}%
-  \filcenter\textls[-35]
+  \filcenter\textls[-50]
   } %before
 %\titlespacing{\section}{0pt}{*}{*-2}
 
