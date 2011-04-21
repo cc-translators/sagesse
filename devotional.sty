@@ -145,15 +145,14 @@
 \setcounter{dvstartchapter}{\arabic{chapter}}
 
 % Define useful aliases
-\newcommand{\dvmonth}[1]{\chapter{##1}}
+\newcommand{\dvmonth}[1]{\chapter{##1}\cleardoublepage}
 \newcommand{\dvday}[1]{\newpage\section{##1}}
 
 % Set chapter pages
 \titleformat{\chapter}[block]
-  {\scshape\Huge}
+  {\scshape\fontsize{40}{35}}
   {}{10pt}
-  {\begin{center}}
-  [\end{center}\cleardoublepage]
+  {\filcenter\textls[-50]}
 
 % Tune section headings and use tabs
 % I'd like that to go inside the devotional environment
