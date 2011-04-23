@@ -1,4 +1,9 @@
 \ProvidesPackage{devotional}
+\makeatletter
+\newcommand*{\@config@numberlines}{0}
+\DeclareOption{numberlines}{\renewcommand{\@config@numberlines}{1}}
+\makeatother
+\ProcessOptions
 
 % Package scrpage2 for headers
 \usepackage{scrpage2}
@@ -46,9 +51,7 @@
 
 % Number lines
 \makeatletter
-\newcommand*{\@config@numberlines}{0}
-\newcommand*{\dvNumberLines}{%
-  \renewcommand{\@config@numberlines}{1}%
+\ifthenelse{\@config@numberlines=1}{
   \usepackage{lineno}%
   \pagewiselinenumbers
 }
