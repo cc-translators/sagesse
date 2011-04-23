@@ -44,18 +44,49 @@
    \lettrine[lines=2,lhang=0.33,loversize=0.25,#1]{#2}{#3}
 }
 
+% Number lines
+\makeatletter
+\newcommand*{\@config@numberlines}{0}
+\newcommand*{\dvNumberLines}{%
+  \renewcommand{\@config@numberlines}{1}%
+  \usepackage{lineno}%
+  \pagewiselinenumbers
+}
+
+\newcommand{\stoplinenumbers}{%
+  \ifthenelse{\@config@numberlines=1}%
+    {\nolinenumbers}{}%
+}
+
+\newcommand{\startlinenumbers}{%
+  \ifthenelse{\@config@numberlines=1}%
+    {\linenumbers}{}%
+}
+
+\newcommand{\setinternallinenumbers}[1]{%
+  \ifthenelse{\@config@numberlines=1}%
+    {%
+     \internallinenumbers%
+     \renewcommand{\thelinenumber}{#1\arabic{linenumber}}%
+     \resetlinenumber%
+    }{}
+}
+
 % opening quote
 \newcommand{\dvquote}[2]{%
+  \stoplinenumbers%
   \begin{center}\parbox{110mm}{%
     \begin{Center}%
     \hyphenpenalty=10000%
+    \setinternallinenumbers{q}%
     \begin{itshape}#1\end{itshape}\\[1.2mm]
     \ocadr{}\textsc{#2}%
     \end{Center}%
-  }\end{center}\vspace{-5mm}}
+  }\end{center}\vspace{-5mm}%
+  \startlinenumbers%
+}
 
 
-\makeatletter
 % justify or center
 \newsavebox{\@justcentbox}%
 \newcommand{\justifyorcenter}[1]{%
@@ -66,28 +97,40 @@
 
 % central quote
 \newcommand{\dvbox}[2][]{%
+  \stoplinenumbers%
   \begin{center}\doublebox{%
     \parbox{10cm}{%
       \vspace{3mm}%
         \begin{Center}%
-          \@raggedtwoe@spaceskipfalse
-          \@raggedtwoe@everyselectfont
-          \parbox{9cm}{\justifyorcenter{#1\textsc{#2}}}%
+          \@raggedtwoe@spaceskipfalse%
+          \@raggedtwoe@everyselectfont%
+          \parbox{9cm}{%
+            \setinternallinenumbers{b}%
+            \justifyorcenter{#1\textsc{#2}}%
+          }%
         \end{Center}%
       \vspace{3mm}%
-    }
-  }\end{center}}
-\makeatother
+    }%
+  }\end{center}%
+  \startlinenumbers%
+}
 
 % ending prayer
 \newcommand{\dvprayer}[2]{
+  \stoplinenumbers%
   \begin{center}\parbox{4in}{%
+    \ifthenelse{\@config@numberlines=1}%
+      {\nolinenumbers}{}%
     \begin{Center}%
     \hyphenpenalty=10000%
+    \setinternallinenumbers{p}%
     \begin{itshape}#1\end{itshape}\\[1.2mm]
     \scshape#2%
     \end{Center}%
-  }\end{center}}
+  }\end{center}
+  \startlinenumbers%
+}
+\makeatother
 
 
 \usepackage{pifont}
