@@ -7,4 +7,4 @@ Requires:
   - texlive-humanities for bibleref
   - texlive-lang-french for French hyphenation
   - texlive-latex-extra
-  - texlive-fonts-extra for MnSymbol needed by MinionPro
+  - texlive-fonts-extra for MnSymbol needed by MinionPro and fourier-orns
