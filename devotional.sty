@@ -85,7 +85,7 @@
     \begin{itshape}#1\end{itshape}\\[1.2mm]
     \ocadr{}\textsc{#2}%
     \end{Center}%
-  }\end{center}\vspace{-4mm}%
+  }\end{center}\vspace{-5mm}%
   \startlinenumbers%
 }
 
@@ -236,7 +236,7 @@
 \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead}
 \titleformat{\section}[display]
   {\secstyle} % format
-  {\vspace{2cm}\seclbl} % label
+  {\vspace{20mm}\seclbl} % label
   {10pt} %sep
   {
   \ifthenelse{\isodd{\thepage}}%
@@ -244,7 +244,7 @@
     {}%
   \filcenter\textls[-50]
   } %before
-%\titlespacing{\section}{0pt}{*}{*-2}
+\titlespacing{\section}{0pt}{*}{*}
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}
