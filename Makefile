@@ -1,5 +1,6 @@
 BOOK_NAME=sagesse
 TEXINPUTS=bibleref:
+TODAY=$(shell date --iso)
 
 all:
 
@@ -15,6 +16,10 @@ all: $(BOOK_NAME).pdf $(BOOK_NAME)_numbered.pdf
 
 upload:
 	ncftpput -f ~/.ncftp/cc.cfg calvary/ *.pdf
+
+crocupload: $(BOOK_NAME).pdf
+	cp $(BOOK_NAME).pdf $(BOOK_NAME)_$(TODAY).pdf
+	./crocupload.sh "$(BOOK_NAME)_$(TODAY).pdf" "$(BOOK_NAME) $(TODAY)"
 
 clean:
 	rm -f *.pdf *.ps *.aux *.log *.out *.lol
