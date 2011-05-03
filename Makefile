@@ -36,6 +36,7 @@ clean:
 	rm -f *.pdf *.ps *.aux *.log *.out *.lol
 	rm -f *.idx *.ind *.ilg *.toc *.dvi
 	rm -f mois/*.aux
+	rm -f crocupload
 	rm -f *.json
 
 
