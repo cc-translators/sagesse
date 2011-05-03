@@ -23,8 +23,8 @@ json: pdf $(addsuffix .json,$(TARGETS))
 
 %.json: %.pdf
 	./crocupload.sh $< "$* $(TODAY)" > $@
-	grep -q "error\|went wrong" $@ && \
-	   echo "Upload failed. See $@ for more info." && exit 1
+	#grep -q "error\|went wrong" $@ && \
+	#   echo "Upload failed. See $@ for more info." && exit 1
 
 upload:
 	ncftpput -f ~/.ncftp/cc.cfg $(FTP_PDFDIR)/ *.pdf
