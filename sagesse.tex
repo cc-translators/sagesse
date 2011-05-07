@@ -63,7 +63,7 @@
            bookmarksopen=true,
            pdfpagelayout=TwoPageRight,
            pdfauthor={Chuck Smith},
-           pdftitle={Sagesse pour aujourd'hui},
+           pdftitle={Sagesse pour Aujourd'hui},
            pdftex}
 \usepackage{url}
 % microtype is loaded by the loosequotes option of MinionPro
@@ -105,9 +105,14 @@
 \titleformat{\chapter}[display]
   {\scshape\fontsize{32}{30}}
   {}{10pt}
-  {\filcenter\textls[-50]}
+  {\vspace{-25mm}\filcenter\textls[-50]}
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
+
+% Intro signature
+\newcommand{\signature}[1]{%
+\vspace{1cm}\parbox{4in}{\raggedleft{\large\emph{#1}}}
+}
 
 
 \title{Sagesse pour Aujourd'hui}
