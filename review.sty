@@ -1,8 +1,10 @@
 \ProvidesPackage{review}
 
-\usepackage[french]{todonotes}
+\usepackage[french,colorinlistoftodos]{todonotes}
 \newcommand{\fixme}[2][]{%
-   \todo[prepend,caption={Corr},#1]{#2}}
+   \todo[#1]{Correction~: #2}}
 \newcommand{\grammaire}[2][]{%
-   \todo[prepend,caption={Gramm},color=blue!40,#1]{#2}}
+   \todo[color=blue!40,#1]{Grammaire~: #2}}
+\newcommand{\manque}[2][]{%
+   \todo[color=yellow!50,#1]{Manque~: #2}}
 
