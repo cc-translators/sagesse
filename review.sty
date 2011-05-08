@@ -3,8 +3,14 @@
 \usepackage[french,colorinlistoftodos]{todonotes}
 \newcommand{\fixme}[2][]{%
    \todo[#1]{Correction~: #2}}
-\newcommand{\grammaire}[2][]{%
+\newcommand{\suggest}[2][]{%
+   \todo[color=green!40,#1]{Suggestion~: #2}}
+\newcommand{\grammar}[2][]{%
    \todo[color=blue!40,#1]{Grammaire~: #2}}
-\newcommand{\manque}[2][]{%
+\newcommand{\missing}[2][]{%
    \todo[color=yellow!50,#1]{Manque~: #2}}
+\newcommand{\punct}[2][]{%
+   \todo[color=purple!50,#1]{Ponctuation~: #2}}
+\newcommand{\typo}[2][]{%
+   \todo[color=red!50, #1]{Coquille~: #2}}
 
