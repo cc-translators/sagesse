@@ -29,6 +29,7 @@ for class in "fxlrc-t1-" "fxlrc-t1-x-x-120"; do
 è È
 ê Ê
 ﬁ FI
+ï Ï
 à À"
 done
 
