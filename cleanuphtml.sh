@@ -18,7 +18,6 @@ sed -i 's@\(<!--l. 2--><p class="indent\)" >$@\1 pagebreak" >@' $HTML
 echo ".fxlri-t-1 {font-style:italic;}" >> $CSS
 
 ## Before each day
-echo ".pagebreak {page-break-before: always}" >> $CSS
 sed -i 's@\(id="x1-[0-9]\+r[0-9]\+"\)>@\1 class="pagebreak">@' $HTML
 
 
