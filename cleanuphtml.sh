@@ -34,3 +34,6 @@ for class in "fxlrc-t1-" "fxlrc-t1-x-x-120"; do
 done
 
 
+# Improve lettrines
+echo ".fxlr-t-1x-x-318 {color:gray}" >> $CSS
+
