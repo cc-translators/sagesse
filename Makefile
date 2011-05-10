@@ -23,6 +23,11 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
 	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
 
+%.html: %.tex
+	TEXINPUTS=$(TEXINPUTS) mk4ht htlatex $< \
+	   'xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
+	./cleanuphtml.sh $@
+
 %.json: %.pdf
 ifeq ($(strip $(TOKEN)),)
 	$(error No crocodoc token found in ~/.crocodoc.conf)
