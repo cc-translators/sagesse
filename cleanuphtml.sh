@@ -30,6 +30,7 @@ for class in "fxlrc-t1-" "fxlrc-t1-x-x-120" "fxlbc-t1-x-x-248"; do
 ê Ê
 ﬁ FI
 ï Ï
+î Î
 â Â
 à À"
 done
