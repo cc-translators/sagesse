@@ -43,5 +43,8 @@ clean:
 	rm -f mois/*.aux
 	rm -f crocupload
 	rm -f *.json
+	rm -f *.html *.png *.css *.4tc *.tmp *.xref *.4ct
+	rm -f *.idv *.lg
+	rm -f *.epub *.mobi
 
 
