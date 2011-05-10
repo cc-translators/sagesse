@@ -245,9 +245,15 @@
 %\fancytabsStyle{\Large\MakeUppercase}
 \fancytabsStyle{\LARGE\scshape}
 
-\newcommand{\secstyle}{\scshape\fontsize{32}{30}}
 \renewcommand\thesection{\arabic{section}}
-\newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead}
+\ifpdf
+  \newcommand{\secstyle}{\scshape\fontsize{32}{30}}
+  \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead}
+\else
+  % Make a different style to use in CSS
+  \newcommand{\secstyle}{\filcenter\Huge\bfseries\scshape}
+  \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead\\}
+\fi
 \titleformat{\section}[display]
   {\secstyle} % format
   {\vspace{20mm}\seclbl} % label
