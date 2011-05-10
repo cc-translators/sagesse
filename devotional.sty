@@ -21,6 +21,9 @@
 
 \usepackage{ragged2e}
 
+% Use ifpdf to generate ebook
+\usepackage{ifpdf}
+
 % Make day number in month, in french
 \usepackage{ifthen}
 \newcommand{\makedate}[1]{
@@ -146,9 +149,11 @@
 % Rule sep
 \newcommand{\dvrule}{%
   \begin{center}%
-    \leftrule~~\floweroneleft\floweroneright~~\rightrule
-%    \rule{1cm}{.3pt}~~\diamondone~~\rule{1cm}{.3pt}
-%    \diamondone
+    \ifpdf
+      \leftrule~~\floweroneleft\floweroneright~~\rightrule
+    \else
+      \rule{5cm}{.3pt}
+    \fi
   \end{center}%
 }
 

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+HTML="$1"
+CSS="$(basename $HTML .html).css"
+
+# Replace long lines with <hr />
+sed -i 's@___\+@<hr />@' $HTML
+
+
+
+# Center title page
+#echo ".titlepage {text-align:center;}" >> $CSS
+
+# Fix missing italic
+#echo ".fxlri-t-1x-x-120 {font-style:italic;}" >> $CSS
+
+# Manual page breaks
+#echo "h2 {page-break-before: always}" >> $CSS
+
+
+# Force page breaks in intro
+
+## Before each day
+echo ".pagebreak {page-break-before: always}" >> $CSS
+sed -i 's@\(id="x1-[0-9]\+r[0-9]\+"\)>@\1 class="pagebreak">@' $HTML
+
+#echo ".pagebreak {page-break-before: always}" >> $CSS
+## Before thanks
+#sed -i 's@\(<!--l. 2--><p class="indent\)" >$@\1 pagebreak" >@' $HTML
+## Before ToC
+#sed -i 's@\(<!--l. 17--><p class="indent\)" >$@\1 pagebreak" >@' $HTML
+
+# Lettrines
+#echo ".lettrine:first-letter{font-size:6em;margin-right:3px;display:inline;line-height:0.5em;color:gray}" >> $CSS
+#sed -i '/<h2/,/<h3/ { s@\(<p class="noindent\)" >@\1 lettrine" >@  }' $HTML
+## And restore indentation in the beginning of sections
+#sed -i '/<h2/,/<\/html/ { s@"noindent"@"indent"@ }' $HTML
+
+
+

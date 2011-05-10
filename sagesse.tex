@@ -66,8 +66,11 @@
            pdftitle={Sagesse pour Aujourd'hui},
            pdftex}
 \usepackage{url}
-% microtype is loaded by the loosequotes option of MinionPro
-%\usepackage[activate={true,nocompatibility}]{microtype}
+\ifpdf
+  % microtype is loaded by the loosequotes option of MinionPro
+\else
+  \usepackage[activate={true,nocompatibility}]{microtype}
+\fi
 \usepackage{typearea}
 
 % Typeset big numbers
@@ -75,8 +78,11 @@
 
 % font
 \usepackage[T1]{fontenc}
-%\usepackage{lmodern}
-\usepackage[loosequotes]{MinionPro}
+\ifpdf
+  \usepackage[loosequotes]{MinionPro}
+\else
+  \usepackage{libertine}
+\fi
 
 % Set paragraphs
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
