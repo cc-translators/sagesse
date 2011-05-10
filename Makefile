@@ -5,6 +5,7 @@ TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered
 FTP_TOPDIR=calvary
 FTP_PDFDIR=$(FTP_TOPDIR)/pdf
 FTP_JSONDIR=$(FTP_TOPDIR)/json
+FTP_EBOOKDIR=$(FTP_TOPDIR)/ebooks
 
 # Include crocodoc conf
 include ~/.crocodoc.conf
@@ -12,6 +13,12 @@ include ~/.crocodoc.conf
 all: pdf
 
 pdf: $(addsuffix .pdf,$(TARGETS))
+
+ebooks: mobi epub
+
+mobi: $(BOOK_NAME).mobi
+
+epub: $(BOOK_NAME).epub
 
 json: pdf $(addsuffix .json,$(TARGETS))
 
@@ -27,6 +34,12 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	TEXINPUTS=$(TEXINPUTS) mk4ht htlatex $< \
 	   'xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
 	./cleanuphtml.sh $@
+
+%.epub: %.html
+	ebook-convert $< $@
+
+%.mobi: %.html
+	ebook-convert $< $@
 
 %.json: %.pdf
 ifeq ($(strip $(TOKEN)),)
