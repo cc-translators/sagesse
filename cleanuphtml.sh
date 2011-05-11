@@ -38,6 +38,7 @@ for class in "fxlrc-t1-" "fxlrc-t1-x-x-120" "fxlbc-t1-x-x-248" "fxlbc-t1-x-x-144
 ﬁ FI
 ﬀ  FF
 ﬂ FL
+ﬃ   FFI
 â Â
 à À
 ù Ù
@@ -50,7 +51,8 @@ while read c r; do
    sed -i "s@\"small-caps\">$c<@\"small-caps\">$r<@" $HTML
 done <<<"ﬁ FI
 ﬀ  FF
-ﬂ FL"
+ﬂ FL
+ﬃ   FFI"
 
 
 # Improve lettrines
