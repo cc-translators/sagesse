@@ -33,7 +33,6 @@ json: pdf $(addsuffix .json,$(TARGETS))
 %.html: %.tex
 	TEXINPUTS=$(TEXINPUTS) mk4ht htlatex $< \
 	   'xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
-	cp $@ $@.bak
 	./cleanuphtml.sh $@
 
 %.epub: %.html
