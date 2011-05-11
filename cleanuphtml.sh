@@ -56,3 +56,9 @@ done <<<"ﬁ FI
 # Improve lettrines
 echo ".fxlr-t-1x-x-318 {color:gray;float:left;font-size:4em;margin-right:3px;display:inline;line-height:0.5em;}" >> $CSS
 
+
+# Remove months added (for an unknown reason)
+#   -- ugly!
+sed -i ':a ; $! { N ; ba } ; $s/\(<span\( \|\n\|\t\)\+class="fxlbc-t1-x-x-172">[^4]\+\)\(<span\( \|\n\|\t\)\+class="fxlbc-t1-x-x-248">\)/\3/g' $HTML
+
+
