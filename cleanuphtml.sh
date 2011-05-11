@@ -37,7 +37,8 @@ for class in "fxlrc-t1-" "fxlrc-t1-x-x-120" "fxlbc-t1-x-x-248" "fxlbc-t1-x-x-144
 â Â
 à À
 ù Ù
-û Û"
+û Û
+ô Ô"
 done
 
 ## Ligatures
