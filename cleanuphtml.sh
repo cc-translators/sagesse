@@ -6,6 +6,9 @@ CSS="$(basename $HTML .html).css"
 # Replace long lines with <hr />
 sed -i 's@___\+@<hr />@' $HTML
 
+# Wrap text in pure HTML
+echo "body { padding: 0 300px 0 300px }" >> $CSS
+
 # Center title page
 echo ".titlepage {text-align:center;}" >> $CSS
 
@@ -51,5 +54,5 @@ done <<<"ﬁ FI
 
 
 # Improve lettrines
-echo ".fxlr-t-1x-x-318 {color:gray}" >> $CSS
+echo ".fxlr-t-1x-x-318 {color:gray;float:left;font-size:4em;margin-right:3px;display:inline;line-height:0.5em;}" >> $CSS
 
