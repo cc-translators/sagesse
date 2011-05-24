@@ -190,6 +190,10 @@
 % L' doesn't look good in titles with Minion... Fix that
 \newcommand{\ap}{\kern.5pt{'}}
 
+% Page date
+\newcommand{\pagedate}{%
+  \makedate{\thesection}~\chaphead
+}
 
 \newenvironment{devotional}%
 {%
@@ -249,11 +253,11 @@
 \renewcommand\thesection{\arabic{section}}
 \ifpdf
   \newcommand{\secstyle}{\scshape\fontsize{32}{30}}
-  \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead}
+  \newcommand{\seclbl}{\scshape\Large\pagedate}
 \else
   % Make a different style to use in CSS
   \newcommand{\secstyle}{\filcenter\Huge\bfseries\scshape}
-  \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead\\}
+  \newcommand{\seclbl}{\scshape\Large\pagedate\\}
 \fi
 \titleformat{\section}[display]
   {\secstyle} % format
