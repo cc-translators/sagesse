@@ -1,7 +1,7 @@
 BOOK_NAME=sagesse
 TEXINPUTS=bibleref:
 TODAY=$(shell date --iso)
-TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered
+TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
 FTP_TOPDIR=calvary
 FTP_PDFDIR=$(FTP_TOPDIR)/pdf
 FTP_JSONDIR=$(FTP_TOPDIR)/json
@@ -25,6 +25,9 @@ json: pdf $(addsuffix .json,$(TARGETS))
 
 %_numbered.tex: %.tex
 	sed -e 's@\\usepackage{devotional}@\\usepackage[numberlines]{devotional}@' $< > $@
+
+%_annotated.tex: %.tex
+	sed -e 's@\\usepackage\[disable\]{review}@\\usepackage\[dateinlist\]{review}@' $< > $@
 
 %.pdf: %.tex
 	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
