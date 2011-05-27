@@ -51,6 +51,9 @@ endif
 	curl -F "file=@$<" -F "token=$(TOKEN)" -F "title=$* $(TODAY)" \
 	   https://crocodoc.com/api/v1/document/upload > $@
 
+spellcheck:
+	find mois -name "*.tex" -exec aspell -l fr -c {} \;
+
 upload:
 	ncftpput -f ~/.ncftp/cc.cfg $(FTP_PDFDIR)/ *.pdf
 	ncftpput -f ~/.ncftp/cc.cfg $(FTP_JSONDIR)/ *.json
