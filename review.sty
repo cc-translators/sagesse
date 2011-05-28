@@ -16,7 +16,7 @@
   \ifx\review@dateinlist \@empty
   \else
     \renewcommand{\addcontentsline}[3]{%
-      \addtocontents{#1}{\protect\contentsline{#2}{#3}{\tododate}{section*.\thesection}}
+      \addtocontents{#1}{\protect\contentsline{#2}{#3}{\tododate}{section.\thechapter.\thesection}}
     }
   \fi
 \else
