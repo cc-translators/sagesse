@@ -102,8 +102,9 @@
 \PrerenderUnicode{À}
 
 % Make indexes
-\usepackage{makeidx}
-\makeindex
+\newcommand{\indextitle}{Index des références bibliques}
+\usepackage{imakeidx}
+\makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
 
 % Make a nice introduction chapter heading
 \usepackage{titlesec}
@@ -149,7 +150,14 @@
 \input{mois/decembre.tex}
 \end{devotional}
 
-\cleardoublepage
+% Add index
+% Restore normal chapters
+\let\chapter\oldchapter
+%\renewcommand{\chapstyle}{\centering}
+%\renewcommand{\chapheadstyle}{\scshape\Huge}
+\renewcommand*{\BRbooktitlestyle}[1]{\textbf{\emph{#1}}}
+\printindex
+
 \listoftodos[Notes de l'éditeur]
 
 \end{document}
