@@ -31,7 +31,9 @@ json: pdf $(addsuffix .json,$(TARGETS))
 
 %.pdf: %.tex
 	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+	# Modify index to use dates instead of pages
 	./index_dates.sh $*
+	# No -shell-escape to prevent re-creation of index
 	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
 
 %.html: %.tex
