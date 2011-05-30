@@ -156,6 +156,11 @@
 %\renewcommand{\chapstyle}{\centering}
 %\renewcommand{\chapheadstyle}{\scshape\Huge}
 \renewcommand*{\BRbooktitlestyle}[1]{\textbf{\emph{#1}}}
+% No page number on first page of index
+\makeatletter
+\def\imki@firstpagestyle{empty}
+\makeatother
+% Print index
 \printindex
 
 \listoftodos[Notes de l'éditeur]
