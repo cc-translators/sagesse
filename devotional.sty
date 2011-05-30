@@ -210,7 +210,10 @@
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{\chapter{##1}\cleardoublepage}
-\newcommand{\dvday}[1]{\newpage\section{##1}}
+\newcommand{\dvday}[1]{\newpage\section{##1}%
+  %\typeout{Page \thepage has date \pagedate}%
+  \typeout{Date on page \thepage:\thesection:\chaphead}%
+}
 
 % Set chapter pages
 \titleformat{\chapter}[block]

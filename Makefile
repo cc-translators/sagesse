@@ -31,7 +31,8 @@ json: pdf $(addsuffix .json,$(TARGETS))
 
 %.pdf: %.tex
 	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+	./index_dates.sh $*
+	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
 
 %.html: %.tex
 	TEXINPUTS=$(TEXINPUTS) mk4ht htlatex $< \
