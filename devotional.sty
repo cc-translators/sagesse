@@ -215,10 +215,10 @@
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{%
-  \addtocounter{pageoverflow}{1}%
-  \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
+  \addtocounter{pageoverflow}{2}%
+  \ifthenelse{\arabic{pageoverflow}<\thepage}{%
     \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-  }%
+  }{}%
   \chapter{##1}%
   \setcounter{pageoverflow}{\thepage}%
   \addtocounter{pageoverflow}{1}%
