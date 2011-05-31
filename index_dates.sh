@@ -12,7 +12,7 @@ fi
 
 while read -r page day month; do
    bsmonth=$(sed -e 's@\\@\\\\@g' <<<$month)
-   sed -i "s@textrm{\([^,]*, \)\?$page\(, [^,]*\)\?}@textrm{\1\\\\hyperlink{page.$page}{\\\\scshape\\\\makedate{$day}~$bsmonth}\2}@g" $NAME.ind
+   sed -i "s@textrm{\([^,]*, \)\?$page\(, [^,]*\)\?}@textrm{\1\\\\hyperlink{page.$page}{\\\\mbox{\\\\scshape\\\\makedate{$day}~$bsmonth}}\2}@g" $NAME.ind
 done < <(sed -n 's@Date on page \([0-9]\+\):\([0-9]\+\):\(.*\)@\1 \2 \3@p' $NAME.log)
 
 
