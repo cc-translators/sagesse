@@ -1,8 +1,8 @@
 \ProvidesPackage{devotional}
 \newcommand*{\@dv@numberlines}{0}
 \DeclareOption{numberlines}{\renewcommand{\@dv@numberlines}{1}}
-\def\@dv@checksections{true}
-\DeclareOption{noseccheck}{\let\@dv@checksections\@empty}
+\let\@dv@nochecksec\@empty
+\DeclareOption{noseccheck}{\def\@dv@nochecksec{true}}
 \ProcessOptions
 
 % Package scrpage2 for headers
@@ -215,7 +215,7 @@
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{%
-  \ifx\@dv@checksections \@empty \else
+  \ifx\@dv@nochecksec\@empty
     \addtocounter{pageoverflow}{2}%
     \ifthenelse{\arabic{pageoverflow}<\thepage}{%
       \GenericError{}{Section longer than one page before page \thepage!}{}{}%
@@ -228,7 +228,7 @@
 }
 \newcommand{\dvday}[1]{\newpage\section{##1}%
   \typeout{Date on page \thepage:\thesection:\chaphead}%
-  \ifx\@dv@checksections \@empty \else
+  \ifx\@dv@nochecksec\@empty
     \addtocounter{pageoverflow}{1}%
     \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
       \GenericError{}{Section longer than one page before page \thepage!}{}{}%
