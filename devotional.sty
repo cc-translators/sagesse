@@ -1,8 +1,8 @@
 \ProvidesPackage{devotional}
-\makeatletter
-\newcommand*{\@config@numberlines}{0}
-\DeclareOption{numberlines}{\renewcommand{\@config@numberlines}{1}}
-\makeatother
+\newcommand*{\@dv@numberlines}{0}
+\DeclareOption{numberlines}{\renewcommand{\@dv@numberlines}{1}}
+\def\@dv@checksections{true}
+\DeclareOption{noseccheck}{\let\@dv@checksections\@empty}
 \ProcessOptions
 
 % Package scrpage2 for headers
@@ -54,23 +54,23 @@
 
 % Number lines
 \makeatletter
-\ifthenelse{\@config@numberlines=1}{
+\ifthenelse{\@dv@numberlines=1}{
   \usepackage{lineno}%
   \pagewiselinenumbers
 }
 
 \newcommand{\stoplinenumbers}{%
-  \ifthenelse{\@config@numberlines=1}%
+  \ifthenelse{\@dv@numberlines=1}%
     {\nolinenumbers}{}%
 }
 
 \newcommand{\startlinenumbers}{%
-  \ifthenelse{\@config@numberlines=1}%
+  \ifthenelse{\@dv@numberlines=1}%
     {\linenumbers}{}%
 }
 
 \newcommand{\setinternallinenumbers}[1]{%
-  \ifthenelse{\@config@numberlines=1}%
+  \ifthenelse{\@dv@numberlines=1}%
     {%
      \internallinenumbers%
      \renewcommand{\thelinenumber}{#1\arabic{linenumber}}%
@@ -125,7 +125,7 @@
 \newcommand{\dvprayer}[2]{
   \stoplinenumbers%
   \begin{center}\parbox{4in}{%
-    \ifthenelse{\@config@numberlines=1}%
+    \ifthenelse{\@dv@numberlines=1}%
       {\nolinenumbers}{}%
     \begin{Center}%
     \hyphenpenalty=10000%
@@ -215,22 +215,25 @@
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{%
-  \addtocounter{pageoverflow}{2}%
-  \ifthenelse{\arabic{pageoverflow}<\thepage}{%
-    \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-  }{}%
+  \ifx\@dv@checksections \@empty \else
+    \addtocounter{pageoverflow}{2}%
+    \ifthenelse{\arabic{pageoverflow}<\thepage}{%
+      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
+    }{}%
+  \fi
   \chapter{##1}%
   \setcounter{pageoverflow}{\thepage}%
   \addtocounter{pageoverflow}{1}%
   \cleardoublepage%
 }
 \newcommand{\dvday}[1]{\newpage\section{##1}%
-  %\typeout{Page \thepage has date \pagedate}%
   \typeout{Date on page \thepage:\thesection:\chaphead}%
-  \addtocounter{pageoverflow}{1}%
-  \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
-    \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-  }%
+  \ifx\@dv@checksections \@empty \else
+    \addtocounter{pageoverflow}{1}%
+    \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
+      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
+    }%
+  \fi
 }
 
 % Set chapter pages
