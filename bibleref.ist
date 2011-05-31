@@ -7,6 +7,9 @@ delim_2 "\\dotfill "
 %delim_1 "\\ocadr "
 %delim_2 "\\ocadr "
 
+item_0 "\n  \\item\\raggedright"
+item_1 "\n    \\subitem\\raggedleft"
+
 % When using Old/New Testament parts in index
 % Make them scshape
 %preamble "\\begin{multicols}{2}
