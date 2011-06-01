@@ -27,7 +27,8 @@
 % Make day number in month, in french
 \usepackage{ifthen}
 \newcommand{\makedate}[1]{
-  \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
+  \ifthenelse{\equal{#1}{1}}{1\up{er}}{%
+    \ifthenelse{\equal{#1}{0}}{}{#1}}
 }
 
 % Define \chaphead to be used in section headings
