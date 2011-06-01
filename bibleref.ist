@@ -7,6 +7,8 @@ delim_2 "\\dotfill "
 %delim_1 "\\ocadr "
 %delim_2 "\\ocadr "
 
+% Force subitems to be raggedleft when they overflow the line
+% and make sure to keep items raggedright 
 item_0 "\n  \\item\\raggedright"
 item_1 "\n    \\subitem\\raggedleft"
 
