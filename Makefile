@@ -1,7 +1,7 @@
 BOOK_NAME=sagesse
 TEXINPUTS=bibleref:
 TODAY=$(shell date --iso)
-TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered
+TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
 FTP_TOPDIR=calvary
 FTP_PDFDIR=$(FTP_TOPDIR)/pdf
 FTP_JSONDIR=$(FTP_TOPDIR)/json
@@ -26,8 +26,14 @@ json: pdf $(addsuffix .json,$(TARGETS))
 %_numbered.tex: %.tex
 	sed -e 's@\\usepackage{devotional}@\\usepackage[numberlines]{devotional}@' $< > $@
 
+%_annotated.tex: %.tex
+	sed -e 's@\\usepackage\[disable\]{review}@\\usepackage\[dateinlist\]{review}@' $< > $@
+
 %.pdf: %.tex
-	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+	# Modify index to use dates instead of pages
+	./index_dates.sh $*
+	# No -shell-escape to prevent re-creation of index
 	TEXINPUTS=$(TEXINPUTS) pdflatex -interaction=batchmode $<
 
 %.html: %.tex
@@ -47,6 +53,9 @@ ifeq ($(strip $(TOKEN)),)
 endif
 	curl -F "file=@$<" -F "token=$(TOKEN)" -F "title=$* $(TODAY)" \
 	   https://crocodoc.com/api/v1/document/upload > $@
+
+spellcheck:
+	find mois -name "*.tex" -exec aspell -l fr -c {} \;
 
 upload:
 	ncftpput -f ~/.ncftp/cc.cfg $(FTP_PDFDIR)/ *.pdf

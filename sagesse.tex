@@ -89,10 +89,10 @@
 
 % bibleref settings
 \usepackage{bibleref-french-colombe}
-\AtBeginDocument{\shorthandoff{:}}
 
 % Number lines for review
 %\usepackage[numberlines]{devotional}
+%\usepackage[noseccheck]{devotional}
 \usepackage{devotional}
 
 % we need some tricky enumerate entries
@@ -102,8 +102,9 @@
 \PrerenderUnicode{À}
 
 % Make indexes
-\usepackage{makeidx}
-\makeindex
+\newcommand{\indextitle}{Index des références bibliques}
+\usepackage{imakeidx}
+\makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
 
 % Make a nice introduction chapter heading
 \usepackage{titlesec}
@@ -120,7 +121,8 @@
 }
 
 % Reviewing interface
-\usepackage{review}
+%\usepackage[dateinlist]{review}
+\usepackage[disable]{review}
 
 \title{Sagesse pour Aujourd'hui}
 \author{Chuck Smith}
@@ -148,7 +150,19 @@
 \input{mois/decembre.tex}
 \end{devotional}
 
-\cleardoublepage
+% Add index
+% Restore normal chapters
+\let\chapter\oldchapter
+%\renewcommand{\chapstyle}{\centering}
+%\renewcommand{\chapheadstyle}{\scshape\Huge}
+\renewcommand*{\BRbooktitlestyle}[1]{\textbf{\emph{#1}}}
+% No page number on first page of index
+\makeatletter
+\def\imki@firstpagestyle{empty}
+\makeatother
+% Print index
+\printindex
+
 \listoftodos[Notes de l'éditeur]
 
 \end{document}

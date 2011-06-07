@@ -1,8 +1,8 @@
 \ProvidesPackage{devotional}
-\makeatletter
-\newcommand*{\@config@numberlines}{0}
-\DeclareOption{numberlines}{\renewcommand{\@config@numberlines}{1}}
-\makeatother
+\newcommand*{\@dv@numberlines}{0}
+\DeclareOption{numberlines}{\renewcommand{\@dv@numberlines}{1}}
+\let\@dv@nochecksec\@empty
+\DeclareOption{noseccheck}{\def\@dv@nochecksec{true}}
 \ProcessOptions
 
 % Package scrpage2 for headers
@@ -27,7 +27,8 @@
 % Make day number in month, in french
 \usepackage{ifthen}
 \newcommand{\makedate}[1]{
-  \ifthenelse{\equal{#1}{1}}{1\up{er}}{#1}
+  \ifthenelse{\equal{#1}{1}}{1\up{er}}{%
+    \ifthenelse{\equal{#1}{0}}{}{#1}}
 }
 
 % Define \chaphead to be used in section headings
@@ -54,23 +55,23 @@
 
 % Number lines
 \makeatletter
-\ifthenelse{\@config@numberlines=1}{
+\ifthenelse{\@dv@numberlines=1}{
   \usepackage{lineno}%
   \pagewiselinenumbers
 }
 
 \newcommand{\stoplinenumbers}{%
-  \ifthenelse{\@config@numberlines=1}%
+  \ifthenelse{\@dv@numberlines=1}%
     {\nolinenumbers}{}%
 }
 
 \newcommand{\startlinenumbers}{%
-  \ifthenelse{\@config@numberlines=1}%
+  \ifthenelse{\@dv@numberlines=1}%
     {\linenumbers}{}%
 }
 
 \newcommand{\setinternallinenumbers}[1]{%
-  \ifthenelse{\@config@numberlines=1}%
+  \ifthenelse{\@dv@numberlines=1}%
     {%
      \internallinenumbers%
      \renewcommand{\thelinenumber}{#1\arabic{linenumber}}%
@@ -125,7 +126,7 @@
 \newcommand{\dvprayer}[2]{
   \stoplinenumbers%
   \begin{center}\parbox{4in}{%
-    \ifthenelse{\@config@numberlines=1}%
+    \ifthenelse{\@dv@numberlines=1}%
       {\nolinenumbers}{}%
     \begin{Center}%
     \hyphenpenalty=10000%
@@ -165,7 +166,10 @@
 \newcommand{\NpDlNdJ}{Nous prions dans le Nom de Jésus. \Amen}
 \newcommand{\CDlNdJqnp}{C'est dans le Nom de Jésus que nous prions, \Amen}
 \newcommand{\EsN}{En Son Nom, nous prions, \Amen}
+\newcommand{\ESN}{En Son Nom, \Amen}
 \newcommand{\CeSNqnp}{C'est en Son Nom que nous prions, \Amen}
+\newcommand{\DlPNdJ}{Dans le Précieux Nom de Jésus, \Amen}
+\newcommand{\NlddlNdJ}{Nous le demandons dans le Nom de Jésus, \Amen}
 
 % YHWH
 \newcommand{\Seigneur}{\textsc{Seigneur}}
@@ -185,14 +189,23 @@
 % Bible en Français Courant
 \newcommand{\BFC}{\ocadr{}\emph{Version de la Bible en Français Courant}}
 \newcommand{\NKJV}{\ocadr{}\emph{Version NKJV}}
-\newcommand{\NBS}{\ocadr{}\emph{Version Nouvelle Bible de Segond}}
+\newcommand{\NBS}{\ocadr{}\emph{Version Nouvelle Bible Segond}}
+\newcommand{\PDV}{\ocadr{}\emph{Version Parole de Vie}}
 
 % L' doesn't look good in titles with Minion... Fix that
 \newcommand{\ap}{\kern.5pt{'}}
 
+% Page date
+\newcommand{\pagedate}{%
+  \makedate{\thesection}~\chaphead
+}
 
 \newenvironment{devotional}%
 {%
+% Counter to test that pages do not overflow
+\newcounter{pageoverflow}%
+\setcounter{pageoverflow}{\thepage}%
+\addtocounter{pageoverflow}{-1}%
 % Reset chapter counter for tabs
 %\setcounter{chapter}{0}
 \pagestyle{empty}
@@ -203,8 +216,27 @@
 \setcounter{dvstartchapter}{\arabic{chapter}}
 
 % Define useful aliases
-\newcommand{\dvmonth}[1]{\chapter{##1}\cleardoublepage}
-\newcommand{\dvday}[1]{\newpage\section{##1}}
+\newcommand{\dvmonth}[1]{%
+  \ifx\@dv@nochecksec\@empty
+    \addtocounter{pageoverflow}{2}%
+    \ifthenelse{\arabic{pageoverflow}<\thepage}{%
+      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
+    }{}%
+  \fi
+  \chapter{##1}%
+  \setcounter{pageoverflow}{\thepage}%
+  \addtocounter{pageoverflow}{1}%
+  \cleardoublepage%
+}
+\newcommand{\dvday}[1]{\newpage\section{##1}%
+  \typeout{Date on page \thepage:\thesection:\chaphead}%
+  \ifx\@dv@nochecksec\@empty
+    \addtocounter{pageoverflow}{1}%
+    \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
+      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
+    }%
+  \fi
+}
 
 % Set chapter pages
 \titleformat{\chapter}[block]
@@ -249,11 +281,11 @@
 \renewcommand\thesection{\arabic{section}}
 \ifpdf
   \newcommand{\secstyle}{\scshape\fontsize{32}{30}}
-  \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead}
+  \newcommand{\seclbl}{\scshape\Large\pagedate}
 \else
   % Make a different style to use in CSS
   \newcommand{\secstyle}{\filcenter\Huge\bfseries\scshape}
-  \newcommand{\seclbl}{\scshape\Large\makedate{\thesection}~\chaphead\\}
+  \newcommand{\seclbl}{\scshape\Large\pagedate\\}
 \fi
 \titleformat{\section}[display]
   {\secstyle} % format

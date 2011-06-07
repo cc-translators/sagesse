@@ -1,8 +1,29 @@
 \ProvidesPackage{review}
+\let\review@disable\@empty
+\let\review@dateinlist\@empty
+\DeclareOption{disable}{\def\review@disable{true}}
+\DeclareOption{dateinlist}{\def\review@dateinlist{true}}
+\ProcessOptions
+
+
+% Put dates instead of page numbers in listoftodos
+\newcommand{\tododate}{%
+  \thesection~\chaphead
+}
+
+\ifx\review@disable \@empty
+  \usepackage[french,colorinlistoftodos,textsize=small]{todonotes}
+  \ifx\review@dateinlist \@empty
+  \else
+    \renewcommand{\addcontentsline}[3]{%
+      \addtocontents{#1}{\protect\contentsline{#2}{#3}{\tododate}{section.\thechapter.\thesection}}
+    }
+  \fi
+\else
+  \usepackage[french,colorinlistoftodos,textsize=small,disable]{todonotes}
+\fi
 
 % Use option 'disable' to remove annotations
-%\usepackage[french,colorinlistoftodos,textsize=small,disable]{todonotes}
-\usepackage[french,colorinlistoftodos,textsize=small]{todonotes}
 \newcommand{\fixme}[2][]{%
    \todo[#1]{Correction~: #2}}
 \newcommand{\suggest}[2][]{%
