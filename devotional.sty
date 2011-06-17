@@ -199,6 +199,9 @@
   \makedate{\thesection}~\chaphead
 }
 
+\newcommand{\setpagedate}[1]{%
+  \expandafter\gdef\csname pagedate\thepage\endcsname{#1}%
+}
 
 \newcommand{\getpagedate}[1]{%
   \csname pagedate#1\endcsname
