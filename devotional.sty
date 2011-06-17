@@ -199,6 +199,17 @@
   \makedate{\thesection}~\chaphead
 }
 
+
+\newcommand{\getpagedate}[1]{%
+  \csname pagedate#1\endcsname
+}
+
+\usepackage{etoolbox}
+\newcommand{\transform}[1]{\forcsvlist\decodesec{#1}}
+\newcommand{\decodesec}[1]{, \hyperlink{page.#1}{\mbox{\scshape\getpagedate{#1}}}}
+\renewcommand*{\bvidxpgformat}{transform}
+
+
 \newenvironment{devotional}%
 {%
 % Counter to test that pages do not overflow
@@ -227,8 +238,11 @@
   \addtocounter{pageoverflow}{1}%
   \cleardoublepage%
 }
+
+% Index day counter
+
 \newcommand{\dvday}[1]{\newpage\section{##1}%
-  \typeout{Date on page \thepage:\thesection:\chaphead}%
+  \expandafter\xdef\csname pagedate\thepage\endcsname{\noexpand\makedate{\thesection}~\chaphead}%
   \ifx\@dv@nochecksec\@empty
     \addtocounter{pageoverflow}{1}%
     \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
@@ -236,6 +250,7 @@
     }%
   \fi
 }
+
 
 % Set chapter pages
 \titleformat{\chapter}[block]
