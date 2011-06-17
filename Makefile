@@ -1,5 +1,5 @@
 BOOK_NAME=sagesse
-TEXINPUTS=bibleref:
+TEXINPUTS=
 TODAY=$(shell date --iso)
 TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
 FTP_TOPDIR=calvary

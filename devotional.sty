@@ -217,6 +217,11 @@
   \def\secondparam{1}}
 \renewcommand*{\bvidxpgformat}{transform}
 
+% Patch bibleref to sort Bible books properly
+\makeatletter
+\patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}
+\makeatother
+
 
 \newenvironment{devotional}%
 {%
