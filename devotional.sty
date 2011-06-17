@@ -205,8 +205,13 @@
 }
 
 \usepackage{etoolbox}
-\newcommand{\transform}[1]{\forcsvlist\decodesec{#1}}
-\newcommand{\decodesec}[1]{, \hyperlink{page.#1}{\mbox{\scshape\getpagedate{#1}}}}
+\newcommand{\transform}[1]{
+  \def\secondparam{0}%
+  \forcsvlist\decodesec{#1}}
+\newcommand{\decodesec}[1]{%
+  \ifthenelse{\secondparam=1}{, }{}%
+  \hyperlink{page.#1}{\mbox{\scshape\getpagedate{#1}}}%
+  \def\secondparam{1}}
 \renewcommand*{\bvidxpgformat}{transform}
 
 
