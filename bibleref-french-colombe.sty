@@ -118,4 +118,15 @@
 \biblerefmap{Ap}{\bridxNT 66}
 
 
+% Proper hyphentation
+\renewcommand*{\BRbkchsep}{~}%
+\renewcommand*{\BRvrsep}{\mbox{--}\nobreak}%
+
+% Allow hyphenation between book and chapter
+\newcommand{\BRallowhypbch}{\renewcommand*{\BRbkchsep}{ }}
+% Forbid hyphenation between book and chapter
+\newcommand{\BRforbidhypbch}{\renewcommand*{\BRbkchsep}{~}}
+
+
+
 
