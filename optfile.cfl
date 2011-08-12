@@ -1,0 +1,22 @@
+% options per letter
+\LettrineOptionsFor{A}{findent=-0.3em,nindent=0.5em}
+\LettrineOptionsFor{À}{findent=-0.3em,nindent=0.5em}
+\LettrineOptionsFor{B}{nindent=0.3em}
+\LettrineOptionsFor{C}{nindent=0.1em}
+\LettrineOptionsFor{D}{nindent=0.1em}
+\LettrineOptionsFor{E}{nindent=0.1em}
+\LettrineOptionsFor{É}{nindent=0.1em}
+\LettrineOptionsFor{H}{nindent=0.1em}
+\LettrineOptionsFor{I}{nindent=0.1em}
+\LettrineOptionsFor{J}{lraise=0.05,nindent=0em}
+\LettrineOptionsFor{L}{loversize=0.10,findent=-0.3em,nindent=0.5em}
+\LettrineOptionsFor{M}{nindent=0.1em}
+\LettrineOptionsFor{N}{nindent=0.1em}
+\LettrineOptionsFor{P}{findent=0.1em,nindent=0.1em}
+\LettrineOptionsFor{Q}{lraise=0.30,loversize=0.15}
+\LettrineOptionsFor{R}{findent=-0.3em}
+\LettrineOptionsFor{S}{nindent=0.1em}
+\LettrineOptionsFor{T}{nindent=0.1em}
+\LettrineOptionsFor{U}{nindent=0.1em}
+\LettrineOptionsFor{V}{nindent=-0.3em}
+
