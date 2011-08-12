@@ -279,6 +279,7 @@
     \renewcommand\chaphead{##1}%
     \setcounter{section}{0}%
     \addtocounter{chapter}{1}%
+    \addcontentsline{toc}{chapter}{##1}%
   \else
     \chapter{##1}%
     \cleardoublepage%
