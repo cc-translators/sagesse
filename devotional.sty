@@ -19,6 +19,7 @@
 \defaultfontfeatures{Mapping=tex-text}
 %\setmainfont{Minion Pro}
 \setmainfont{EB Garamond}
+\newfontfamily\smallfont[Scale=0.9]{EB Garamond}
 %\setmainfont[Numbers=OldStyle]{Linux Libertine O}
 %\newfontfamily\dayheadfont[Scale=1.1,LetterSpace=0.8]{Goudy Trajan}
 %\newfontfamily\dayheadfont[Scale=2.5,LetterSpace=2]{Goldwater}
@@ -276,7 +277,7 @@
 
 % Index day counter
 
-\newcommand{\dvday}[1]{\newpage\section{##1}%
+\newcommand{\dvday}[2][\normalfont]{\newpage\section{##2}%
   \expandafter\xdef\csname pagedate\thepage\endcsname{\noexpand\makedate{\thesection}~\chaphead}%
   \ifx\@dv@nochecksec\@empty
     \addtocounter{pageoverflow}{1}%
@@ -284,6 +285,7 @@
       \GenericError{}{Section longer than one page before page \thepage!}{}{}%
     }%
   \fi
+  ##1%
 }
 
 
