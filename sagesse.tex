@@ -66,11 +66,7 @@
            pdftitle={Sagesse pour Aujourd'hui},
            pdftex}
 \usepackage{url}
-\ifpdf
-  % microtype is loaded by the loosequotes option of MinionPro
-\else
-  \usepackage[activate={true,nocompatibility}]{microtype}
-\fi
+\usepackage[protrusion=true,final]{microtype}
 \usepackage{typearea}
 
 % Typeset big numbers
@@ -112,7 +108,7 @@
 \titleformat{\chapter}[display]
   {\dayheadfont\huge}
   {}{10pt}
-  {\vspace{-25mm}\filcenter\textls[-50]}
+  {\vspace{-25mm}\filcenter}
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 
