@@ -13,6 +13,19 @@
 \usepackage{lettrine}
 \usepackage{xcolor}
 
+% fonts
+\usepackage{fontspec}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{Minion Pro}
+%\setmainfont{EB Garamond}
+%\setmainfont[Numbers=OldStyle]{Linux Libertine O}
+%\newfontfamily\dayheadfont[Scale=1.1,LetterSpace=0.8]{Goudy Trajan}
+%\newfontfamily\dayheadfont[Scale=2.5,LetterSpace=2]{Goldwater}
+%\newfontfamily\dayheadfont[Scale=2.5,LetterSpace=2]{Latino Elongated LET}
+\newfontfamily\dayheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
+\newfontfamily\monthheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
+
 % Tune chapter headings
 \usepackage{titlesec}
 \usepackage{fancytabs}
@@ -76,17 +89,24 @@
     }{}
 }
 
+% Lengths for boxes
+\newlength{\outparbox}%
+\newlength{\inparbox}%
+\newlength{\vspaceparbox}%
+
 % opening quote
-\newcommand{\dvquote}[2]{%
+\newcommand{\dvquote}[3][0.9\textwidth]{%
   \stoplinenumbers%
-  \begin{center}\parbox{110mm}{%
+  \setlength{\outparbox}{#1}%
+  \setlength{\vspaceparbox}{-0.05\inparbox}%
+  \begin{center}\parbox{\outparbox}{%
     \begin{Center}%
     \hyphenpenalty=10000%
     \setinternallinenumbers{q}%
-    \begin{itshape}#1\end{itshape}\\[1.2mm]
-    \ocadr{}\textsc{#2}%
+    \begin{itshape}#2\end{itshape}\\[1.2mm]
+    \ocadr{}\textsc{#3}%
     \end{Center}%
-  }\end{center}\vspace{-5mm}%
+  }\end{center}\vspace{\vspaceparbox}%
   \startlinenumbers%
 }
 
@@ -100,37 +120,40 @@
 }
 
 % central quote
-\newcommand{\dvbox}[2][]{%
+\newcommand{\dvbox}[2][0.9\textwidth]{%
   \stoplinenumbers%
+  \setlength{\outparbox}{#1}%
+  \setlength{\inparbox}{0.9\outparbox}%
+  \setlength{\vspaceparbox}{0.03\inparbox}%
   \begin{center}\doublebox{%
-    \parbox{10cm}{%
-      \vspace{3mm}%
+    \parbox{\outparbox}{%
+      \vspace{\vspaceparbox}%
         \begin{Center}%
           \@raggedtwoe@spaceskipfalse%
           \@raggedtwoe@everyselectfont%
-          \parbox{9cm}{%
+          \parbox{\inparbox}{%
             \setinternallinenumbers{b}%
             \hyphenpenalty=1000%
-            \justifyorcenter{#1\large\textsc{#2}}%
+            \justifyorcenter{\large\textsc{#2}}%
           }%
         \end{Center}%
-      \vspace{3mm}%
+      \vspace{\vspaceparbox}%
     }%
   }\end{center}%
   \startlinenumbers%
 }
 
 % ending prayer
-\newcommand{\dvprayer}[2]{
+\newcommand{\dvprayer}[3][0.8\textwidth]{
   \stoplinenumbers%
-  \begin{center}\parbox{4in}{%
+  \begin{center}\parbox{#1}{%
     \ifthenelse{\@dv@numberlines=1}%
       {\nolinenumbers}{}%
     \begin{Center}%
     \hyphenpenalty=10000%
     \setinternallinenumbers{p}%
-    \begin{itshape}#1\end{itshape}\\[1.2mm]
-    \scshape#2%
+    \begin{itshape}#2\end{itshape}\\[1.2mm]
+    \scshape#3%
     \end{Center}%
   }\end{center}
   \startlinenumbers%
@@ -267,7 +290,7 @@
 
 % Set chapter pages
 \titleformat{\chapter}[block]
-  {\vfill\scshape\fontsize{40}{35}}
+  {\vfill\monthheadfont}
   {}{10pt}
   {\filcenter\textls[-50]}
   [\vfill\vfill]
@@ -303,28 +326,24 @@
 % Set tabs text style
 % The original version uses uppercase
 %\fancytabsStyle{\Large\MakeUppercase}
-\fancytabsStyle{\LARGE\scshape}
+\fancytabsStyle{\normalfont\LARGE\scshape}
 
 \renewcommand\thesection{\arabic{section}}
-\ifpdf
-  \newcommand{\secstyle}{\scshape\fontsize{32}{30}}
-  \newcommand{\seclbl}{\scshape\Large\pagedate}
-\else
-  % Make a different style to use in CSS
-  \newcommand{\secstyle}{\filcenter\Huge\bfseries\scshape}
-  \newcommand{\seclbl}{\scshape\Large\pagedate\\}
-\fi
+% Make a different style to use in CSS
+\newcommand{\secstyle}{\filcenter\dayheadfont\huge}
+\newcommand{\seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
+\
 \titleformat{\section}[display]
   {\secstyle} % format
-  {\vspace{20mm}\seclbl} % label
-  {10pt} %sep
+  {\seclbl} % label
+  {0pt} %sep
   {
   \ifthenelse{\isodd{\thepage}}%
     {\fancytab{\chaphead}{\arabic{chapter}}}%
     {}%
   \filcenter\textls[-50]
   } %before
-\titlespacing{\section}{0pt}{*}{*}
+\titlespacing{\section}{0pt}{-1em}{*}
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}

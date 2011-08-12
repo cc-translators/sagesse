@@ -30,8 +30,8 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	sed -e 's@\\usepackage\[disable\]{review}@\\usepackage\[dateinlist\]{review}@' $< > $@
 
 %.pdf: %.tex
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+	TEXINPUTS=$(TEXINPUTS) xelatex -shell-escape -interaction=batchmode $<
+	TEXINPUTS=$(TEXINPUTS) xelatex -shell-escape -interaction=batchmode $<
 
 %.html: %.tex
 	TEXINPUTS=$(TEXINPUTS) mk4ht htlatex $< \

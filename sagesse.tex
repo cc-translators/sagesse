@@ -51,7 +51,7 @@
 
 %\usepackage{amsmath}
 %\usepackage[mathletters]{ucs}
-\usepackage[utf8x]{inputenc}
+%\usepackage[utf8x]{inputenc}
 %\usepackage{fancyvrb}
 %\usepackage{graphicx}
 \usepackage[breaklinks=true,unicode=true]{hyperref}
@@ -77,12 +77,13 @@
 \usepackage{numprint}
 
 % font
-\usepackage[T1]{fontenc}
-\ifpdf
-  \usepackage[loosequotes]{MinionPro}
-\else
-  \usepackage{libertine}
-\fi
+%\usepackage[T1]{fontenc}
+%\ifpdf
+%  \usepackage[loosequotes]{MinionPro}
+%\else
+%  \usepackage{libertine}
+%\fi
+
 
 % Set paragraphs
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
@@ -92,14 +93,14 @@
 
 % Number lines for review
 %\usepackage[numberlines]{devotional}
-%\usepackage[noseccheck]{devotional}
-\usepackage{devotional}
+\usepackage[noseccheck]{devotional}
+%\usepackage{devotional}
 
 % we need some tricky enumerate entries
 \usepackage{enumerate}
 
 % prerender for chapter titles
-\PrerenderUnicode{À}
+%\PrerenderUnicode{À}
 
 % Make indexes
 \newcommand{\indextitle}{Index des références bibliques}
@@ -109,7 +110,7 @@
 % Make a nice introduction chapter heading
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
-  {\scshape\fontsize{32}{30}}
+  {\scshape}
   {}{10pt}
   {\vspace{-25mm}\filcenter\textls[-50]}
 \pagestyle{empty}
