@@ -17,14 +17,15 @@
 \usepackage{fontspec}
 \usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont{Minion Pro}
-%\setmainfont{EB Garamond}
+%\setmainfont{Minion Pro}
+\setmainfont{EB Garamond}
 %\setmainfont[Numbers=OldStyle]{Linux Libertine O}
 %\newfontfamily\dayheadfont[Scale=1.1,LetterSpace=0.8]{Goudy Trajan}
 %\newfontfamily\dayheadfont[Scale=2.5,LetterSpace=2]{Goldwater}
-%\newfontfamily\dayheadfont[Scale=2.5,LetterSpace=2]{Latino Elongated LET}
-\newfontfamily\dayheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
-\newfontfamily\monthheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
+\newfontfamily\dayheadfont[Scale=2.5,LetterSpace=2]{Latino Elongated LET}
+\newfontfamily\monthheadfont[Scale=5,LetterSpace=2]{Latino Elongated LET}
+%\newfontfamily\dayheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
+%\newfontfamily\monthheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
 
 % Tune chapter headings
 \usepackage{titlesec}
@@ -98,7 +99,7 @@
 \newcommand{\dvquote}[3][0.9\textwidth]{%
   \stoplinenumbers%
   \setlength{\outparbox}{#1}%
-  \setlength{\vspaceparbox}{-0.05\inparbox}%
+  \setlength{\vspaceparbox}{-0.07\inparbox}%
   \begin{center}\parbox{\outparbox}{%
     \begin{Center}%
     \hyphenpenalty=10000%
@@ -169,14 +170,12 @@
 \newcommand{\diamondone}{\Pisymbol{MinionPro-Extra}{119}}
 
 % Rule sep
-\newcommand{\dvrule}{%
+\newcommand{\dvrule}[1][0pt]{%
+  \vspace{#1}
   \begin{center}%
-    \ifpdf
-      \leftrule~~\floweroneleft\floweroneright~~\rightrule
-    \else
-      \rule{5cm}{.3pt}
-    \fi
+    \leftrule~~\floweroneleft\floweroneright~~\rightrule
   \end{center}%
+  \vspace{#1}
 }
 
 
@@ -336,14 +335,14 @@
 \titleformat{\section}[display]
   {\secstyle} % format
   {\seclbl} % label
-  {0pt} %sep
+  {-7pt} %sep
   {
   \ifthenelse{\isodd{\thepage}}%
     {\fancytab{\chaphead}{\arabic{chapter}}}%
     {}%
   \filcenter\textls[-50]
   } %before
-\titlespacing{\section}{0pt}{-1em}{*}
+\titlespacing{\section}{0pt}{-1em}{-3pt}
 
 } % end of \begin{devotional}
 {} % end of \end{devotional}
