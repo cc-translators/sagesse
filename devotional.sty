@@ -1,6 +1,8 @@
 \ProvidesPackage{devotional}
 \newcommand*{\@dv@numberlines}{0}
 \DeclareOption{numberlines}{\renewcommand{\@dv@numberlines}{1}}
+\let\@dv@chapterpages\@empty
+\DeclareOption{chapterpages}{\def\@dv@chapterpages{true}}
 \let\@dv@nochecksec\@empty
 \DeclareOption{noseccheck}{\def\@dv@nochecksec{true}}
 \ProcessOptions
@@ -271,10 +273,16 @@
       \GenericError{}{Section longer than one page before page \thepage!}{}{}%
     }{}%
   \fi
-  \chapter{##1}%
   \setcounter{pageoverflow}{\thepage}%
   \addtocounter{pageoverflow}{1}%
-  \cleardoublepage%
+  \ifx\@dv@chapterpages\@empty
+    \renewcommand\chaphead{##1}%
+    \setcounter{section}{0}%
+    \addtocounter{chapter}{1}%
+  \else
+    \chapter{##1}%
+    \cleardoublepage%
+  \fi
 }
 
 % Index day counter
