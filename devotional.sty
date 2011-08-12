@@ -2,7 +2,8 @@
 \newcommand*{\@dv@numberlines}{0}
 \DeclareOption{numberlines}{\renewcommand{\@dv@numberlines}{1}}
 \let\@dv@chapterpages\@empty
-\DeclareOption{chapterpages}{\def\@dv@chapterpages{true}}
+\newif\if@dv@chapterpages
+\DeclareOption{chapterpages}{\@dv@chapterpagestrue}
 \let\@dv@nochecksec\@empty
 \DeclareOption{noseccheck}{\def\@dv@nochecksec{true}}
 \ProcessOptions
@@ -277,14 +278,14 @@
   \fi
   \setcounter{pageoverflow}{\thepage}%
   \addtocounter{pageoverflow}{1}%
-  \ifx\@dv@chapterpages\@empty
+  \if@dv@chapterpages
+    \chapter{##1}%
+    \cleardoublepage%
+  \else
     \renewcommand\chaphead{##1}%
     \setcounter{section}{0}%
     \addtocounter{chapter}{1}%
     \addcontentsline{toc}{chapter}{##1}%
-  \else
-    \chapter{##1}%
-    \cleardoublepage%
   \fi
 }
 
