@@ -132,6 +132,7 @@
   \setlength{\outparbox}{#1}%
   \setlength{\inparbox}{0.9\outparbox}%
   \setlength{\vspaceparbox}{0.03\inparbox}%
+  \vfill
   \begin{center}\doublebox{%
     \parbox{\outparbox}{%
       \vspace{\vspaceparbox}%
@@ -147,6 +148,7 @@
       \vspace{\vspaceparbox}%
     }%
   }\end{center}%
+  \vfill
   \startlinenumbers%
 }
 
@@ -178,12 +180,14 @@
 % Rule sep
 \newcommand{\dvrule}[1][0pt]{%
 %  \vspace{#1}
+  \vfill
   \begin{center}%
 \fontspec[Scale=5]{Davys}5
 %    \leftrule~~\floweroneleft\floweroneright~~\rightrule
 %\includegraphics[width=10em]{rule_square_long}
   \end{center}%
   \vspace{-12mm}
+  \vfill
 }
 
 
