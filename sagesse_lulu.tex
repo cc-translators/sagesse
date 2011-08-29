@@ -101,7 +101,8 @@
 % Make indexes
 \newcommand{\indextitle}{Index des références bibliques}
 \usepackage{imakeidx}
-\makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+\makeindex[name=bibleref,title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+\renewcommand{\biblerefindex}{\index[bibleref]}
 
 % Make a nice introduction chapter heading
 \usepackage{titlesec}
@@ -163,7 +164,7 @@
 \def\imki@firstpagestyle{empty}
 \makeatother
 % Print index
-\printindex
+\printindex[bibleref]
 
 \listoftodos[Notes de l'éditeur]
 
