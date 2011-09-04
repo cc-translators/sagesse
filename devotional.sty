@@ -318,9 +318,9 @@
     \cleardoublepage%
   \else
     \renewcommand\chaphead{##1}%
-    \setcounter{section}{0}%
-    \addtocounter{chapter}{1}%
-    \addcontentsline{toc}{chapter}{##1}%
+    \refstepcounter{chapter}%
+    \@maybeautodot\thechapter
+    \addchaptertocentry{\thechapter}{##1}%
   \fi
 }
 
