@@ -9,7 +9,7 @@
 \LettrineOptionsFor{H}{nindent=0.1em}
 \LettrineOptionsFor{I}{nindent=0.1em}
 \LettrineOptionsFor{J}{lraise=0.05,nindent=0em}
-\LettrineOptionsFor{L}{loversize=0.10,findent=-0.3em,nindent=0.5em}
+\LettrineOptionsFor{L}{loversize=0.15,findent=-0.3em,nindent=0.5em}
 \LettrineOptionsFor{M}{nindent=0.1em}
 \LettrineOptionsFor{N}{nindent=0.1em}
 \LettrineOptionsFor{P}{findent=0.1em,nindent=0.1em}
