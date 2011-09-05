@@ -92,6 +92,9 @@
 %\usepackage[chapterpages]{devotional}
 \usepackage[noseccheck]{devotional}
 
+% ISBN
+\newcommand{\isbn}{978-2-9539988-3-2}
+
 % we need some tricky enumerate entries
 \usepackage{enumerate}
 
@@ -102,6 +105,9 @@
 \newcommand{\indextitle}{Index des références bibliques}
 \usepackage{imakeidx}
 \makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+
+% Bullet
+\newcommand{\mybullet}{{\color[gray]{0.7}$\bullet$}\xspace}
 
 % Make a nice introduction chapter heading
 \usepackage{titlesec}
@@ -127,9 +133,11 @@
 \begin{document}
 
 %\maketitle
+\setlength{\parindent}{0em}
 \input{title}
 \input{copyright}
 
+\setlength{\parindent}{1em}
 % Debug overfull boxes
 \overfullrule=1mm
 
