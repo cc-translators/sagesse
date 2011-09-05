@@ -382,18 +382,19 @@
 
 \renewcommand\thesection{\arabic{section}}
 % Make a different style to use in CSS
+\newcommand\titlestrut{\vrule height 25pt width0pt\relax}
 \newcommand{\secstyle}{\filcenter\dayheadfont\huge}
 \newcommand{\seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
 \
 \titleformat{\section}[display]
   {\secstyle} % format
   {\seclbl} % label
-  {-7pt} %sep
+  {-15pt} %sep
   {
   \ifthenelse{\isodd{\thepage}}%
     {\fancytab{\chaphead}{\arabic{chapter}}}%
     {}%
-  \filcenter} %before
+  \titlestrut\filcenter} %before
 \titlespacing{\section}{0pt}{*}{-3pt}
 
 } % end of \begin{devotional}
