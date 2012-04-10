@@ -49,6 +49,16 @@
 \usepackage[french]{babel} %language selection
 \selectlanguage{french}
 
+\usepackage[draft,
+            hyphenation,
+            nosingleletter,
+            lastparline,
+            homeoarchy,
+            %rivers
+            ]{impnattypo}
+
+\usepackage{overcolored}
+
 %\usepackage{amsmath}
 %\usepackage[mathletters]{ucs}
 %\usepackage[utf8x]{inputenc}
@@ -92,6 +102,9 @@
 %\usepackage[chapterpages]{devotional}
 \usepackage[noseccheck]{devotional}
 
+% ISBN
+\newcommand{\isbn}{978-2-9539988-3-2}
+
 % we need some tricky enumerate entries
 \usepackage{enumerate}
 
@@ -101,15 +114,17 @@
 % Make indexes
 \newcommand{\indextitle}{Index des références bibliques}
 \usepackage{imakeidx}
-\makeindex[name=bibleref,title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
-\renewcommand{\biblerefindex}{\index[bibleref]}
+\makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+
+% Bullet
+\newcommand{\mybullet}{{\color[gray]{0.7}$\bullet$}\xspace}
 
 % Make a nice introduction chapter heading
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
   {\dayheadfont\huge}
-  {}{10pt}
-  {\vspace{-25mm}\filcenter}
+  {}{0pt}
+  {\vspace{-26mm}\filcenter}
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 
@@ -128,9 +143,11 @@
 \begin{document}
 
 %\maketitle
+\setlength{\parindent}{0em}
 \input{title}
 \input{copyright}
 
+\setlength{\parindent}{1em}
 % Debug overfull boxes
 \overfullrule=1mm
 
@@ -158,13 +175,18 @@
 \let\chapter\oldchapter
 %\renewcommand{\chapstyle}{\centering}
 %\renewcommand{\chapheadstyle}{\scshape\Huge}
-\renewcommand*{\BRbooktitlestyle}[1]{\textbf{\emph{#1}}\vadjust{\nobreak}}
+%\renewcommand*{\BRbooktitlestyle}[1]{\textbf{\emph{#1}}\vadjust{\nobreak}}
+\renewcommand*{\BRbooktitlestyle}[1]{\emph{#1}\vadjust{\nobreak}}
 % No page number on first page of index
 \makeatletter
 \def\imki@firstpagestyle{empty}
 \makeatother
 % Print index
-\printindex[bibleref]
+\titleformat{\chapter}[display]
+  {\vspace{11mm}\dayheadfont\huge}
+  {}{10pt}
+  {\vspace{-25mm}\filcenter}
+\printindex
 
 \listoftodos[Notes de l'éditeur]
 
