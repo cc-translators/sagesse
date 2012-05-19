@@ -1,6 +1,6 @@
 % options per letter
 \LettrineOptionsFor{A}{findent=-0.3em,nindent=0.5em}
-\LettrineOptionsFor{À}{findent=-0.3em,nindent=0.5em}
+\LettrineOptionsFor{À}{findent=0.2em,nindent=0em}
 \LettrineOptionsFor{B}{nindent=0.3em}
 \LettrineOptionsFor{C}{nindent=0.1em}
 \LettrineOptionsFor{D}{nindent=0.1em}
