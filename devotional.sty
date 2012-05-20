@@ -157,8 +157,8 @@
   \else \centerline{\usebox{\@justcentbox}} \fi
 }
 
-% central quote
-\newcommand{\dvbox}[2][0.9\textwidth]{%
+% central quote, generic
+\newcommand{\dvboxgeneric}[2][0.9\textwidth]{%
   \stoplinenumbers%
   \setlength{\outparbox}{#1}%
   \setlength{\inparbox}{0.9\outparbox}%
@@ -173,7 +173,7 @@
           \parbox{\inparbox}{%
             \setinternallinenumbers{b}%
             \hyphenpenalty=1000%
-            \justifyorcenter{\large\textsc{#2}}%
+            #2%
           }%
         \end{Center}%
       \vspace{\vspaceparbox}%
@@ -181,6 +181,20 @@
   }\end{center}%
   \vfill
   \startlinenumbers%
+}
+
+% justifyorcenter
+\newcommand{\dvbox}[2][0.9\textwidth]{%
+  \dvboxgeneric[#1]{%
+    \justifyorcenter{\large\textsc{#2}}%
+  }%
+}
+
+% no justifyorcenter, required for enumerate
+\newcommand{\dvboxnocenter}[2][0.9\textwidth]{%
+  \dvboxgeneric[#1]{%
+    \large\textsc{#2}%
+  }%
 }
 
 % ending prayer
