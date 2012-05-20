@@ -7,6 +7,8 @@ FTP_PDFDIR=$(FTP_TOPDIR)/pdf
 FTP_JSONDIR=$(FTP_TOPDIR)/json
 FTP_EBOOKDIR=$(FTP_TOPDIR)/ebooks
 
+MONTHS=$(shell find $(CURDIR)/mois -type f -name '*.tex')
+
 # Include crocodoc conf
 include ~/.crocodoc.conf
 
@@ -29,7 +31,7 @@ json: pdf $(addsuffix .json,$(TARGETS))
 %_annotated.tex: %.tex
 	sed -e 's@\\usepackage\[disable\]{review}@\\usepackage\[dateinlist\]{review}@' $< > $@
 
-%.pdf: %.tex
+%.pdf: %.tex $(MONTHS)
 	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
 	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
 
