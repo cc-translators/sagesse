@@ -15,8 +15,10 @@
 \usepackage{type1cm} % scalable fonts
 \usepackage{lettrine}
 \usepackage{xcolor}
+\usepackage{ifluatex}
 
 % fonts
+\ifluatex
 \usepackage{fontspec}
 \usepackage{xunicode}
 %\defaultfontfeatures{Mapping=tex-text}
@@ -62,6 +64,13 @@
 %\newfontfamily\dayheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
 %\newfontfamily\monthheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
 %\newfontfamily\lettrinefont{Caslon Initials}
+\else
+\newcommand\smallfont{}
+\newcommand\ssmallfont{}
+\newcommand\sssmallfont{}
+\newcommand\dayheadfont{}
+\newcommand\monthheadfont{}
+\fi
 
 % Tune chapter headings
 \usepackage{titlesec}
@@ -231,7 +240,9 @@
 %\fontspec[Scale=5]{Davys}5
 %    \leftrule~~\floweroneleft\floweroneright~~\rightrule
 %\includegraphics[width=10em]{rule_square_long}
+\ifluatex
 \fontspec[Scale=9]{HoodHeavenOrnamentsTwoSSi}\char"0050
+\fi
   \end{center}%
   \vspace{-6mm}
   \vfill
