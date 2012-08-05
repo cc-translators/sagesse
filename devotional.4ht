@@ -1,0 +1,8 @@
+\NewConfigure{textsc}{2}
+\renewcommand\textsc[1]{%
+\a:textsc#1\b:textsc
+}
+\Configure{textsc}{\Tg<span class="small-caps">}{\Tg</span>}
+\Css{span.small-caps{
+font-variant:small-caps;
+}}
