@@ -1,3 +1,14 @@
+% Global footnotes in ebooks
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+% page breaks
+\renewcommand\pagebreak{%
+\HCode{<br class="pagebreak" />}
+}
+
+% HRule
+\renewcommand{\HRule}{\HCode{<hr />}}
+
 % Use T1 encoding
 \usepackage[T1]{fontenc}
 

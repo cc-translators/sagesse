@@ -15,7 +15,7 @@ AUTHOR=Chuck Smith
 LANGUAGE=fr
 PUBDATE=$(shell date)
 COVER=
-TITLE=Sagesse pour Aujourd\'hui
+TITLE=Sagesse pour Aujourd'hui
 
 EBOOK_CONVERT_OPTS=--authors "$(AUTHOR)" --title "$(TITLE)" --language "$(LANGUAGE)" --pubdate "$(PUBDATE)" --keep-ligatures --page-breaks-before "//*[name()='h1' or name()='h2' or name()='pb' or @class='pagebreak']" --use-auto-toc  --level1-toc "//*[name()='h2']" --level2-toc "//*[name()='h3']"
 
