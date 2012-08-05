@@ -9,6 +9,16 @@ FTP_EBOOKDIR=$(FTP_TOPDIR)/ebooks
 
 MONTHS=$(shell find $(CURDIR)/mois -type f -name '*.tex')
 
+# Ebook settings
+KINDLE_PATH=/documents/raphael
+AUTHOR=Chuck Smith
+LANGUAGE=fr
+PUBDATE=$(shell date)
+COVER=
+TITLE=Sagesse pour Aujourd\'hui
+
+EBOOK_CONVERT_OPTS=--authors "$(AUTHOR)" --title "$(TITLE)" --language "$(LANGUAGE)" --pubdate "$(PUBDATE)" --keep-ligatures --page-breaks-before "//*[name()='h1' or name()='h2' or name()='pb' or @class='pagebreak']" --use-auto-toc  --level1-toc "//*[name()='h2']" --level2-toc "//*[name()='h3']"
+
 # Include crocodoc conf
 include ~/.crocodoc.conf
 
@@ -36,15 +46,21 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
 
 %.html: %.tex
-	TEXINPUTS=$(TEXINPUTS) mk4ht htlatex $< \
-	   'xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
+	TEXINPUTS=$(TEXINPUTS) htxelatex $< \
+	   'ebook.cfg,xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
 	./cleanuphtml.sh $@
 
 %.epub: %.html
-	ebook-convert $< $@
+	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
 
 %.mobi: %.html
-	ebook-convert $< $@
+	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
+
+%-to-kindle: %.mobi
+	# cp -f doesn't work, we need to remove
+	ebook-device rm "$(KINDLE_PATH)/$<"
+	-ebook-device mkdir "$(KINDLE_PATH)"
+	ebook-device cp $< "prs500:$(KINDLE_PATH)/$<"
 
 %.json: %.pdf
 ifeq ($(strip $(TOKEN)),)
