@@ -1,7 +1,10 @@
+\newcommand*{\LH@ante}{}
 \NewConfigure{lettrine}{4}
-\renewcommand\lettrine[2]{%
+\renewcommand\lettrine[3][]{%
 \leavevmode 
-\a:lettrine#1\b:lettrine\c:lettrine#2\d:lettrine
+\define@key{LH}{ante}{\renewcommand*{\LH@ante}{##1}}%
+\setkeys{LH}{#1}%
+\LH@ante\a:lettrine#2\b:lettrine\c:lettrine#3\d:lettrine
 }
 \Configure{lettrine}{\Tg<span class="lettrine-init">}{\Tg</span>}{\Tg<span class="lettrine-line">}{\Tg</span>}
 \Css{.lettrine-init{
