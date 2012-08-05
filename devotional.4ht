@@ -35,7 +35,7 @@ display:none;
 % dvday display
 \NewConfigure{HTMLsecHook}{7}
 \renewcommand\HTMLsecHook[3]{%
-\a:HTMLsecHook\b:HTMLsecHook#1~#2\c:HTMLsecHook\d:HTMLsecHook\e:HTMLsecHook#3\f:HTMLsecHook\g:HTMLsecHook
+\a:HTMLsecHook\b:HTMLsecHook#1~#2   \c:HTMLsecHook\d:HTMLsecHook\e:HTMLsecHook#3\f:HTMLsecHook\g:HTMLsecHook
 }
 \Configure{HTMLsecHook}{\Tg<h3 class="dvday">}{\Tg<span class="daydate">}{\Tg</span>}{\Tg<br />}{\Tg<div class="daytitle">}{\Tg</div>}{\Tg</h3>}
 \Css{h3.dvday{
