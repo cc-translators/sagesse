@@ -48,3 +48,8 @@ width:50%;
 margin: 0px auto;
 }}
 \renewcommand\section[2][]{\stepcounter{section}}
+
+% Do not display title mark (for introduction)
+\Css{.titlemark{
+display:none;
+}}
