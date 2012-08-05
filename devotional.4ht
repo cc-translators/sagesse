@@ -28,6 +28,9 @@ font-variant:small-caps;
 \a:HTMLchapHook#1\b:HTMLchapHook
 }
 \Configure{HTMLchapHook}{\Tg<h2 class="dvmonth">}{\Tg</h2>}
+\Css{h2.dvmonth{
+display:none;
+}}
 
 % dvday display
 \NewConfigure{HTMLsecHook}{7}
@@ -39,7 +42,7 @@ font-variant:small-caps;
 font-variant:small-caps;
 }}
 \Css{div.daytitle{
-font-size:2em;
+font-size:3em;
 text-align:center;
 width:50%;
 margin: 0px auto;
