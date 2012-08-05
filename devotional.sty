@@ -11,6 +11,10 @@
 % HRule
 \newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
 
+% Title display in HTML
+\newcommand{\HTMLchapHook}[1]{}
+\newcommand{\HTMLsecHook}[3]{}
+
 % Package scrpage2 for headers
 \usepackage{scrpage2}
 
@@ -344,6 +348,7 @@
   \fi
   \setcounter{pageoverflow}{\thepage}%
   \addtocounter{pageoverflow}{1}%
+  \HTMLchapHook{##1}%
   \if@dv@chapterpages
     \chapter{##1}%
     \cleardoublepage%
@@ -359,6 +364,7 @@
 
 \newcommand{\dvday}[2][\normalfont]{\newpage\section{##2}%
   \expandafter\xdef\csname pagedate\thepage\endcsname{\noexpand\makedate{\thesection}~\chaphead}%
+  \HTMLsecHook{\makedate{\thesection}}{\chaphead}{##2}%
   \ifx\@dv@nochecksec\@empty
     \addtocounter{pageoverflow}{1}%
     \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
@@ -414,7 +420,7 @@
 \newcommand\titlestrut{\vrule height 25pt width0pt\relax}
 \newcommand{\secstyle}{\filcenter\dayheadfont\huge}
 \newcommand{\seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
-\
+
 \titleformat{\section}[display]
   {\secstyle} % format
   {\seclbl} % label

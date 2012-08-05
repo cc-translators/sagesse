@@ -21,3 +21,21 @@
 \Css{span.small-caps{
 font-variant:small-caps;
 }}
+
+% months for toc
+\NewConfigure{HTMLchapHook}{2}
+\renewcommand\HTMLchapHook[1]{%
+\a:HTMLchapHook#1\b:HTMLchapHook
+}
+\Configure{HTMLchapHook}{\Tg<h2 class="dvmonth">}{\Tg</h2>}
+
+% dvday display
+\NewConfigure{HTMLsecHook}{7}
+\renewcommand\HTMLsecHook[3]{%
+\a:HTMLsecHook\b:HTMLsecHook#1~#2\c:HTMLsecHook\d:HTMLsecHook\e:HTMLsecHook#3\f:HTMLsecHook\g:HTMLsecHook
+}
+\Configure{HTMLsecHook}{\Tg<h3 class="dvday">}{\Tg<span class="daydate">}{\Tg</span>}{\Tg<br />}{\Tg<span class="daytitle">}{\Tg</span>}{\Tg</h3>}
+\Css{h3.dvday{
+font-variant:small-caps;
+}}
+\renewcommand\section[2][]{\stepcounter{section}}
