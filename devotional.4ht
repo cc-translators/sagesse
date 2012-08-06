@@ -6,10 +6,15 @@
 \HCode{<br class="pagebreak" />}
 }
 
+% Guillemets
+\renewcommand{\Og}{\HCode{&laquo;&nbsp;}}
+\renewcommand{\Fg}{\HCode{&nbsp;&raquo;}}
+
 % HRule
 \renewcommand{\HRule}{\HCode{<hr />}}
 
 % Use T1 encoding
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 % Reconfigure small caps

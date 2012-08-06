@@ -46,7 +46,7 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
 
 %.html: %.tex
-	TEXINPUTS=$(TEXINPUTS) htxelatex $< \
+	TEXINPUTS=$(TEXINPUTS) htlatex $< \
 	   'ebook.cfg,xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
 	./cleanuphtml.sh $@
 

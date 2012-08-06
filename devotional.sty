@@ -24,6 +24,10 @@
 \usepackage{xcolor}
 \usepackage{ifluatex}
 
+% Wrapper for TeX4HT
+\newcommand{\Og}{\Og}
+\newcommand{\Fg}{\Fg{}}
+
 % fonts
 \ifluatex
 \usepackage{fontspec}
@@ -45,7 +49,7 @@
 %\newfontfamily\dayheadfont[Scale=1,LetterSpace=0.2]{Charlemagne Std}
 %\newfontfamily\dayheadfont[Scale=1.7]{SF Covington Cond}
 %\newfontfamily\dayheadfont[Scale=1.7]{SF Covington SC Cond}
-%\newfontfamily\dayheadfont[Scale=2.2]{ModernTypography}
+%\newfontfamily\dayheadfont[Scale=2.2]{ModernTypOgraphy}
 %\newfontfamily\dayheadfont[Scale=1.5]{Gladifilthefte}
 %\newfontfamily\dayheadfont[Scale=1.8]{Six Caps}
 %\newfontfamily\dayheadfont[Scale=1.8]{Grov Condensed}
@@ -282,11 +286,11 @@
 \newcommand*{\odcadr}{\mbox{--}\nobreak\thinspace\nobreak}
 \newcommand*{\fdcadr}{\unskip\nobreak\thinspace\nobreak{}--}
 
-% King James Française
-\newcommand{\KJF}{\ocadr{}\emph{Version King James Française}}
-\newcommand{\NKJF}{\ocadr{}\emph{Version Nouvelle King James Française}}
-% Bible en Français Courant
-\newcommand{\BFC}{\ocadr{}\emph{Version de la Bible en Français Courant}}
+% King James Fran\c{c}aise
+\newcommand{\KJF}{\ocadr{}\emph{Version King James Fran\c{c}aise}}
+\newcommand{\NKJF}{\ocadr{}\emph{Version Nouvelle King James Fran\c{c}aise}}
+% Bible en Fran\c{c}ais Courant
+\newcommand{\BFC}{\ocadr{}\emph{Version de la Bible en Fran\c{c}ais Courant}}
 \newcommand{\NKJV}{\ocadr{}\emph{Version NKJV}}
 \newcommand{\NBS}{\ocadr{}\emph{Version Nouvelle Bible Segond}}
 \newcommand{\PDV}{\ocadr{}\emph{Version Parole de Vie}}
