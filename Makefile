@@ -17,7 +17,7 @@ PUBDATE=$(shell date)
 COVER=
 TITLE=Sagesse pour Aujourd'hui
 
-EBOOK_CONVERT_OPTS=--authors "$(AUTHOR)" --title "$(TITLE)" --language "$(LANGUAGE)" --pubdate "$(PUBDATE)" --keep-ligatures --page-breaks-before "//*[name()='h1' or name()='h2' or name()='h3' or @class='pagebreak']" --use-auto-toc  --level1-toc "//*[name()='h2']" --level2-toc "//*[name()='h3']"
+EBOOK_CONVERT_OPTS=--authors "$(AUTHOR)" --title "$(TITLE)" --language "$(LANGUAGE)" --pubdate "$(PUBDATE)" --page-breaks-before "//*[name()='h1' or name()='h2' or name()='h3' or @class='pagebreak']" --use-auto-toc  --level1-toc "//*[name()='h2']" --level2-toc "//*[name()='h3']"
 
 # Include crocodoc conf
 include ~/.crocodoc.conf
@@ -51,9 +51,15 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	./cleanuphtml.sh $@
 
 %.epub: %.html
+	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --keep-ligatures
+
+%_nolig.epub: %.html
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
 
 %.mobi: %.html
+	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --keep-ligatures
+
+%_nolig.mobi: %.html
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
 
 %-to-kindle: %.mobi
