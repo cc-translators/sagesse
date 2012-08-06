@@ -26,7 +26,12 @@
 \f:booktitle
 \g:booktitle#3\h:booktitle
 }
-\Configure{booktitle}{\Tg<div class="booksubtitle">}{\Tg</div>}{\Tg<hr />}{\Tg<div class="booktitle">}{\Tg</div>}{\Tg<hr />}{\Tg<div class="author">}{\Tg</div>}
+\Configure{booktitle}
+  {\Tg<div class="booksubtitle">}{\Tg</div>}
+  {\Tg<hr />}
+  {\Tg<div class="booktitle">}{\Tg</div>}
+  {\Tg<hr />}
+  {\Tg<div class="author">}{\Tg</div>}
 \Css{.booksubtitle{
 font-size: large;
 }
