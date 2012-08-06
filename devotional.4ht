@@ -6,6 +6,9 @@
 \HCode{<br class="pagebreak" />}
 }
 
+% Disable ligatures for small caps
+\DisableLigatures{encoding = *, family = * }
+
 % Guillemets
 \renewcommand{\Og}{\HCode{&laquo;&nbsp;}}
 \renewcommand{\Fg}{\HCode{&nbsp;&raquo;}}
@@ -60,7 +63,7 @@ font-variant:small-caps;
 \Css{div.daytitle{
 font-size:3em;
 text-align:center;
-width:50%;
+width:80\%;
 margin: 0px auto;
 }}
 \renewcommand\section[2][]{\stepcounter{section}}
@@ -80,6 +83,8 @@ display:none;
 \Configure{dvquote}{\Tg<div class="dvquote">}{\Tg<div class="dvquote-text">}{\Tg</div>}{\Tg<div class="dvquote-ref">}{\Tg</div>}{\Tg</div>}
 \Css{div.dvquote{
 text-align:center;
+width:80\%;
+margin: 0px auto;
 }
 div.dvquote-text{
 font-style:italic;
@@ -88,3 +93,22 @@ div.dvquote-ref{
 font-variant:small-caps;
 }}
 
+% dvprayer
+\NewConfigure{dvprayer}{6}
+\renewcommand\dvprayer[3][]{%
+\a:dvprayer\b:dvprayer#2\c:dvprayer
+\d:dvprayer\textsc{#3}\e:dvprayer
+\f:dvprayer
+}
+\Configure{dvprayer}{\Tg<div class="dvprayer">}{\Tg<div class="dvprayer-text">}{\Tg</div>}{\Tg<div class="dvprayer-ending">}{\Tg</div>}{\Tg</div>}
+\Css{div.dvprayer{
+text-align:center;
+width:80\%;
+margin: 0px auto;
+}
+div.dvprayer-text{
+font-style:italic;
+}
+div.dvprayer-ending{
+font-variant:small-caps;
+}}
