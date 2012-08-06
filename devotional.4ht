@@ -69,3 +69,22 @@ margin: 0px auto;
 \Css{.titlemark{
 display:none;
 }}
+
+% dvquote
+\NewConfigure{dvquote}{6}
+\renewcommand\dvquote[3][]{%
+\a:dvquote\b:dvquote#2\c:dvquote
+\d:dvquote\ocadr{}\textsc{#3}\e:dvquote
+\f:dvquote
+}
+\Configure{dvquote}{\Tg<div class="dvquote">}{\Tg<div class="dvquote-text">}{\Tg</div>}{\Tg<div class="dvquote-ref">}{\Tg</div>}{\Tg</div>}
+\Css{div.dvquote{
+text-align:center;
+}
+div.dvquote-text{
+font-style:italic;
+}
+div.dvquote-ref{
+font-variant:small-caps;
+}}
+
