@@ -15,6 +15,19 @@
 \newcommand{\HTMLchapHook}[1]{}
 \newcommand{\HTMLsecHook}[3]{}
 
+\newcommand\subtitleskip{\\[0.4em]}
+
+% Book title
+\newcommand{\booktitle}[3]{%
+\textsc{\large#1}
+\\[1.5cm]
+\HRule \\[0.4cm]
+\textsc{\Huge#2}\\[0.4cm]
+
+\HRule \\[1.5cm]
+{\LARGE#3}\\[1.5cm]
+}
+
 % Intro signature
 \newcommand{\signature}[1]{%
 \vspace{1cm}\parbox{4in}{\raggedleft{\large\emph{#1}}}

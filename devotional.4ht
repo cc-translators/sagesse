@@ -16,6 +16,29 @@
 % HRule
 \renewcommand{\HRule}{\HCode{<hr />}}
 
+% Book title
+\NewConfigure{booktitle}{8}
+\renewcommand\subtitleskip{\\}
+\renewcommand\booktitle[3]{%
+\a:booktitle#1\b:booktitle
+\c:booktitle
+\d:booktitle#2\e:booktitle
+\f:booktitle
+\g:booktitle#3\h:booktitle
+}
+\Configure{booktitle}{\Tg<div class="booksubtitle">}{\Tg</div>}{\Tg<hr />}{\Tg<div class="booktitle">}{\Tg</div>}{\Tg<hr />}{\Tg<div class="author">}{\Tg</div>}
+\Css{.booksubtitle{
+font-size: large;
+}
+.booktitle{
+font-variant: small-caps;
+font-size: xx-large;
+}
+.author{
+font-size: x-large;
+}
+}
+
 % Intro signature
 \NewConfigure{signature}{2}
 \renewcommand\signature[1]{%
