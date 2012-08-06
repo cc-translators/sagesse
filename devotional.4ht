@@ -13,6 +13,17 @@
 % HRule
 \renewcommand{\HRule}{\HCode{<hr />}}
 
+% Intro signature
+\NewConfigure{signature}{2}
+\renewcommand\signature[1]{%
+\a:signature#1\b:signature
+}
+\Configure{signature}{\Tg<div class="signature">}{\Tg</div>}
+\Css{div.signature{
+font-style:italic;
+margin-left: 30em;
+}}
+
 % Use T1 encoding
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
