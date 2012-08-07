@@ -17,9 +17,9 @@
 \renewcommand{\HRule}{\HCode{<hr />}}
 
 % Do not force newlines
-\Css{br.newline{
-display:none;
-}}
+%\Css{br.newline{
+%display:none;
+%}}
 
 % Book title
 \NewConfigure{booktitle}{8}
