@@ -98,9 +98,10 @@ display:none;
 \ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday">}{\Tg<span class="daydate">}{\Tg</span>}{\Tg<br />}{\Tg<span class="daytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
-text-align:left;
+text-align:center;
 }
 span.daydate{
+float:left;
 text-align:left;
 }
 span.daytitle{
