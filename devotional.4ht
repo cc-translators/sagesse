@@ -97,7 +97,7 @@ display:none;
 \d:HTMLsecHook
 }
 \Configure{HTMLsecHook}{%
-\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday">}{\Tg<span class="dvdaytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
+\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="page.\thepage">}{\Tg<span class="dvdaytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
 }
