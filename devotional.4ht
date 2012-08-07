@@ -16,6 +16,11 @@
 % HRule
 \renewcommand{\HRule}{\HCode{<hr />}}
 
+% Do not force newlines
+\Css{br.newline{
+display:none;
+}}
+
 % Book title
 \NewConfigure{booktitle}{8}
 \renewcommand\subtitleskip{\\}
@@ -27,11 +32,11 @@
 \g:booktitle#3\h:booktitle
 }
 \Configure{booktitle}
-  {\Tg<div class="booksubtitle">}{\Tg</div>}
+  {\ifvmode\IgnorePar\fi\EndP\Tg<div class="booksubtitle">}{\Tg</div>}
   {\Tg<hr />}
   {\Tg<div class="booktitle">}{\Tg</div>}
   {\Tg<hr />}
-  {\Tg<div class="author">}{\Tg</div>}
+  {\Tg<div class="author">}{\Tg</div>\IgnoreIndent}
 \Css{.booksubtitle{
 font-size: large;
 }
@@ -49,7 +54,8 @@ font-size: x-large;
 \renewcommand\signature[1]{%
 \a:signature#1\b:signature
 }
-\Configure{signature}{\Tg<div class="signature">}{\Tg</div>}
+\Configure{signature}{%
+\ifvmode\IgnorePar\fi\EndP\Tg<div class="signature">}{\Tg</div>\IgnoreIndent}
 \Css{div.signature{
 font-style:italic;
 margin-left: 30em;
@@ -74,7 +80,8 @@ font-variant:small-caps;
 \renewcommand\HTMLchapHook[1]{%
 \a:HTMLchapHook#1\b:HTMLchapHook
 }
-\Configure{HTMLchapHook}{\Tg<h2 class="dvmonth">}{\Tg</h2>}
+\Configure{HTMLchapHook}{%
+\ifvmode\IgnorePar\fi\EndP\Tg<h2 class="dvmonth">}{\Tg</h2>\IgnoreIndent}
 \Css{h2.dvmonth{
 display:none;
 }}
@@ -84,14 +91,18 @@ display:none;
 \renewcommand\HTMLsecHook[3]{%
 \a:HTMLsecHook\b:HTMLsecHook#1~#2   \c:HTMLsecHook\d:HTMLsecHook\e:HTMLsecHook#3\f:HTMLsecHook\g:HTMLsecHook
 }
-\Configure{HTMLsecHook}{\Tg<h3 class="dvday">}{\Tg<span class="daydate">}{\Tg</span>}{\Tg<br />}{\Tg<div class="daytitle">}{\Tg</div>}{\Tg</h3>}
+\Configure{HTMLsecHook}{%
+\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday">}{\Tg<span class="daydate">}{\Tg</span>}{\Tg<br />}{\Tg<span class="daytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
-}}
-\Css{div.daytitle{
+text-align:left;
+}
+span.daydate{
+text-align:left;
+}
+span.daytitle{
 font-size:3em;
 text-align:center;
-width:80\%;
 margin: 0px auto;
 }}
 \renewcommand\section[2][]{\stepcounter{section}}
@@ -108,7 +119,8 @@ display:none;
 \d:dvquote\ocadr{}\textsc{#3}\e:dvquote
 \f:dvquote
 }
-\Configure{dvquote}{\Tg<div class="dvquote">}{\Tg<div class="dvquote-text">}{\Tg</div>}{\Tg<div class="dvquote-ref">}{\Tg</div>}{\Tg</div>}
+\Configure{dvquote}{%
+\ifvmode\IgnorePar\fi\EndP\Tg<div class="dvquote">}{\Tg<div class="dvquote-text">}{\Tg</div>}{\Tg<div class="dvquote-ref">}{\Tg</div>}{\Tg</div>\IgnoreIndent}
 \Css{div.dvquote{
 text-align:center;
 width:80\%;
@@ -126,7 +138,8 @@ font-variant:small-caps;
 \renewcommand\dvbox[2][]{%
 \a:dvbox#2\b:dvbox
 }
-\Configure{dvbox}{\Tg<div class="dvbox">}{\Tg</div>}
+\Configure{dvbox}{%
+\ifvmode\IgnorePar\fi\EndP\Tg<div class="dvbox">}{\Tg</div>\IgnoreIndent}
 \Css{div.dvbox{
 padding-left: 0.5em;
 padding-right: 0.5em;
@@ -148,7 +161,8 @@ background: blue;
 \d:dvprayer\textsc{#3}\e:dvprayer
 \f:dvprayer
 }
-\Configure{dvprayer}{\Tg<div class="dvprayer">}{\Tg<div class="dvprayer-text">}{\Tg</div>}{\Tg<div class="dvprayer-ending">}{\Tg</div>}{\Tg</div>}
+\Configure{dvprayer}{%
+\ifvmode\IgnorePar\fi\EndP\Tg<div class="dvprayer">}{\Tg<div class="dvprayer-text">}{\Tg</div>}{\Tg<div class="dvprayer-ending">}{\Tg</div>}{\Tg</div>\IgnoreIndent}
 \Css{div.dvprayer{
 text-align:center;
 width:80\%;
