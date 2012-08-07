@@ -90,16 +90,19 @@ display:none;
 }}
 
 % dvday display
-\NewConfigure{HTMLsecHook}{7}
+\NewConfigure{HTMLsecHook}{4}
 \renewcommand\HTMLsecHook[3]{%
-\a:HTMLsecHook\b:HTMLsecHook#1~#2   \c:HTMLsecHook\d:HTMLsecHook\e:HTMLsecHook#3\f:HTMLsecHook\g:HTMLsecHook
+\a:HTMLsecHook#1~#2
+    \b:HTMLsecHook#3\c:HTMLsecHook
+\d:HTMLsecHook
 }
 \Configure{HTMLsecHook}{%
-\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday">}{\Tg<span class="daydate">}{\Tg</span>}{\Tg<br />}{\Tg<span class="daytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
+\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday">}{\Tg<span>}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
 }
-span.daytitle{
+h3.dvday span{
+margin:0.5em;
 font-size:3em;
 display:block;
 width:100\%;
