@@ -36,6 +36,17 @@
 % Package scrpage2 for headers
 \usepackage{scrpage2}
 
+% colon, frenchb's definition
+\newcommand\frcolon{%
+      \ifhmode
+        \ifdim\lastskip>\z@
+          \unskip\penalty\@M\Fcolonspace
+        \else
+          \FDP@colonspace
+        \fi
+      \fi
+      \string:\space}
+
 % setting lettrines
 \usepackage{type1cm} % scalable fonts
 \usepackage{lettrine}
@@ -129,7 +140,7 @@
     \oldchapter[#1]{#2}}
 
 % Note du traducteur
-\newcommand{\NdT}[1]{\footnote{NdT~: #1}}
+\newcommand{\NdT}[1]{\footnote{NdT\frcolon #1}}
 % Use footnote package when footnotes (or NdT)
 % are called from within \dvquote
 % Warning:Load footnote after xcolor
