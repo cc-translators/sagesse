@@ -153,9 +153,9 @@ font-variant: small-caps;
 text-align: justify;
 }}
 
-\Css{div.center{
-background: blue;
-}}
+\renewcommand\dvboxnocenter[2][]{%
+\a:dvbox#2\b:dvbox
+}
 
 
 % dvprayer
