@@ -167,11 +167,13 @@ text-align:justify;
 \Configure{dvprayer}{%
 \ifvmode\IgnorePar\fi\EndP\Tg<div class="dvprayer">}{\Tg<div class="dvprayer-text">}{\Tg</div>}{\Tg<div class="dvprayer-ending">}{\Tg</div>}{\Tg</div>\IgnoreIndent}
 \Css{div.dvprayer{
+margin:1\%;
 text-align:center;
-width:80\%;
+width:90\%;
 margin: 0px auto;
 }
 div.dvprayer-text{
+margin:1\%;
 font-style:italic;
 }
 div.dvprayer-ending{
