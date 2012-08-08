@@ -148,7 +148,9 @@ font-variant:small-caps;
 \Css{div.dvbox{
 margin-left: 1\%;
 margin-right: 1\%;
+padding: 1\%;
 font-variant:small-caps;
+border:1px solid black;
 text-align:justify;
 }}
 
