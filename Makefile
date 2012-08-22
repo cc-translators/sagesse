@@ -57,7 +57,7 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
 
 %.mobi: %.html
-	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --keep-ligatures
+	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --keep-ligatures --mobi-file-type both
 
 %_nolig.mobi: %.html
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
