@@ -25,11 +25,11 @@
 
 % Define default Css
 \Css{.lettrine-init{
-font-size:2em;
-color:gray;
+font-size: 2em;
+color: gray;
 }}
 
 \Css{.lettrine-line{
-font-variant:small-caps;
+font-variant: small-caps;
 }}
 
