@@ -90,14 +90,14 @@ display: none;
 }}
 
 % dvday display
-\NewConfigure{HTMLsecHook}{4}
+\NewConfigure{HTMLsecHook}{6}
 \renewcommand\HTMLsecHook[3]{%
-\a:HTMLsecHook#1~#2
-    \b:HTMLsecHook#3\c:HTMLsecHook
-\d:HTMLsecHook
+\a:HTMLsecHook\b:HTMLsecHook#1~#2\c:HTMLsecHook
+    \d:HTMLsecHook#3\e:HTMLsecHook
+\f:HTMLsecHook
 }
 \Configure{HTMLsecHook}{%
-\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="page.\thepage">}{\Tg<span class="dvdaytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
+\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="page.\thepage">}{\Tg<a id="chap.\thechapter-sec.\thesection">}{\Tg</a>}{\Tg<span class="dvdaytitle"">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
 }
@@ -150,7 +150,7 @@ margin-left: 1\%;
 margin-right: 1\%;
 padding: 1\%;
 font-variant: small-caps;
-border: 4px solid black;
+border: thick solid;
 text-align: justify;
 }}
 
@@ -182,3 +182,51 @@ div.dvprayer-ending{
 margin:1\%;
 font-variant:small-caps;
 }}
+
+% caltoc
+\usepackage{pgffor}
+\newcounter{caltocmonth}
+
+\newcommand\caltocday[2]{%
+\HCode{<a href="\#chap.#1-sec.#2">}#2\HCode{</a>}
+}
+
+\newcommand\caltocmonth[2]{%
+\noindent#1\frcolon\ \foreach \n in {1,...,#2}{\caltocday{\thecaltocmonth}{\n}}
+\stepcounter{caltocmonth}
+}
+
+\NewConfigure{caltoc}{2}
+\renewcommand\caltoc{%
+% Start counter at 3 because of quick access and introduction chapters
+\setcounter{caltocmonth}{3}
+\chapter{Accès rapide aux dévotions}
+
+\caltocmonth{Janvier}{31}
+
+\caltocmonth{Février}{29}
+
+\caltocmonth{Mars}{31}
+
+\caltocmonth{Avril}{30}
+
+\caltocmonth{Mai}{31}
+
+\caltocmonth{Juin}{30}
+
+\caltocmonth{Juillet}{31}
+
+\caltocmonth{Août}{31}
+
+\caltocmonth{Septembre}{30}
+
+\caltocmonth{Octobre}{31}
+
+\caltocmonth{Novembre}{30}
+
+\caltocmonth{Décembre}{31}
+}
+\Configure{caltoc}{}{}
+
+
+
