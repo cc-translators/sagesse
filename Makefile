@@ -51,7 +51,7 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	bash cleanuphtml.sh $@
 
 %.epub: %.html
-	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS)
+	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --preserve-cover-aspect-ratio
 
 %.mobi: %.html
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --mobi-file-type both
