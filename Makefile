@@ -92,4 +92,11 @@ clean:
 	rm -f *.idv *.lg
 	rm -f *.epub *.mobi
 
+microtype.tar.xz:
+	wget http://tlcontrib.metatex.org/2010/archive/microtype.tar.xz
+
+upgrade-microtype: microtype.tar.xz
+	rm -rf microtype
+	tar xf $< --strip-components=2
+
 
