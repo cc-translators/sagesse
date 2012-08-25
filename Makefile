@@ -13,7 +13,7 @@ MONTHS=$(shell find $(CURDIR)/mois -type f -name '*.tex')
 KINDLE_PATH=/documents/raphael
 AUTHOR=Chuck Smith
 LANGUAGE=fr
-PUBDATE=$(shell date)
+PUBDATE=$(shell date +'%Y-%m-%d')
 COVER=
 TITLE=Sagesse pour Aujourd'hui
 
