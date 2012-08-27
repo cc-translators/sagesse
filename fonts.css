@@ -1,4 +1,9 @@
 @font-face{
+font-family: "EB Garamond SC";
+font-variant: small-caps;
+src: url(fonts/EBGaramond12-SC.otf);
+}
+@font-face{
 font-family: "EB Garamond";
 font-style: normal;
 font-weight: normal;
@@ -6,21 +11,41 @@ font-variant: normal;
 src: url(fonts/EBGaramond12-Regular.otf);
 }
 @font-face{
-font-family: "EB Garamond";
+font-family: "EB Garamond Italic";
 font-style: italic;
 font-weight: normal;
 font-variant: normal;
 src: url(fonts/EBGaramond12-Italic.otf);
 }
 @font-face{
-font-family: "EB Garamond";
+font-family: "EB Garamond Bold";
 font-style: normal;
 font-weight: bold;
 font-variant: normal;
 src: url(fonts/EBGaramond12-Bold.otf);
 }
-@font-face{
-font-family: "EB Garamond";
-font-variant: small-caps;
-src: url(fonts/EBGaramond12-SC.otf);
+
+em, i, .ecti, .ecti1,
+.thanks, .signature, .dvquote-text, .dvprayer-text
+{
+font-family: "EB Garamond Italic", serif;
+}
+
+strong, b,
+.partToc a, .partToc, .likepartToc a, .likepartToc,
+.chapterToc a, .chapterToc, .likechapterToc a, .likechapterToc, .appendixToc a, .appendixToc, .addchapToc,
+.paragraphHead, .likeparagraphHead,
+.subparagraphHead, .likesubparagraphHead,
+.caption td.id,
+.ecbx-0700
+{
+font-family: "EB Garamond Bold", serif;
+}
+
+.small-caps, .booksubtitle,
+.dvday, .sectionHead,
+.dvquote-ref, .dvbox
+.lettrine-line
+{
+font-family: "EB Garamond SC", serif;
 }

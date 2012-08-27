@@ -74,9 +74,6 @@ margin-left: 60\%;
 \a:textsc#1\b:textsc
 }
 \Configure{textsc}{\Tg<span class="small-caps">}{\Tg</span>}
-\Css{span.small-caps{
-font-variant: small-caps;
-}}
 
 % months for toc
 \NewConfigure{HTMLchapHook}{2}
