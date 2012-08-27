@@ -50,6 +50,17 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	   'ebook.cfg,xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
 	bash cleanuphtml.sh $@
 
+%_embedded.epub: %.epub
+	rm -rf $*
+	unzip  -d $* $<
+	cp -r fonts $*/
+	# Add fons to stylesheet.css
+	cat fonts.css >> $*/stylesheet.css
+	# Insert fonts into content.opf
+	sed -i '/<manifest>/ r fonts.content' $*/content.opf
+	# Regenerate zip
+	cd $* && zip -Xr9D $(CURDIR)/$@ mimetype *
+
 %.epub: %.html
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --preserve-cover-aspect-ratio
 

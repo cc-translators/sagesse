@@ -1,0 +1,26 @@
+@font-face{
+font-family: "EB Garamond";
+font-style: normal;
+font-weight: normal;
+font-variant: normal;
+src: url(fonts/EBGaramond12-Regular.otf);
+}
+@font-face{
+font-family: "EB Garamond";
+font-style: italic;
+font-weight: normal;
+font-variant: normal;
+src: url(fonts/EBGaramond12-Italic.otf);
+}
+@font-face{
+font-family: "EB Garamond";
+font-style: normal;
+font-weight: bold;
+font-variant: normal;
+src: url(fonts/EBGaramond12-Bold.otf);
+}
+@font-face{
+font-family: "EB Garamond";
+font-variant: small-caps;
+src: url(fonts/EBGaramond12-SC.otf);
+}
