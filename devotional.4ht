@@ -226,6 +226,19 @@ font-variant:small-caps;
 \Configure{caltoc}{}{}
 
 
+% Index
+\renewcommand\dotfill{\ —\ }
+\Css{span.index-item{
+margin-top: 1em;
+font-style: italic;
+font-weight: bold;
+}}
+
+% Exponents
+\Css{.ecrm-0600{
+vertical-align:super;
+}}
+
 % Adjust fonts
 \Css{
 @font-face{
