@@ -225,6 +225,7 @@ font-variant:small-caps;
 }
 \Configure{caltoc}{}{}
 
+
 % Adjust fonts
 \Css{
 @font-face{
