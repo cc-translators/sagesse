@@ -288,6 +288,7 @@ font-family: "EB Garamond Bold", serif;
 .lettrine-line
 {
 font-family: "EB Garamond SC", serif;
+font-variant: small-caps;
 }
 }
 
