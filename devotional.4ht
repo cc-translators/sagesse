@@ -239,6 +239,17 @@ font-weight: bold;
 vertical-align:super;
 }}
 
+% dvrule
+\renewcommand{\dvrule}[1]{%
+\HCode{<hr class="dvrule">}
+}
+\Css{hr.dvrule{
+height:0.6em;
+background:url(dvrule.png) no-repeat center;
+border:0;
+background-size:auto 100\%;
+}}
+
 % Adjust fonts
 \Css{
 @font-face{
