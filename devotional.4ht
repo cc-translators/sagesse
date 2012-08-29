@@ -244,7 +244,7 @@ vertical-align:super;
 \HCode{<hr class="dvrule">}
 }
 \Css{hr.dvrule{
-height:3\%;
+height:0.6em;
 background:url(dvrule.png) no-repeat center;
 border:0;
 background-size:auto 100\%;
