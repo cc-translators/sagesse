@@ -17,7 +17,12 @@
 \renewcommand{\frcolon}{\HCode{&nbsp;:}}
 
 % HRule
-\renewcommand{\HRule}{\HCode{<hr />}}
+\renewcommand{\HRule}{\HCode{<hr class="hrule" />}}
+\Css{hr.hrule{
+background-color:black;
+height:1px;
+border:0;
+}}
 
 % Do not force newlines
 %\Css{br.newline{
@@ -36,9 +41,9 @@
 }
 \Configure{booktitle}
   {\ifvmode\IgnorePar\fi\EndP\Tg<div class="booksubtitle">}{\Tg</div>}
-  {\Tg<hr />}
+  {\Tg<hr class="titlerule" />}
   {\Tg<div class="booktitle">}{\Tg</div>}
-  {\Tg<hr />}
+  {\Tg<hr class="titlerule" />}
   {\Tg<div class="author">}{\Tg</div>\IgnoreIndent}
 \Css{.booksubtitle{
 font-size: large;
@@ -50,7 +55,11 @@ font-size: xx-large;
 .author{
 font-size: x-large;
 }
-}
+hr.titlerule{
+background-color:black;
+height:1px;
+border:0;
+}}
 
 % Intro signature
 \NewConfigure{signature}{2}
