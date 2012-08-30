@@ -130,9 +130,8 @@ display:none;
 \Configure{dvquote}{%
 \ifvmode\IgnorePar\fi\EndP\Tg<div class="dvquote">}{\Tg<div class="dvquote-text">}{\Tg</div>}{\Tg<div class="dvquote-ref">}{\Tg</div>}{\Tg</div>\IgnoreIndent}
 \Css{div.dvquote{
-margin:1\%;
+margin:auto 5\%;
 text-align:center;
-width:90\%;
 margin: 0px auto;
 }
 div.dvquote-text{
@@ -151,7 +150,7 @@ font-variant:small-caps;
 \Configure{dvbox}{%
 \ifvmode\IgnorePar\fi\EndP\Tg<div class="dvbox">}{\Tg</div>\IgnoreIndent}
 \Css{div.dvbox{
-margin: 0 1\%;
+margin: auto 1\%;
 padding: 0.6em;
 font-variant: small-caps;
 border: double;
@@ -173,10 +172,8 @@ text-align: justify;
 \Configure{dvprayer}{%
 \ifvmode\IgnorePar\fi\EndP\Tg<div class="dvprayer">}{\Tg<div class="dvprayer-text">}{\Tg</div>}{\Tg<div class="dvprayer-ending">}{\Tg</div>}{\Tg</div>\IgnoreIndent}
 \Css{div.dvprayer{
-margin:1\%;
+margin:auto 5\%;
 text-align:center;
-width:90\%;
-margin: 0px auto;
 }
 div.dvprayer-text{
 margin:1\%;
