@@ -4,7 +4,7 @@
 \newcommand*{\LH@lhang}{}
 
 % Lettrine will have 4 tags
-\NewConfigure{lettrine}{4}
+\NewConfigure{lettrine}{8}
 
 % Renew the command
 \renewcommand\lettrine[3][]{%
@@ -13,7 +13,7 @@
 \define@key{LH}{findent}{\renewcommand*{\LH@findent}{##1}}%
 \define@key{LH}{lhang}{\renewcommand*{\LH@lhang}{##1}}%
 \setkeys{LH}{#1}%
-\LH@ante\a:lettrine#2\b:lettrine\c:lettrine#3\d:lettrine%
+\HCode{<span class="lettrine lettrine-#2">}\b:lettrine\LH@ante\c:lettrine\HCode{<span class="lettrine-letter lettrine-letter-#2">}#2\e:lettrine\f:lettrine\g:lettrine#3\h:lettrine
 % Reset values
 \renewcommand*{\LH@ante}{}%
 \renewcommand*{\LH@findent}{}%
@@ -21,12 +21,52 @@
 }
 
 % Set the tags
-\Configure{lettrine}{\Tg<span class="lettrine-init">}{\Tg</span>}{\Tg<span class="lettrine-line">}{\Tg</span>}
+\Configure{lettrine}{\Tg<span class="lettrine">}{\Tg<span class="lettrine-ante">}{\Tg</span>}{\Tg<span class="lettrine-letter">}{\Tg</span>}{\Tg</span>}{\Tg<span class="lettrine-line">}{\Tg</span>}
 
 % Define default Css
-\Css{.lettrine-init{
-font-size: 2em;
+\Css{.lettrine{
+float: left;
+line-height: 0.7;
+margin-left: -0.5em;
+margin-bottom: -1em;
+margin-right: 0.2em;
+}
+.lettrine-ante{
+vertical-align: top;
+}
+.lettrine-letter{
+font-style: normal;
+font-size: 4em;
 color: gray;
+}
+.lettrine-A{
+margin-right: 0.3em;
+}
+.lettrine-A + .lettrine-line{
+margin-left: -0.4em;
+}
+.lettrine-À{
+margin-right: 0.3em;
+}
+.lettrine-À + .lettrine-line{
+margin-left: -0.4em;
+}
+.lettrine-J{
+line-height: 1;
+margin-right: 0;
+}
+.lettrine-H, .lettrine-I, .lettrine-N, .lettrine-U{
+margin-right: 0;
+}
+.lettrine-V{
+margin-right: -0.3em;
+}
+.lettrine-V + .lettrine-line{
+margin-left: 0.3em;
+}
+.lettrine-Q{
+padding-bottom: 1em;
+margin-top: -0.6em;
 }}
 
 \Css{.lettrine-line{
