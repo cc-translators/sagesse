@@ -108,10 +108,9 @@ display: none;
 font-variant:small-caps;
 }
 h3.dvday span.dvdaytitle{
-margin:1\%;
+margin:auto 5\%;
 font-size:xx-large;
 display:block;
-width:90\%;
 text-align:center;
 }}
 \renewcommand\section[2][]{\stepcounter{section}}
@@ -152,9 +151,8 @@ font-variant:small-caps;
 \Configure{dvbox}{%
 \ifvmode\IgnorePar\fi\EndP\Tg<div class="dvbox">}{\Tg</div>\IgnoreIndent}
 \Css{div.dvbox{
-margin-left: 1\%;
-margin-right: 1\%;
-padding: 1\%;
+margin: 0 1\%;
+padding: 0.6em;
 font-variant: small-caps;
 border: double;
 text-align: justify;
