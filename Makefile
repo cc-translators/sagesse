@@ -64,7 +64,7 @@ json: pdf $(addsuffix .json,$(TARGETS))
 %.epub: %.html
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --preserve-cover-aspect-ratio
 
-%.mobi: %.html
+%.mobi: %.epub
 	ebook-convert $< $@ $(EBOOK_CONVERT_OPTS) --mobi-file-type both
 
 %_nolig.mobi: %.html
