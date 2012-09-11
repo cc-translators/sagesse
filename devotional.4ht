@@ -96,14 +96,15 @@ display: none;
 }}
 
 % dvday display
-\NewConfigure{HTMLsecHook}{6}
+\NewConfigure{HTMLsecHook}{8}
 \renewcommand\HTMLsecHook[3]{%
 \a:HTMLsecHook\b:HTMLsecHook#1~#2\c:HTMLsecHook
-    \d:HTMLsecHook#3\e:HTMLsecHook
-\f:HTMLsecHook
+    \d:HTMLsecHook~---~\e:HTMLsecHook
+    \f:HTMLsecHook#3\g:HTMLsecHook
+\h:HTMLsecHook
 }
 \Configure{HTMLsecHook}{%
-\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="page.\thepage">}{\Tg<a id="chap.\thechapter-sec.\thesection">}{\Tg</a>}{\Tg<span class="dvdaytitle"">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
+\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="page.\thepage">}{\Tg<a id="chap.\thechapter-sec.\thesection">}{\Tg</a>}{\Tg<span class="dvdaydash">}{\Tg</span>}{\Tg<span class="dvdaytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
 }
@@ -112,6 +113,9 @@ margin:auto 5\%;
 font-size:xx-large;
 display:block;
 text-align:center;
+}
+h3.dvday span.dvdaydash{
+display:none;
 }}
 \renewcommand\section[2][]{\stepcounter{section}}
 
