@@ -15,12 +15,8 @@
 % Tune headings
 \RequirePackage{titlesec}
 
-% TODO: get rid of babel here
-%\RequirePackage[french]{babel}
-
 % How to format dates
-% TODO: Make it an option
-\AfterPackage{babel}{\RequirePackage{moredatetime}}
+\AfterPackage!{babel}{\RequirePackage{moredatetime}}
 \newcommand\diaryformatdate\formatdateny
 
 % fancytabs
