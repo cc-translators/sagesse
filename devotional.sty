@@ -364,8 +364,8 @@
 \renewcommand*{\partpagestyle}{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 % Record the starting chapter of the devotional
-\newcounter{dvstartchapter}
-\setcounter{dvstartchapter}{\arabic{chapter}}
+\newcounter{dvmonth}
+\setcounter{dvmonth}{\arabic{chapter}}
 
 % Define useful aliases
 \newcommand{\dvmonth}[1]{%
@@ -437,7 +437,7 @@
 \fancytabsTextHPos{0.38}
 
 % Set floor for tabs based on starting chapter
-\fancytabsFloor{\thedvstartchapter}
+\fancytabsFloor{\thedvmonth}
 
 % Set tabs text style
 % The original version uses uppercase
