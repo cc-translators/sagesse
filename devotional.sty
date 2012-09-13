@@ -351,6 +351,16 @@
 \patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}
 \makeatother
 
+%\usepackage{mfirstuc}
+
+% Need to wrap to make \noexpand work
+\newcommand{\mapmonthname}[1]{%
+\monthname[#1]%
+}
+
+\newcommand{\dvcurmonth}{%
+  \mapmonthname{\thedvmonth}%
+}
 
 \newenvironment{devotional}%
 {%
@@ -364,11 +374,12 @@
 \renewcommand*{\partpagestyle}{empty}
 \renewcommand*{\chapterpagestyle}{empty}
 % Record the starting chapter of the devotional
+\newcounter{dvstartchapter}
+\setcounter{dvstartchapter}{\arabic{chapter}}
 \newcounter{dvmonth}
-\setcounter{dvmonth}{\arabic{chapter}}
 
 % Define useful aliases
-\newcommand{\dvmonth}[1]{%
+\newcommand{\dvmonth}{%
   \ifx\@dv@nochecksec\@empty
     \addtocounter{pageoverflow}{2}%
     \ifthenelse{\arabic{pageoverflow}<\thepage}{%
@@ -377,30 +388,34 @@
   \fi
   \setcounter{pageoverflow}{\thepage}%
   \addtocounter{pageoverflow}{1}%
-  \HTMLchapHook{##1}%
+  \stepcounter{dvmonth}%
+  \HTMLchapHook{\dvcurmonth}%
   \if@dv@chapterpages
-    \chapter{##1}%
+  \chapter{\dvcurmonth}%
     \cleardoublepage%
   \else
-    \renewcommand\chaphead{##1}%
+    \renewcommand\chaphead{\dvcurmonth}%
     \refstepcounter{chapter}%
     \@maybeautodot\thechapter
-    \addchaptertocentry{\thechapter}{##1}%
+    \addchaptertocentry{\thechapter}{\dvcurmonth}%
   \fi
 }
 
 % Index day counter
 
 \newcommand{\dvday}[2][\normalfont]{\newpage\section{##2}%
-  \expandafter\xdef\csname pagedate\thepage\endcsname{\noexpand\makedate{\thesection}~\chaphead}%
-  \HTMLsecHook{\makedate{\thesection}}{\chaphead}{##2}%
-  \ifx\@dv@nochecksec\@empty
-    \addtocounter{pageoverflow}{1}%
-    \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
-      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-    }%
-  \fi
-  ##1%
+\expandafter\xdef\csname pagedate\thepage\endcsname{%
+  \noexpand\makedate{\thesection}~% expand \thesection, transform to date later
+    \noexpand\mapmonthname{\thedvmonth}% expand \thedvmonth, transform to month later
+}%
+\HTMLsecHook{\makedate{\thesection}}{\chaphead}{##2}%
+\ifx\@dv@nochecksec\@empty
+  \addtocounter{pageoverflow}{1}%
+  \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
+    \GenericError{}{Section longer than one page before page \thepage!}{}{}%
+  }%
+\fi
+##1%
 }
 
 
@@ -437,7 +452,7 @@
 \fancytabsTextHPos{0.38}
 
 % Set floor for tabs based on starting chapter
-\fancytabsFloor{\thedvmonth}
+\fancytabsFloor{\thedvstartchapter}
 
 % Set tabs text style
 % The original version uses uppercase
