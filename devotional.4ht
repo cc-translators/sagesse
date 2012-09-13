@@ -97,10 +97,10 @@ display: none;
 
 % dvday display
 \NewConfigure{HTMLsecHook}{8}
-\renewcommand\HTMLsecHook[3]{%
-\a:HTMLsecHook\b:HTMLsecHook#1~#2\c:HTMLsecHook
+\renewcommand\HTMLsecHook[2]{%
+\a:HTMLsecHook\b:HTMLsecHook#1\c:HTMLsecHook
     \d:HTMLsecHook~---~\e:HTMLsecHook
-    \f:HTMLsecHook#3\g:HTMLsecHook
+    \f:HTMLsecHook#2\g:HTMLsecHook
 \h:HTMLsecHook
 }
 \Configure{HTMLsecHook}{%

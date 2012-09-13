@@ -13,7 +13,7 @@
 
 % Title display in HTML
 \newcommand{\HTMLchapHook}[1]{}
-\newcommand{\HTMLsecHook}[3]{}
+\newcommand{\HTMLsecHook}[2]{}
 
 \newcommand\subtitleskip{\\[0.4em]}
 
@@ -125,8 +125,6 @@
 
 % Make day number in month, in french
 \usepackage{ifthen}
-\usepackage{datetime}
-\let\makedate\ordinaldate
 
 % Define \chaphead to be used in section headings
 \let\oldchapter\chapter
@@ -323,9 +321,13 @@
 % L' doesn't look good in titles with Minion... Fix that
 \newcommand{\ap}{\kern.5pt{'}}
 
+% How to format dates
+\usepackage{moredatetime}
+\let\dvformatdate\formatdateny
+
 % Page date
 \newcommand{\pagedate}{%
-  \makedate{\thesection}~\chaphead
+  \dvformatdate{\thesection}{\thedvmonth}{0}%
 }
 
 \newcommand{\setpagedate}[1]{%
@@ -405,10 +407,9 @@
 
 \newcommand{\dvday}[2][\normalfont]{\newpage\section{##2}%
 \expandafter\xdef\csname pagedate\thepage\endcsname{%
-  \noexpand\makedate{\thesection}~% expand \thesection, transform to date later
-    \noexpand\mapmonthname{\thedvmonth}% expand \thedvmonth, transform to month later
+  \noexpand\dvformatdate{\thesection}{\thedvmonth}{0}% expand \thesection and \thedvmonth, transform to date later
 }%
-\HTMLsecHook{\makedate{\thesection}}{\chaphead}{##2}%
+\HTMLsecHook{\dvformatdate{\thesection}{\thedvmonth}{0}}{##2}%
 \ifx\@dv@nochecksec\@empty
   \addtocounter{pageoverflow}{1}%
   \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%

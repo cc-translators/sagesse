@@ -1,0 +1,21 @@
+\ProvidesPackage{moredatetime}
+\RequirePackage{datetime}
+
+
+% formatdate without year
+\def\formatdateny{\csname noyear\languagename\expandafter\endcsname\formatdate}
+
+\def\noyearenglish#1, \the\@year{#1}
+\let\noyearamerican\noyearenglish
+\let\noyearbritish\noyearenglish
+\def\noyearfrench#1\space\number\@year{#1}
+\let\noyeargerman\noyearfrench
+\let\noyearaustrian\noyeargerman
+\let\noyearswedish\noyearfrench
+\let\noyearbreton\noyearfrench
+\def\noyearrussian#1\ \number\@year~\cyrg.{#1}
+\def\noyearspanish#1\ de~\number\@year{#1}
+\let\noyearcatalan\noyearspanish
+\def\noyearbasque#1\number\@year.eko\space{#1}
+
+
