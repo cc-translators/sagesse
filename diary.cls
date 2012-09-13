@@ -103,18 +103,6 @@
   \diaryformatdate{\thesection}{\thediarymonth}{0}%
 }
 
-\newcommand{\setpagedate}[1]{\expandafter\gdef\csname diarypagedate\thepage\endcsname{#1}}
-
-\newcommand{\getpagedate}[1]{\csname diarypagedate#1\endcsname}
-
-\newcommand{\transform}[1]{%
-  \def\secondparam{0}%
-  \forcsvlist\decodesec{#1}}
-\newcommand{\decodesec}[1]{%
-  \ifthenelse{\secondparam=1}{, }{}%
-  \hyperlink{page.#1}{\mbox{\textsc{\getpagedate{#1}}}}%
-  \def\secondparam{1}}
-
 \newenvironment{diary}%
 {%
 % Counter to test that pages do not overflow
