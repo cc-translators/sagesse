@@ -28,7 +28,7 @@
 \newcounter{diarymonth}
 
 % Define useful aliases
-\newcommand{\dvmonth}{%
+\newcommand{\diarymonth}{%
 %  \ifx\@dv@nochecksec\@empty
 %    \addtocounter{pageoverflow}{2}%
 %    \ifthenelse{\arabic{pageoverflow}<\thepage}{%
@@ -52,7 +52,7 @@
 
 % Index day counter
 
-\newcommand{\dvday}[2][\normalfont]{\newpage\section{#2}%
+\newcommand{\diaryday}[2][\normalfont]{\newpage\section{#2}%
 \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
   \noexpand\diaryformatdate{\thesection}{\thediarymonth}{0}% expand \thesection and \thediarymonth, transform to date later
 }%
