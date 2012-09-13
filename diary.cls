@@ -20,8 +20,8 @@
 
 % How to format dates
 % TODO: Make it an option
-\RequirePackage{moredatetime}
-\let\diaryformatdate\formatdateny
+\AfterPackage{babel}{\RequirePackage{moredatetime}}
+\newcommand\diaryformatdate\formatdateny
 
 % fancytabs
 \if@diary@fancytabs
