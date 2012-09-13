@@ -12,16 +12,20 @@
 \ProcessOptions\relax
 \LoadClass{\diary@class}
 
+% Tune headings
+\RequirePackage{titlesec}
+
+% TODO: get rid of babel here
+%\RequirePackage[french]{babel}
 
 % How to format dates
 % TODO: Make it an option
-\usepackage[french]{babel}
-\usepackage{moredatetime}
+\RequirePackage{moredatetime}
 \let\diaryformatdate\formatdateny
 
 % fancytabs
 \if@diary@fancytabs
-  \usepackage{fancytabs}
+  \RequirePackage{fancytabs}
 \fi
 
 % Need to wrap to make \noexpand work
@@ -30,6 +34,20 @@
 
 \newcounter{diarystartchapter}
 \newcounter{diarymonth}
+
+% Title display in HTML
+\newcommand{\HTMLchapHook}[1]{}
+\newcommand{\HTMLsecHook}[2]{}
+
+% Define \chaphead to be used in section headings
+% TODO: find a better way
+\let\oldchapter\chapter
+\newcommand\temphead{}
+\newcommand\chaphead{}
+\renewcommand\chapter[2][\temphead]{%
+    \renewcommand\temphead{#2}%
+    \renewcommand\chaphead{#2}%
+    \oldchapter[#1]{#2}}
 
 % Define useful aliases
 \newcommand{\diarymonth}{%
@@ -71,6 +89,10 @@
 %\fi
 #1%
 }
+
+% Fonts
+\newcommand\dayheadfont{}
+\newcommand\monthheadfont{}
 
 \newcommand\diary@titlestrut{\vrule height 25pt width0pt\relax}
 \newcommand{\diary@secstyle}{\filcenter\dayheadfont\huge}

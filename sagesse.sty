@@ -11,10 +11,6 @@
 % HRule
 \newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
 
-% Title display in HTML
-\newcommand{\HTMLchapHook}[1]{}
-\newcommand{\HTMLsecHook}[2]{}
-
 \newcommand\subtitleskip{\\[0.4em]}
 
 % Book title
@@ -108,12 +104,9 @@
 \newcommand\smallfont{}
 \newcommand\ssmallfont{}
 \newcommand\sssmallfont{}
-\newcommand\dayheadfont{}
-\newcommand\monthheadfont{}
 \fi
 
 % Tune chapter headings
-\usepackage{titlesec}
 \usepackage{fancybox}
 \usepackage{fourier-orns}
 
@@ -125,14 +118,6 @@
 % Make day number in month, in french
 \usepackage{ifthen}
 
-% Define \chaphead to be used in section headings
-\let\oldchapter\chapter
-\newcommand\temphead{}
-\newcommand\chaphead{}
-\renewcommand\chapter[2][\temphead]{%
-    \renewcommand\temphead{#2}%
-    \renewcommand\chaphead{#2}%
-    \oldchapter[#1]{#2}}
 
 % Note du traducteur
 \newcommand{\NdT}[1]{\footnote{NdT\frcolon #1}}
