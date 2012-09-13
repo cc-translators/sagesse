@@ -318,40 +318,16 @@
 \newcommand{\PDV}{\ocadr{}\emph{Version Parole de Vie}}
 
 % L' doesn't look good in titles with Minion... Fix that
-\newcommand{\ap}{\kern.5pt{'}}
+%\newcommand{\ap}{\kern.5pt{'}}
 
-% Page date
-\newcommand{\pagedate}{%
-  \diaryformatdate{\thesection}{\thediarymonth}{0}%
-}
-
-\newcommand{\setpagedate}[1]{%
-  \expandafter\gdef\csname diarypagedate\thepage\endcsname{#1}%
-}
-
-\newcommand{\getpagedate}[1]{%
-  \csname diarypagedate#1\endcsname
-}
-
-\usepackage{etoolbox}
-\newcommand{\transform}[1]{
-  \def\secondparam{0}%
-  \forcsvlist\decodesec{#1}}
-\newcommand{\decodesec}[1]{%
-  \ifthenelse{\secondparam=1}{, }{}%
-  \hyperlink{page.#1}{\mbox{\textsc{\getpagedate{#1}}}}%
-  \def\secondparam{1}}
-\renewcommand*{\bvidxpgformat}{transform}
 
 % Patch bibleref to sort Bible books properly
+\usepackage{etoolbox}
 \makeatletter
 \patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}
 \makeatother
 
-%\usepackage{mfirstuc}
-
-
-
+\renewcommand*{\bvidxpgformat}{transform}
 
 % Define dummy caltoc, only for ebooks
 \newcommand\caltoc{}

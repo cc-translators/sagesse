@@ -7,6 +7,8 @@
 \ExecuteOptions{scrbook}
 \newif\if@diary@chapterpages
 \DeclareOption{chapterpages}{\@diary@chapterpagestrue}
+\newif\if@diary@fancytabs
+\DeclareOption{fancytabs}{\@diary@fancytabstrue}
 \ProcessOptions\relax
 \LoadClass{\diary@class}
 
@@ -17,8 +19,10 @@
 \usepackage{moredatetime}
 \let\diaryformatdate\formatdateny
 
-% TODO: make fancytabs an option
-\usepackage{fancytabs}
+% fancytabs
+\if@diary@fancytabs
+  \usepackage{fancytabs}
+\fi
 
 % Need to wrap to make \noexpand work
 \newcommand{\diary@monthname}[1]{\monthname[#1]}
@@ -52,11 +56,13 @@
 
 % Index day counter
 
-\newcommand{\diaryday}[2][\normalfont]{\newpage\section{#2}%
-\expandafter\xdef\csname diarypagedate\thepage\endcsname{%
+\newcommand{\diaryday}[2][\normalfont]{%
+  \newpage\section{#2}%
+  \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
   \noexpand\diaryformatdate{\thesection}{\thediarymonth}{0}% expand \thesection and \thediarymonth, transform to date later
 }%
-\HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{0}}{#2}%
+  \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{0}}{#2}%
+% TODO: fix check maybe
 %\ifx\@diary@nochecksec\@empty
 %  \addtocounter{pageoverflow}{1}%
 %  \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
@@ -66,9 +72,26 @@
 #1%
 }
 
-\newcommand\titlestrut{\vrule height 25pt width0pt\relax}
-\newcommand{\secstyle}{\filcenter\dayheadfont\huge}
-\newcommand{\seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
+\newcommand\diary@titlestrut{\vrule height 25pt width0pt\relax}
+\newcommand{\diary@secstyle}{\filcenter\dayheadfont\huge}
+\newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
+
+% Page date
+\newcommand{\pagedate}{%
+  \diaryformatdate{\thesection}{\thediarymonth}{0}%
+}
+
+\newcommand{\setpagedate}[1]{\expandafter\gdef\csname diarypagedate\thepage\endcsname{#1}}
+
+\newcommand{\getpagedate}[1]{\csname diarypagedate#1\endcsname}
+
+\newcommand{\transform}[1]{%
+  \def\secondparam{0}%
+  \forcsvlist\decodesec{#1}}
+\newcommand{\decodesec}[1]{%
+  \ifthenelse{\secondparam=1}{, }{}%
+  \hyperlink{page.#1}{\mbox{\textsc{\getpagedate{#1}}}}%
+  \def\secondparam{1}}
 
 \newenvironment{diary}%
 {%
@@ -95,49 +118,54 @@
 
 
 % Fancytabs
-% TODO: make it an option
-% Tune section headings and use tabs
-% I'd like that to go inside the devotional environment
-\fancytabsHeight{1.2in}
-% WITHOUT BLEED
-% 6*1.2 + 2*0.6 + 5*0.12 = 9
-%\fancytabsTop{0.6in}
-%\fancytabsGap{0.12in}
-% WITH BLEED
-% 6*1.2 + 2*0.725 + 5*0.12 = 9.25
-\fancytabsTop{0.725in}
-\fancytabsGap{0.12in}
+\if@diary@fancytabs
+  % Tune section headings and use tabs
+  % I'd like that to go inside the devotional environment
+  \fancytabsHeight{1.2in}
+  % WITHOUT BLEED
+  % 6*1.2 + 2*0.6 + 5*0.12 = 9
+  %\fancytabsTop{0.6in}
+  %\fancytabsGap{0.12in}
+  % WITH BLEED
+  % 6*1.2 + 2*0.725 + 5*0.12 = 9.25
+  \fancytabsTop{0.725in}
+  \fancytabsGap{0.12in}
+  
+  % WITHOUT BLEED
+  % \fancytabsWidth{0.40in}
+  % WITH BLEED
+  % Add 0.125 for the bleed
+  \fancytabsWidth{0.525in}
+  % Put text more inside
+  % (0.4/2)/0.525 = 0.38
+  \fancytabsTextVPos{0.5}
+  \fancytabsTextHPos{0.38}
+  
+  % Set floor for tabs based on starting chapter
+  \fancytabsFloor{\thediarystartchapter}
+  
+  % Set tabs text style
+  % The original version uses uppercase
+  %\fancytabsStyle{\Large\MakeUppercase}
+  \fancytabsStyle{\normalfont\LARGE\scshape}
 
-% WITHOUT BLEED
-% \fancytabsWidth{0.40in}
-% WITH BLEED
-% Add 0.125 for the bleed
-\fancytabsWidth{0.525in}
-% Put text more inside
-% (0.4/2)/0.525 = 0.38
-\fancytabsTextVPos{0.5}
-\fancytabsTextHPos{0.38}
-
-% Set floor for tabs based on starting chapter
-\fancytabsFloor{\thediarystartchapter}
-
-% Set tabs text style
-% The original version uses uppercase
-%\fancytabsStyle{\Large\MakeUppercase}
-\fancytabsStyle{\normalfont\LARGE\scshape}
+  \newcommand{\diary@fancytab}{%
+    \ifthenelse{\isodd{\thepage}}%
+      {\fancytab{\chaphead}{\arabic{chapter}}}%
+      {}%
+  }
+\else
+  \newcommand{\diary@fancytab}{}% 
+\fi
 
 \renewcommand\thesection{\arabic{section}}
-% Make a different style to use in CSS
-
 \titleformat{\section}[display]
-  {\secstyle} % format
-  {\seclbl} % label
+  {\diary@secstyle} % format
+  {\diary@seclbl} % label
   {-15pt} %sep
-  {
-  \ifthenelse{\isodd{\thepage}}%
-    {\fancytab{\chaphead}{\arabic{chapter}}}%
-    {}%
-  \titlestrut\filcenter} %before
+  {\diary@fancytab%
+   \diary@titlestrut\filcenter} %before
+
 \titlespacing{\section}{0pt}{*}{-3pt}
 
 } % end of \begin{devotional}
