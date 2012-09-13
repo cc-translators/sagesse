@@ -114,7 +114,6 @@
 
 % Tune chapter headings
 \usepackage{titlesec}
-\usepackage{fancytabs}
 \usepackage{fancybox}
 \usepackage{fourier-orns}
 
@@ -321,21 +320,17 @@
 % L' doesn't look good in titles with Minion... Fix that
 \newcommand{\ap}{\kern.5pt{'}}
 
-% How to format dates
-\usepackage{moredatetime}
-\let\dvformatdate\formatdateny
-
 % Page date
 \newcommand{\pagedate}{%
-  \dvformatdate{\thesection}{\thedvmonth}{0}%
+  \diaryformatdate{\thesection}{\thediarymonth}{0}%
 }
 
 \newcommand{\setpagedate}[1]{%
-  \expandafter\gdef\csname pagedate\thepage\endcsname{#1}%
+  \expandafter\gdef\csname diarypagedate\thepage\endcsname{#1}%
 }
 
 \newcommand{\getpagedate}[1]{%
-  \csname pagedate#1\endcsname
+  \csname diarypagedate#1\endcsname
 }
 
 \usepackage{etoolbox}
@@ -355,130 +350,7 @@
 
 %\usepackage{mfirstuc}
 
-% Need to wrap to make \noexpand work
-\newcommand{\mapmonthname}[1]{%
-\monthname[#1]%
-}
 
-\newcommand{\dvcurmonth}{%
-  \mapmonthname{\thedvmonth}%
-}
-
-\newenvironment{devotional}%
-{%
-% Counter to test that pages do not overflow
-\newcounter{pageoverflow}%
-\setcounter{pageoverflow}{\thepage}%
-\addtocounter{pageoverflow}{-1}%
-% Reset chapter counter for tabs
-%\setcounter{chapter}{0}
-\pagestyle{empty}
-\renewcommand*{\partpagestyle}{empty}
-\renewcommand*{\chapterpagestyle}{empty}
-% Record the starting chapter of the devotional
-\newcounter{dvstartchapter}
-\setcounter{dvstartchapter}{\arabic{chapter}}
-\newcounter{dvmonth}
-
-% Define useful aliases
-\newcommand{\dvmonth}{%
-  \ifx\@dv@nochecksec\@empty
-    \addtocounter{pageoverflow}{2}%
-    \ifthenelse{\arabic{pageoverflow}<\thepage}{%
-      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-    }{}%
-  \fi
-  \setcounter{pageoverflow}{\thepage}%
-  \addtocounter{pageoverflow}{1}%
-  \stepcounter{dvmonth}%
-  \HTMLchapHook{\dvcurmonth}%
-  \if@dv@chapterpages
-  \chapter{\dvcurmonth}%
-    \cleardoublepage%
-  \else
-    \renewcommand\chaphead{\dvcurmonth}%
-    \refstepcounter{chapter}%
-    \@maybeautodot\thechapter
-    \addchaptertocentry{\thechapter}{\dvcurmonth}%
-  \fi
-}
-
-% Index day counter
-
-\newcommand{\dvday}[2][\normalfont]{\newpage\section{##2}%
-\expandafter\xdef\csname pagedate\thepage\endcsname{%
-  \noexpand\dvformatdate{\thesection}{\thedvmonth}{0}% expand \thesection and \thedvmonth, transform to date later
-}%
-\HTMLsecHook{\dvformatdate{\thesection}{\thedvmonth}{0}}{##2}%
-\ifx\@dv@nochecksec\@empty
-  \addtocounter{pageoverflow}{1}%
-  \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
-    \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-  }%
-\fi
-##1%
-}
-
-
-% Set chapter pages
-\titleformat{\chapter}[block]
-  {\vfill\monthheadfont}
-  {}{10pt}
-  {\filcenter}
-  [\vfill\vfill]
-
-% Set paragraphs
-\setlength{\parindent}{0em}
-
-% Tune section headings and use tabs
-% I'd like that to go inside the devotional environment
-\fancytabsHeight{1.2in}
-% WITHOUT BLEED
-% 6*1.2 + 2*0.6 + 5*0.12 = 9
-%\fancytabsTop{0.6in}
-%\fancytabsGap{0.12in}
-% WITH BLEED
-% 6*1.2 + 2*0.725 + 5*0.12 = 9.25
-\fancytabsTop{0.725in}
-\fancytabsGap{0.12in}
-
-% WITHOUT BLEED
-% \fancytabsWidth{0.40in}
-% WITH BLEED
-% Add 0.125 for the bleed
-\fancytabsWidth{0.525in}
-% Put text more inside
-% (0.4/2)/0.525 = 0.38
-\fancytabsTextVPos{0.5}
-\fancytabsTextHPos{0.38}
-
-% Set floor for tabs based on starting chapter
-\fancytabsFloor{\thedvstartchapter}
-
-% Set tabs text style
-% The original version uses uppercase
-%\fancytabsStyle{\Large\MakeUppercase}
-\fancytabsStyle{\normalfont\LARGE\scshape}
-
-\renewcommand\thesection{\arabic{section}}
-% Make a different style to use in CSS
-\newcommand\titlestrut{\vrule height 25pt width0pt\relax}
-\newcommand{\secstyle}{\filcenter\dayheadfont\huge}
-\newcommand{\seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
-
-\titleformat{\section}[display]
-  {\secstyle} % format
-  {\seclbl} % label
-  {-15pt} %sep
-  {
-  \ifthenelse{\isodd{\thepage}}%
-    {\fancytab{\chaphead}{\arabic{chapter}}}%
-    {}%
-  \titlestrut\filcenter} %before
-\titlespacing{\section}{0pt}{*}{-3pt}
-
-} % end of \begin{devotional}
-{} % end of \end{devotional}
 
 
 % Define dummy caltoc, only for ebooks
