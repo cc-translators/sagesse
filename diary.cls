@@ -107,11 +107,11 @@
 %\addtocounter{pageoverflow}{-1}%
 % Reset chapter counter for tabs
 %\setcounter{chapter}{0}
-\pagestyle{empty}
-\renewcommand*{\partpagestyle}{empty}
-\renewcommand*{\chapterpagestyle}{empty}
+%\pagestyle{empty}
+%\renewcommand*{\partpagestyle}{empty}
+%\renewcommand*{\chapterpagestyle}{empty}
 % Record the starting chapter of the devotional
-\setcounter{diarystartchapter}{\arabic{chapter}}
+\setcounter{diarystartchapter}{\thechapter}
 
 
 
