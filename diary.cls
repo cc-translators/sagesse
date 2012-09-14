@@ -29,7 +29,10 @@
 \newcommand{\diary@curmonth}{\diary@monthname{\thediarymonth}}
 
 \newcounter{diarystartchapter}
+% TODO: use diaryday
+\newcounter{diaryday}
 \newcounter{diarymonth}
+\newcounter{diaryyear}
 
 % Title display in HTML
 \newcommand{\HTMLchapHook}[1]{}
@@ -68,7 +71,7 @@
 \newcommand{\diaryday}[2][\@nil]{%
   \ifx\@nil#1%
     \renewcommand{\pagedate}{%
-      \diaryformatdate{\thesection}{\thediarymonth}{0}%
+      \diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}%
     }
   \else%
     \renewcommand{\pagedate}{#1}%
@@ -76,13 +79,13 @@
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
   \ifx\@nil#1%
-    \noexpand\diaryformatdate{\thesection}{\thediarymonth}{0}% expand \thesection and \thediarymonth, transform to date later
+    \noexpand\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}% expand \thesection and \thediarymonth, transform to date later
   \else%
     #1%
   \fi%
 }%
   \ifx\@nil#1%
-    \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{0}}{#2}%
+    \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}}{#2}%
   \else%
     \HTMLsecHook{#1}{#2}%
   \fi%
