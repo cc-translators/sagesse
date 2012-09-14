@@ -58,7 +58,7 @@
   \stepcounter{diarymonth}%
   \HTMLchapHook{\diary@curmonth}%
   \if@diary@chapterpages
-  \chapter{\diary@curmonth}%
+    \chapter{\diary@curmonth}%
     \cleardoublepage%
   \else
     \renewcommand\chaphead{\diary@curmonth}%
