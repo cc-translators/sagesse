@@ -47,14 +47,6 @@
 
 % Define useful aliases
 \newcommand{\diarymonth}{%
-%  \ifx\@dv@nochecksec\@empty
-%    \addtocounter{pageoverflow}{2}%
-%    \ifthenelse{\arabic{pageoverflow}<\thepage}{%
-%      \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-%    }{}%
-%  \fi
-%  \setcounter{pageoverflow}{\thepage}%
-%  \addtocounter{pageoverflow}{1}%
   \stepcounter{diarymonth}%
   \HTMLchapHook{\diary@curmonth}%
   \if@diary@chapterpages
@@ -68,22 +60,32 @@
   \fi
 }
 
+% Page date
+\newcommand{\pagedate}{}
+
 % Index day counter
 
-\newcommand{\diaryday}[2][\normalfont]{%
+\newcommand{\diaryday}[2][\@nil]{%
+  \ifx\@nil#1%
+    \renewcommand{\pagedate}{%
+      \diaryformatdate{\thesection}{\thediarymonth}{0}%
+    }
+  \else%
+    \renewcommand{\pagedate}{#1}%
+  \fi%
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
-  \noexpand\diaryformatdate{\thesection}{\thediarymonth}{0}% expand \thesection and \thediarymonth, transform to date later
+  \ifx\@nil#1%
+    \noexpand\diaryformatdate{\thesection}{\thediarymonth}{0}% expand \thesection and \thediarymonth, transform to date later
+  \else%
+    #1%
+  \fi%
 }%
-  \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{0}}{#2}%
-% TODO: fix check maybe
-%\ifx\@diary@nochecksec\@empty
-%  \addtocounter{pageoverflow}{1}%
-%  \ifthenelse{\arabic{pageoverflow}=\thepage}{}{%
-%    \GenericError{}{Section longer than one page before page \thepage!}{}{}%
-%  }%
-%\fi
-#1%
+  \ifx\@nil#1%
+    \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{0}}{#2}%
+  \else%
+    \HTMLsecHook{#1}{#2}%
+  \fi%
 }
 
 % Fonts
@@ -94,17 +96,8 @@
 \newcommand{\diary@secstyle}{\filcenter\dayheadfont\huge}
 \newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
 
-% Page date
-\newcommand{\pagedate}{%
-  \diaryformatdate{\thesection}{\thediarymonth}{0}%
-}
-
 \newenvironment{diary}%
 {%
-% Counter to test that pages do not overflow
-%\newcounter{pageoverflow}%
-%\setcounter{pageoverflow}{\thepage}%
-%\addtocounter{pageoverflow}{-1}%
 % Reset chapter counter for tabs
 %\setcounter{chapter}{0}
 %\pagestyle{empty}
