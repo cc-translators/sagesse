@@ -42,10 +42,8 @@
 % TODO: find a better way
 \let\oldchapter\chapter
 \newcommand\temphead{}
-\newcommand\chaphead{}
 \renewcommand\chapter[2][\temphead]{%
     \renewcommand\temphead{#2}%
-    \renewcommand\chaphead{#2}%
     \oldchapter[#1]{#2}}
 
 % Define useful aliases
@@ -64,7 +62,6 @@
     \chapter{\diary@curmonth}%
     \cleardoublepage%
   \else
-    \renewcommand\chaphead{\diary@curmonth}%
     \refstepcounter{chapter}%
     \@maybeautodot\thechapter
     \addchaptertocentry{\thechapter}{\diary@curmonth}%
@@ -162,7 +159,7 @@
 
   \newcommand{\diary@fancytab}{%
     \ifthenelse{\isodd{\thepage}}%
-      {\fancytab{\chaphead}{\arabic{chapter}}}%
+      {\fancytab{\diary@curmonth}{\arabic{chapter}}}%
       {}%
   }
 \else
