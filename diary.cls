@@ -79,15 +79,17 @@
 
 % Index day counter
 \define@key{diaryday}{day}{\setcounter{section}{#1}\addtocounter{section}{-1}}
+\define@key{diaryday}{ante}{\def\diaryday@ante{#1}}
 \define@key{diaryday}{post}{\def\diaryday@post{#1}}
 
 \newcommand{\diaryday}[2][]{%
+  \def\diaryday@ante{}%
   \def\diaryday@post{}%
   \setkeys{diaryday}{#1}%
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
 }%
-  \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}\diaryday@post}{#2}%
+  \HTMLsecHook{\diaryday@ante\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}\diaryday@post}{#2}%
 }
 
 % Fonts
@@ -96,7 +98,7 @@
 
 \newcommand\diary@titlestrut{\vrule height 25pt width0pt\relax}
 \newcommand{\diary@secstyle}{\filcenter\dayheadfont\huge}
-\newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\pagedate\diaryday@post\\}
+\newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\diaryday@ante\pagedate\diaryday@post\\}
 
 \newcounter{diarystartmonth}
 \newcounter{diarystartday}
