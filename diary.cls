@@ -91,9 +91,11 @@
 \newcommand\dayheadfont{}
 \newcommand\monthheadfont{}
 
+% Chapter/section style
 \newcommand\diary@titlestrut{\vrule height 25pt width0pt\relax}
 \newcommand{\diary@secstyle}{\filcenter\dayheadfont\huge}
 \newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\diaryday@ante\pagedate\diaryday@post\\}
+\newcommand{\diary@chapstyle}{\filcenter\monthheadfont\Huge\textsc}
 
 \newcounter{diarystartmonth}
 \newcounter{diarystartday}
@@ -102,12 +104,6 @@
 
 \newenvironment{diary}[1][]%
 {%
-% Reset chapter counter for tabs
-%\setcounter{chapter}{0}
-%\pagestyle{empty}
-%\renewcommand*{\partpagestyle}{empty}
-%\renewcommand*{\chapterpagestyle}{empty}
-% Record the starting chapter of the devotional
 \setcounter{diarystartmonth}{0}%
 \setcounter{diarystartday}{0}%
 \setkeys{diary}{#1}%
@@ -115,11 +111,12 @@
 \addtocounter{chapter}{\thediarystartmonth}
 \addtocounter{diarymonth}{\thediarystartmonth}
 
+
 % Set chapter pages
 \titleformat{\chapter}[block]
-  {\vfill\monthheadfont}
-  {}{10pt}
-  {\filcenter}
+  {\vfill}
+  {}{0pt}
+  {\diary@chapstyle}
   [\vfill\vfill]
 
 
