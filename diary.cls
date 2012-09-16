@@ -19,6 +19,12 @@
 \AfterPackage!{babel}{\RequirePackage{moredatetime}}
 \newcommand\diaryformatdate\formatdateny
 
+% Set default lengths
+\newlength{\diarydaysepskip}
+\setlength{\diarydaysepskip}{-\baselineskip}
+\newlength{\diarydayafterskip}
+\setlength{\diarydayafterskip}{\baselineskip}
+
 % fancytabs
 \if@diary@fancytabs
   \RequirePackage{fancytabs}
@@ -29,7 +35,6 @@
 \newcommand{\diary@curmonth}{\diary@monthname{\thediarymonth}}
 
 \newcounter{diarystartchapter}
-% TODO: use diaryday
 \newcounter{diaryday}
 \newcounter{diarymonth}
 \newcounter{diaryyear}
@@ -163,9 +168,10 @@
 \titleformat{\section}[display]
   {\diary@secstyle} % format
   {\diary@seclbl} % label
-  {-15pt} %sep
+  {\diarydaysepskip} %sep
   {\diary@fancytab%
    \diary@titlestrut\filcenter} %before
+  [\vspace{\diarydayafterskip}] %after
 
 \titlespacing{\section}{0pt}{*}{-3pt}
 
