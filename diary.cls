@@ -49,8 +49,14 @@
     \oldchapter[#1]{#2}}
 
 % Define useful aliases
-\newcommand{\diarymonth}{%
+\newcounter{diarymonthstartday}
+\define@key{diarymonth}{month}{\setcounter{diarymonth}{#1}}
+\define@key{diarymonth}{startday}{\setcounter{diarymonthstartday}{#1}}
+
+\newcommand{\diarymonth}[1][]{%
   \stepcounter{diarymonth}%
+  \setcounter{diarymonthstartday}{1}%
+  \setkeys{diarymonth}{#1}%
   \HTMLchapHook{\diary@curmonth}%
   \if@diary@chapterpages
     \chapter{\diary@curmonth}%
@@ -61,6 +67,8 @@
     \@maybeautodot\thechapter
     \addchaptertocentry{\thechapter}{\diary@curmonth}%
   \fi
+  \setcounter{section}{\thediarymonthstartday}%
+  \addtocounter{section}{-1}%
 }
 
 % Page date
