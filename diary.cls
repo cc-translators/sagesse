@@ -50,13 +50,13 @@
 
 % Define useful aliases
 \newcounter{diarymonthstartday}
-\define@key{diarymonth}{month}{\setcounter{diarymonth}{#1}}
-\define@key{diarymonth}{startday}{\setcounter{diarymonthstartday}{#1}}
+\define@key{diarymonth}{month}{\setcounter{diarymonth}{#1}\addtocounter{diarymonth}{-1}}
+\define@key{diarymonth}{startday}{\setcounter{diarymonthstartday}{#1}\addtocounter{diarymonthstartday}{-1}}
 
 \newcommand{\diarymonth}[1][]{%
-  \stepcounter{diarymonth}%
-  \setcounter{diarymonthstartday}{1}%
+  \setcounter{diarymonthstartday}{0}%
   \setkeys{diarymonth}{#1}%
+  \stepcounter{diarymonth}%
   \HTMLchapHook{\diary@curmonth}%
   \if@diary@chapterpages
     \chapter{\diary@curmonth}%
@@ -68,22 +68,20 @@
     \addchaptertocentry{\thechapter}{\diary@curmonth}%
   \fi
   \setcounter{section}{\thediarymonthstartday}%
-  \addtocounter{section}{-1}%
 }
 
 % Page date
-\newcommand{\pagedate}{}
+\newcommand{\pagedate}{%
+  \diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}%
+}
 
 % Index day counter
+\define@key{diaryday}{day}{\setcounter{section}{#1}\addtocounter{section}{-1}}
+\define@key{diaryday}{post}{\def\diaryday@post{#1}}
 
-\newcommand{\diaryday}[2][\@nil]{%
-  \ifx\@nil#1%
-    \renewcommand{\pagedate}{%
-      \diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}%
-    }
-  \else%
-    \renewcommand{\pagedate}{#1}%
-  \fi%
+\newcommand{\diaryday}[2][]{%
+  \def\diaryday@post{}%
+  \setkeys{diaryday}{#1}%
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
   \ifx\@nil#1%
