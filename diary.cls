@@ -38,13 +38,6 @@
 \newcommand{\HTMLchapHook}[1]{}
 \newcommand{\HTMLsecHook}[2]{}
 
-% Define \chaphead to be used in section headings
-% TODO: find a better way
-\let\oldchapter\chapter
-\newcommand\temphead{}
-\renewcommand\chapter[2][\temphead]{%
-    \renewcommand\temphead{#2}%
-    \oldchapter[#1]{#2}}
 
 % Define useful aliases
 \newcounter{diarymonthstartday}
