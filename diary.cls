@@ -54,7 +54,9 @@
 \define@key{diarymonth}{startday}{\setcounter{diarymonthstartday}{#1}\addtocounter{diarymonthstartday}{-1}}
 
 \newcommand{\diarymonth}[1][]{%
-  \setcounter{diarymonthstartday}{0}%
+  % Use \thediarystatday if first month of diary
+  \setcounter{diarymonthstartday}{\thediarystartday}%
+  \setcounter{diarystartday}{0}%
   \setkeys{diarymonth}{#1}%
   \stepcounter{diarymonth}%
   \HTMLchapHook{\diary@curmonth}%
@@ -84,17 +86,8 @@
   \setkeys{diaryday}{#1}%
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
-  \ifx\@nil#1%
-    \noexpand\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}% expand \thesection and \thediarymonth, transform to date later
-  \else%
-    #1%
-  \fi%
 }%
-  \ifx\@nil#1%
-    \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}}{#2}%
-  \else%
-    \HTMLsecHook{#1}{#2}%
-  \fi%
+  \HTMLsecHook{\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}\diaryday@post}{#2}%
 }
 
 % Fonts
@@ -103,9 +96,14 @@
 
 \newcommand\diary@titlestrut{\vrule height 25pt width0pt\relax}
 \newcommand{\diary@secstyle}{\filcenter\dayheadfont\huge}
-\newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\pagedate\\}
+\newcommand{\diary@seclbl}{\raggedright\normalfont\scshape\Large\pagedate\diaryday@post\\}
 
-\newenvironment{diary}%
+\newcounter{diarystartmonth}
+\newcounter{diarystartday}
+\define@key{diary}{startmonth}{\setcounter{diarystartmonth}{#1}\addtocounter{diarystartmonth}{-1}}
+\define@key{diary}{startday}{\setcounter{diarystartday}{#1}\addtocounter{diarystartday}{-1}}
+
+\newenvironment{diary}[1][]%
 {%
 % Reset chapter counter for tabs
 %\setcounter{chapter}{0}
@@ -113,9 +111,12 @@
 %\renewcommand*{\partpagestyle}{empty}
 %\renewcommand*{\chapterpagestyle}{empty}
 % Record the starting chapter of the devotional
+\setcounter{diarystartmonth}{0}%
+\setcounter{diarystartday}{0}%
+\setkeys{diary}{#1}%
 \setcounter{diarystartchapter}{\thechapter}
-
-
+\addtocounter{chapter}{\thediarystartmonth}
+\addtocounter{diarymonth}{\thediarystartmonth}
 
 % Set chapter pages
 \titleformat{\chapter}[block]
