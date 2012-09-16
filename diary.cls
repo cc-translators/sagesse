@@ -64,16 +64,16 @@
     \@maybeautodot\thechapter
     \addchaptertocentry{\thechapter}{\diary@curmonth}%
   \fi
-  \setcounter{section}{\thediarymonthstartday}%
+  \setcounter{diaryday}{\thediarymonthstartday}%
 }
 
 % Page date
 \newcommand{\pagedate}{%
-  \diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}%
+  \diaryformatdate{\thediaryday}{\thediarymonth}{\thediaryyear}%
 }
 
 % Index day counter
-\define@key{diaryday}{day}{\setcounter{section}{#1}\addtocounter{section}{-1}}
+\define@key{diaryday}{day}{\setcounter{diaryday}{#1}\addtocounter{diaryday}{-1}}
 \define@key{diaryday}{ante}{\def\diaryday@ante{#1}}
 \define@key{diaryday}{post}{\def\diaryday@post{#1}}
 
@@ -81,10 +81,11 @@
   \def\diaryday@ante{}%
   \def\diaryday@post{}%
   \setkeys{diaryday}{#1}%
+  \stepcounter{diaryday}%
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
 }%
-  \HTMLsecHook{\diaryday@ante\diaryformatdate{\thesection}{\thediarymonth}{\thediaryyear}\diaryday@post}{#2}%
+  \HTMLsecHook{\diaryday@ante\diaryformatdate{\thediaryday}{\thediarymonth}{\thediaryyear}\diaryday@post}{#2}%
 }
 
 % Fonts
@@ -161,7 +162,6 @@
   \newcommand{\diary@fancytab}{}% 
 \fi
 
-\renewcommand\thesection{\arabic{section}}
 \titleformat{\section}[display]
   {\diary@secstyle} % format
   {\diary@seclbl} % label
