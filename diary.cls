@@ -84,6 +84,7 @@
   \stepcounter{diaryday}%
   \newpage\section{#2}%
   \expandafter\xdef\csname diarypagedate\thepage\endcsname{%
+    \noexpand\diaryformatdate{\thediaryday}{\thediarymonth}{\thediaryyear}%
 }%
   \HTMLsecHook{\diaryday@ante\diaryformatdate{\thediaryday}{\thediarymonth}{\thediaryyear}\diaryday@post}{#2}%
 }
