@@ -110,7 +110,7 @@
 \setcounter{diarystartday}{0}%
 \setkeys{diary}{#1}%
 \setcounter{diarystartchapter}{\thechapter}
-\addtocounter{chapter}{\thediarystartmonth}
+%\addtocounter{chapter}{\thediarystartmonth}
 \addtocounter{diarymonth}{\thediarystartmonth}
 
 
