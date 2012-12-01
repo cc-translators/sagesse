@@ -320,17 +320,30 @@
 
 % Page date
 
-\newcommand{\setpagedate}[1]{\expandafter\gdef\csname jrnlpagedate\thepage\endcsname{#1}}
+% Make indexes
+\newcommand{\indextitle}{Index des r\'ef\'erences bibliques}
+\usepackage{imakeidx}
+\makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
 
-\newcommand{\getpagedate}[1]{\csname jrnlpagedate#1\endcsname}
+\newcommand\getpagedate[1]{\csname jrnldaydate#1\endcsname}
 
 \newcommand{\transform}[1]{%
   \def\secondparam{0}%
   \forcsvlist\decodesec{#1}}
 \newcommand{\decodesec}[1]{%
   \ifthenelse{\secondparam=1}{, }{}%
-  \hyperlink{page.#1}{\mbox{\textsc{\getpagedate{#1}}}}%
+  \hyperlink{day.#1}{\mbox{\textsc{\getpagedate{#1}}}}%
   \def\secondparam{1}}
+
+% Patch imakeidx to map verse num instead of page
+\makeatletter
+\patchcmd{\@index}{\@wrindex}{\@Wrindex}{}{}
+\let\@Wrindex\@wrindex
+\patchcmd{\@Wrindex}{\thepage}{\thejrnltotalday}{}{}
+\let\protected@iwrite\protected@write
+\patchcmd{\protected@iwrite}{\write}{\immediate\write}{}{}
+\patchcmd{\@Wrindex}{\protected@write}{\protected@iwrite}{}{}
+\makeatother
 
 % Define dummy caltoc, only for ebooks
 \newcommand\caltoc{}
