@@ -7,6 +7,7 @@ Reste à faire
  * Dédication ou préface? (+2 pages);
  * Relecture à finir;
  * Format IMEAF (area identique?);
+ * Update copyright date
 
 Pages actuelles: 378
 Total pages: 384
