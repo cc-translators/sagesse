@@ -17,6 +17,11 @@
 \setlength{\jrnldayafterskip}{\fill}
 \setlength{\jrnldaysepskip}{-\baselineskip}
 
+\renewcommand{\jrnl@seclblstyle}{%
+  \ifthenelse{\isodd{\thepage}}{\raggedleft}{\raggedright}%
+  \normalfont\scshape\Large%
+}
+
 % Book title
 \newcommand{\booktitle}[3]{%
 \textsc{\large#1}
