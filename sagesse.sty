@@ -332,6 +332,10 @@
 \makeindex[name=bibleref,title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
 \renewcommand{\biblerefindex}{\index[bibleref]}
 
+\makeindex[title={Index th\'ematique},intoc,options=-s thematique.ist,columns=2]
+
+\newcommand{\themeindex}[1]{\index{#1|transform}}
+
 \newcommand\getpagedate[1]{\csname jrnldaydate#1\endcsname}
 
 \newcommand{\transform}[1]{%
