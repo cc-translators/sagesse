@@ -329,10 +329,10 @@
 % Make indexes
 \newcommand{\indextitle}{Index des r\'ef\'erences bibliques}
 \usepackage{imakeidx}
-\makeindex[name=bibleref,title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+\makeindex[name=bibleref,title=\indextitle,intoc,options=-r -s bibleref.ist,columns=2]
 \renewcommand{\biblerefindex}{\index[bibleref]}
 
-\makeindex[title={Index th\'ematique},intoc,options=-s thematique.ist,columns=2]
+\makeindex[title={Index th\'ematique},intoc,options=-r -s thematique.ist,columns=2]
 
 \newcommand{\themeindex}[1]{\index{#1|transform}}
 
