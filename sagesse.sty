@@ -329,7 +329,8 @@
 % Make indexes
 \newcommand{\indextitle}{Index des r\'ef\'erences bibliques}
 \usepackage{imakeidx}
-\makeindex[title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+\makeindex[name=bibleref,title=\indextitle,intoc,options=-s bibleref.ist,columns=2]
+\renewcommand{\biblerefindex}{\index[bibleref]}
 
 \newcommand\getpagedate[1]{\csname jrnldaydate#1\endcsname}
 
