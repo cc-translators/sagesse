@@ -343,6 +343,10 @@
 \newdateformat{shortmonthdate}{\ordinaldatefrench{\THEDAY}~\shortmonthname[\THEMONTH]}
 \renewcommand\jrnlformatindexdate{\shortmonthdate\formatdate}
 
+% Ensure *voir* entries are not cut
+\renewcommand*\see[2]{\mbox{\emph{\seename} #1}}
+
+% Map to dates
 \newcommand\getpagedate[1]{\csname jrnldaydate#1\endcsname}
 
 \newcommand{\transform}[1]{%
