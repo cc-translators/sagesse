@@ -135,6 +135,14 @@
 % are called from within \dvquote
 % Warning:Load footnote after xcolor
 \usepackage{footnote}
+\usepackage[bottom,symbol*]{footmisc}
+\setfnsymbol{wiley}
+\frenchbsetup{
+  FrenchFootnotes=false,
+  AutoSpaceFootnotes=false
+}
+\usepackage{chngcntr}
+\counterwithin*{footnote}{section}
 
 % Lettrines
 \renewcommand{\LettrineFontHook}{\color[gray]{0.6}}
