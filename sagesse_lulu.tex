@@ -125,10 +125,14 @@
 
 \begin{document}
 
-%\maketitle
-\setlength{\parindent}{0em}
-\input{title}
-\input{copyright}
+\ifluatex
+  %\maketitle
+  \setlength{\parindent}{0em}
+  \include{fake_title}
+  \cleardoublepage
+  \include{title}
+  \include{copyright}
+\fi
 
 \setlength{\parindent}{1em}
 % Debug overfull boxes
@@ -176,6 +180,18 @@
 
 \cleardoublepage
 \printindex
+
+% depot legal
+\ifluatex
+  \pagestyle{empty}
+  %\cleardoublepage
+  %\mbox{}
+  %\clearpage
+  \include{depotlegal}
+
+  \clearpage
+  \mbox{}
+\fi
 
 \listoftodos[Notes de l'éditeur]
 
