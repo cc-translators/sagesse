@@ -24,10 +24,10 @@
 
 % Book title
 \newcommand{\booktitle}[3]{%
-\textsc{\large#1}
+\dayheadfont\textsc{\large#1}
 \\[1.5cm]
 \HRule \\[0.4cm]
-\textsc{\Huge#2}\\[0.4cm]
+\textsc{\Huge#2}\\[0.3cm]
 
 \HRule \\[1.5cm]
 {\LARGE#3}\\[1.5cm]
@@ -41,7 +41,7 @@
 %\textsc{#1}
 %\\[1cm]
 %\HRule \\[0.3cm]
-\textsc{\LARGE#2}\\[0.3cm]
+\dayheadfont\textsc{\LARGE#2}\\[0.3cm]
 %
 %\HRule \\[1cm]
 %{\large#3}\\[1cm]
@@ -126,6 +126,7 @@
 %\newfontfamily\dayheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
 %\newfontfamily\monthheadfont[Scale=2.5,Letters=SmallCaps]{[LatinoElongatedLetPlainSC.otf]}
 %\newfontfamily\lettrinefont{Caslon Initials}
+\newfontfamily\logofont{ChopinScript}
 \else
 \newcommand\smallfont{}
 \newcommand\ssmallfont{}
