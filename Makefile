@@ -14,10 +14,10 @@ KINDLE_PATH=/documents/raphael
 AUTHOR=Chuck Smith
 LANGUAGE=fr
 PUBDATE=$(shell date +'%Y-%m-%d')
-COVER=
+COVER=sagesse_lulu_cover_front.png
 TITLE=Sagesse pour Aujourd'hui
 
-EBOOK_CONVERT_OPTS=--authors "$(AUTHOR)" --title "$(TITLE)" --language "$(LANGUAGE)" --pubdate "$(PUBDATE)" --page-breaks-before "//*[name()='h1' or name()='h2' or name()='h3' or @class='pagebreak']" --use-auto-toc  --level1-toc "//*[name()='h2']" --level2-toc "//*[name()='h3']" --minimum-line-height=0.4 --font-size-mapping "10,12,14,16,18,20,26,48"
+EBOOK_CONVERT_OPTS=--authors "$(AUTHOR)" --title "$(TITLE)" --language "$(LANGUAGE)" --pubdate "$(PUBDATE)" --page-breaks-before "//*[name()='h1' or name()='h2' or name()='h3' or @class='pagebreak']" --cover "$(COVER)" --use-auto-toc  --level1-toc "//*[name()='h2']" --level2-toc "//*[name()='h3']" --minimum-line-height=0.4 --font-size-mapping "10,12,14,16,18,20,26,48"
 
 # Include crocodoc conf
 include ~/.crocodoc.conf
