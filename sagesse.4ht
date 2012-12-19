@@ -104,7 +104,7 @@ display: none;
 \h:HTMLsecHook
 }
 \Configure{HTMLsecHook}{%
-\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="page.\thepage">}{\Tg<a id="chap.\thechapter-sec.\thesection">}{\Tg</a>}{\Tg<span class="dvdaydash">}{\Tg</span>}{\Tg<span class="dvdaytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
+\ifvmode\IgnorePar\fi\EndP\Tg<h3 class="dvday" id="day.\thejrnltotalday">}{\Tg<a id="chap.\thechapter-sec.\thesection">}{\Tg</a>}{\Tg<span class="dvdaydash">}{\Tg</span>}{\Tg<span class="dvdaytitle">}{\Tg</span>}{\Tg</h3>\IgnoreIndent}
 \Css{h3.dvday{
 font-variant:small-caps;
 }
@@ -190,21 +190,25 @@ font-variant:small-caps;
 
 % caltoc
 \usepackage{pgffor}
-\newcounter{caltocmonth}
+%\newcounter{caltocmonth}
+\newcounter{calday}
 
 \newcommand\caltocday[2]{%
-\HCode{<a href="\#chap.#1-sec.#2">}#2\HCode{</a>}
+%\HCode{<a href="\#chap.#1-sec.#2">}#2\HCode{</a>}
+\HCode{<a href="\#day.\thecalday">}#2\HCode{</a>}
+\stepcounter{calday}
 }
 
 \newcommand\caltocmonth[2]{%
 \noindent#1\frcolon\ \foreach \n in {1,...,#2}{\caltocday{\thecaltocmonth}{\n}}
-\stepcounter{caltocmonth}
+%\stepcounter{caltocmonth}
 }
 
 \NewConfigure{caltoc}{2}
 \renewcommand\caltoc{%
 % Start counter at 3 because of quick access and introduction chapters
-\setcounter{caltocmonth}{3}
+%\setcounter{caltocmonth}{3}
+\setcounter{calday}{1}
 \chapter{Accès rapide aux dévotions}
 
 \caltocmonth{Janvier}{31}
@@ -241,6 +245,9 @@ margin-top: 1em;
 font-style: italic;
 font-weight: bold;
 }}
+
+% \sim
+\renewcommand\sim{}
 
 % Exponents
 \Css{.ecrm-0600{
