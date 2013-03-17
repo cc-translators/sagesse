@@ -7,9 +7,25 @@
 % Adjust images size and gutter(?) so tabs bleed by .125
 % See https://www.createspace.com/Products/Book/InteriorPDF.jsp
 %\documentclass[paper=6.25in:9.25in,pagesize=pdftex,
-\documentclass[paper=6.25in:9.25in,pagesize=pdftex,
+\documentclass[paper=7.44in:9.68in,pagesize=pdftex,
                fancytabs,
-               10pt]{scrjrnl}
+               11pt]{scrjrnl}
+%
+% Paper width
+% W = 7.57in (7.44+0.125 --- bleed)
+% Paper height
+% H = 9.93in (9.68+2*.125 --- bleed)
+% Paper gutter
+% BCOR = 0.375in (0.5+0.5-0.625 --- margin with bleed)
+% Margin (0.5in imposed on lulu, recommended on createspace)
+% m = 0.625in (0.5+0.125 --- bleed)
+% 2m = 1.25in
+% Text height
+% h = H - 2m = 8.68in
+% Text width
+% w = W - 2m - BCOR = 5.95in
+\areaset[0.5in]{5.95in}{8.68in}
+
 %
 % Paper width
 % W = 6.125in (6+0.125 --- bleed)
@@ -23,7 +39,7 @@
 % h = H - 2m = 8in
 % Text width
 % w = W - 2m - BCOR = 4.5in
-\areaset[0.5in]{4.5in}{8in}
+%\areaset[0.5in]{4.5in}{8in}
 
 % WITHOUT BLEED
 % US Trade => 6x9
@@ -45,7 +61,7 @@
 %\areaset[0.50in]{4.5in}{8in}
 
 % Show margins
-%\usepackage{showframe}
+\usepackage{showframe}
 
 
 \usepackage[french]{babel} %language selection
