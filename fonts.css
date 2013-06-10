@@ -56,14 +56,15 @@ strong, b,
 font-family: "EB Garamond Bold", serif;
 }
 
-.small-caps, .booksubtitle,
-.sectionHead,
+.small-caps,
 .dvquote-ref, .dvbox
 .lettrine-line
 {
 font-family: "EB Garamond SC", serif;
 }
 
+.booksubtitle,
+.sectionHead,
 .dvday
 {
 font-family: "IM Fell Pro", serif;
