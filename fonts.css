@@ -24,6 +24,20 @@ font-weight: bold;
 font-variant: normal;
 src: url(fonts/EBGaramond12-Bold.otf);
 }
+@font-face{
+font-family: "IM Fell Pro";
+font-style: normal;
+font-weight: bold;
+font-variant: normal;
+src: url(fonts/IMFeGPrm29C.otf);
+}
+@font-face{
+font-family: "IM Fell Pro Italic";
+font-style: normal;
+font-weight: bold;
+font-variant: normal;
+src: url(fonts/IMFeGPit29C.otf);
+}
 
 em, i, .ecti, .ecti1,
 .thanks, .signature, .dvquote-text, .dvprayer-text
@@ -43,9 +57,14 @@ font-family: "EB Garamond Bold", serif;
 }
 
 .small-caps, .booksubtitle,
-.dvday, .sectionHead,
+.sectionHead,
 .dvquote-ref, .dvbox
 .lettrine-line
 {
 font-family: "EB Garamond SC", serif;
+}
+
+.dvday
+{
+font-family: "IM Fell Pro", serif;
 }
