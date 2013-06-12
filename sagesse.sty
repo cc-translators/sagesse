@@ -359,6 +359,7 @@
 \makeindex[title={Index th\'ematique},intoc,options=-r -s thematique.ist,columns=2]
 
 \newcommand{\themeindex}[1]{\index{#1|transform}}
+\newcommand{\mainthemeindex}[1]{\index{#1|transformmain}}
 
 % Ensure minimal distance of 15pt in dotfill
 \def\hfill{\hskip 15pt plus 1fill}
@@ -376,9 +377,16 @@
 \newcommand{\transform}[1]{%
   \def\secondparam{0}%
   \forcsvlist\decodesec{#1}}
+\newcommand{\transformmain}[1]{%
+  \def\secondparam{0}%
+  \forcsvlist\decodesecbf{#1}}
 \newcommand{\decodesec}[1]{%
   \ifthenelse{\secondparam=1}{, }{}%
   \hyperlink{day.#1}{\mbox{\textsc{\getpagedate{#1}}}}%
+  \def\secondparam{1}}
+\newcommand{\decodesecbf}[1]{%
+  \ifthenelse{\secondparam=1}{, }{}%
+  \hyperlink{day.#1}{\mbox{\textsc{\textbf{\getpagedate{#1}}}}}%
   \def\secondparam{1}}
 
 % Patch imakeidx to map verse num instead of page
