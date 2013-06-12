@@ -247,7 +247,7 @@ font-weight: bold;
 }}
 
 % \sim
-\renewcommand\sim{"}
+\renewcommand\sim{\textasciitilde}
 
 % Exponents
 \Css{.ecrm-0600{
