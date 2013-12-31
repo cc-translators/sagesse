@@ -3,6 +3,7 @@ language: c
 install:
   - sudo apt-get update
   - sudo apt-get install texlive-latex-extra texlive-publishers
-  # scrjrnl was added in saucy
-  - wget -O scrjrnl.cls http://www.tug.org/texlive/devsrc/Master/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
+  # TL2013 was added in saucy
+  - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
+  - wget -O fancytabs.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/fancytabs/fancytabs.sty
 script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
