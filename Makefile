@@ -3,6 +3,7 @@ TEXINPUTS=microtype:
 FONTSDIR=fonts
 TODAY=$(shell date --iso)
 TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
+LATEX_INTERACTION=batchmode
 FTP_TOPDIR=calvary
 FTP_PDFDIR=$(FTP_TOPDIR)/pdf
 FTP_JSONDIR=$(FTP_TOPDIR)/json
@@ -40,8 +41,8 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	sed -e 's@\\usepackage\[disable\]{review}@\\usepackage\[dateinlist\]{review}@' $< > $@
 
 %.pdf: %.tex $(MONTHS)
-	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
-	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
+	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=$(LATEX_INTERACTION) $<
+	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=$(LATEX_INTERACTION) $<
 
 %.html: %.tex
 	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) htlatex $< \

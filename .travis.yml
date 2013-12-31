@@ -3,4 +3,4 @@ language: c
 install:
   - sudo apt-get update
   - sudo apt-get install texlive-latex-extra
-script: make sagesse_lulu.pdf
+script: make sagesse_lulu.pdf LATEX_INTERACTION=errorstopmode
