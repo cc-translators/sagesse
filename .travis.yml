@@ -6,4 +6,5 @@ install:
   # TL2013 was added in saucy
   - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
   - wget -O fancytabs.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/fancytabs/fancytabs.sty
+  - wget -O impnattypo.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/impnattypo/impnattypo.sty
 script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
