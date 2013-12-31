@@ -1,5 +1,6 @@
 BOOK_NAME=sagesse
 TEXINPUTS=microtype:
+FONTSDIR=fonts
 TODAY=$(shell date --iso)
 TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
 FTP_TOPDIR=calvary
@@ -39,19 +40,19 @@ json: pdf $(addsuffix .json,$(TARGETS))
 	sed -e 's@\\usepackage\[disable\]{review}@\\usepackage\[dateinlist\]{review}@' $< > $@
 
 %.pdf: %.tex $(MONTHS)
-	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
-	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
+	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
+	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
 
 %.html: %.tex
-	TEXINPUTS=$(TEXINPUTS) htlatex $< \
+	OSFONTDIR=$(FONTSDIR) TEXINPUTS=$(TEXINPUTS) htlatex $< \
 	   'ebook.cfg,xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate'
 	bash cleanuphtml.sh $@
 
 %_embedded.epub: %.epub
 	rm -rf $*
 	unzip  -d $* $<
-	cp -r fonts $*/
-	# Add fons to stylesheet.css
+	cp -r $(FONTSDIR) $*/
+	# Add fonts to stylesheet.css
 	cat fonts.css >> $*/stylesheet.css
 	# Insert fonts into content.opf
 	sed -i '/<manifest>/ r fonts.content' $*/content.opf
