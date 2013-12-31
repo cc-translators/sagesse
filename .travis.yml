@@ -4,10 +4,6 @@ install:
   # TL2013 was added in saucy
   - sudo apt-add-repository -y ppa:texlive-backports
   - sudo apt-get update
-  - sudo apt-get install texlive-latex-extra texlive-publishers
+  - sudo apt-get install texlive-latex-extra texlive-publishers texlive-humanities texlive-lang-french
   - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
-  - wget -O fancytabs.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/fancytabs/fancytabs.sty
-  - wget -O impnattypo.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/impnattypo/impnattypo.sty
-  - wget -O bibleref.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/bibleref/bibleref.sty
-  - wget -O bibleref-french.sty http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/bibleref-french/bibleref-french.sty
 script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
