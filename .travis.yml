@@ -4,6 +4,6 @@ install:
   # TL2013 was added in saucy
   - sudo apt-add-repository -y ppa:texlive-backports
   - sudo apt-get update
-  - sudo apt-get install texlive-latex-extra texlive-publishers texlive-humanities texlive-lang-french
+  - sudo apt-get install texlive-latex-extra texlive-publishers texlive-humanities texlive-lang-french texlive-xetex
   - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
 script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
