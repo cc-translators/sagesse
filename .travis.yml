@@ -1,10 +1,18 @@
-# There is no TeX language
 language: c
+env:
+  global:
+  - ARTIFACTS_AWS_REGION=us-east-1
+  - ARTIFACTS_S3_BUCKET=cc-sagesse
+  - secure: a2rhZzbLPKHlEZkUNcuetphO1sjEuM0BaQdJ2tQF+f5h4l7xOuKddxjn5eg4x5QBvTsoou56P7uYwDL6Z4Lmv6maZxB42GWjVOYmjUPvTQ4IoaRj7iWvaBjpyVeox8us1UReeVUY05c99vZa0xLe9UL8jLhGwfx5YYZFa50kVRw=
+  - secure: La3WqgnEjcrUfvFJea9VoadLoOgUETykRQwyNYX6ygyV72Nhe08PQQVn66mBjKV6TeGttndJy+wtziNB0c29GsDCW5eZzut/IhyyawVkFspfHz2CMmAzbGgtFBbBA9QZjcXUiugpYZ63G1739C4i8QdEJhf4k70UjkID24gD1BU=
 install:
-  # TL2013 was added in saucy
   - sudo apt-add-repository -y ppa:texlive-backports
   - sudo apt-get update
   - sudo apt-get install texlive-latex-extra texlive-publishers texlive-humanities texlive-lang-french texlive-xetex
   - sudo apt-get install texlive-fonts-recommended texlive-fonts-extra
   - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
+before_script:
+  - gem install travis-artifacts
+after_success:
+  - travis-artifacts upload --path sagesse_lulu.pdf
 script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
