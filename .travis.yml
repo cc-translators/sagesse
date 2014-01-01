@@ -11,6 +11,8 @@ install:
   - sudo apt-get install texlive-latex-extra texlive-publishers texlive-humanities texlive-lang-french texlive-xetex
   - sudo apt-get install texlive-fonts-recommended texlive-fonts-extra
   - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
+  # epub
+  - sudo apt-get install calibre
 before_script:
   - gem install travis-artifacts
 after_success:
