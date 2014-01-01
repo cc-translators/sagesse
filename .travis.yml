@@ -12,7 +12,7 @@ install:
   - sudo apt-get install texlive-fonts-recommended texlive-fonts-extra
   - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
   # epub
-  - sudo apt-get install calibre
+  - sudo apt-get install tex4ht calibre
 before_script:
   - gem install travis-artifacts
 after_success:
