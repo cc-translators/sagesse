@@ -15,4 +15,4 @@ before_script:
   - gem install travis-artifacts
 after_success:
   - travis-artifacts upload --path sagesse_lulu.pdf
-script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
+script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error" && make sagesse_lulu.epub
