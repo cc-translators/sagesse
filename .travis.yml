@@ -1,20 +1,22 @@
-language: c
-env:
-  global:
-  - ARTIFACTS_AWS_REGION=us-east-1
-  - ARTIFACTS_S3_BUCKET=cc-sagesse
-  - secure: a2rhZzbLPKHlEZkUNcuetphO1sjEuM0BaQdJ2tQF+f5h4l7xOuKddxjn5eg4x5QBvTsoou56P7uYwDL6Z4Lmv6maZxB42GWjVOYmjUPvTQ4IoaRj7iWvaBjpyVeox8us1UReeVUY05c99vZa0xLe9UL8jLhGwfx5YYZFa50kVRw=
-  - secure: La3WqgnEjcrUfvFJea9VoadLoOgUETykRQwyNYX6ygyV72Nhe08PQQVn66mBjKV6TeGttndJy+wtziNB0c29GsDCW5eZzut/IhyyawVkFspfHz2CMmAzbGgtFBbBA9QZjcXUiugpYZ63G1739C4i8QdEJhf4k70UjkID24gD1BU=
+sudo: false
 install:
-  - sudo apt-add-repository -y ppa:texlive-backports
-  - sudo apt-get update
-  - sudo apt-get install texlive-latex-extra texlive-publishers texlive-humanities texlive-lang-french texlive-xetex
-  - sudo apt-get install texlive-fonts-recommended texlive-fonts-extra
-  - wget -O scrjrnl.cls http://www.tug.org/texlive/Contents/live/texmf-dist/tex/latex/scrjrnl/scrjrnl.cls
-  # epub
-  - sudo apt-get install tex4ht calibre
-before_script:
-  - gem install travis-artifacts
-after_success:
-  - travis-artifacts upload --path sagesse_lulu.pdf
-script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error" #&& make sagesse_lulu.epub
+  - curl -L https://github.com/raphink/travis-texlive/releases/download/2015-05-13_01/texlive.tar.xz | tar xJC ~
+  - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+  - wget https://bitbucket.org/georgd/eb-garamond/downloads/EBGaramond-0.016.zip
+  - unzip EBGaramond-0.016.zip
+  - cp EBGaramond-0.016/otf/* fonts/
+matrix:
+  include:
+  - env: BUILD=pdf DEPLOY=true
+    script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
+  - env: BUILD=epub
+    script: make sagesse_lulu.epub
+  allow_failures:
+  - env: BUILD=epub
+deploy:
+  provider: releases
+  api_key:
+    secure: TR2xilnOmKA59j1ZbVL893GKri+/Prke0ggQK58GusqciOZ80Dn6ikgeabvldc6MTrph/KsgpFdqdF5daWERtlR17u/l/SbJMT8m4h91XEAlKe19DP65k6qrt0NyI/miVXpAxUehvf0iAFN8wxQ8B2D7oraYTVz2m6tymDq5Tp4=
+  file: sagesse_lulu.pdf
+  on:
+    repo: cc-translators/sagesse
