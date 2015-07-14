@@ -19,4 +19,5 @@ deploy:
     secure: TR2xilnOmKA59j1ZbVL893GKri+/Prke0ggQK58GusqciOZ80Dn6ikgeabvldc6MTrph/KsgpFdqdF5daWERtlR17u/l/SbJMT8m4h91XEAlKe19DP65k6qrt0NyI/miVXpAxUehvf0iAFN8wxQ8B2D7oraYTVz2m6tymDq5Tp4=
   file: sagesse_lulu.pdf
   on:
-    repo: cc-translators/sagesse
+    tags: true
+    all_branches: true
