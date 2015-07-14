@@ -1,6 +1,6 @@
 sudo: false
 install:
-  - curl -L https://github.com/raphink/travis-texlive/releases/download/2015-07-14_04/texlive.tar.xz | tar xJC ~
+  - curl -L https://github.com/raphink/travis-texlive/releases/download/2015-07-14_05/texlive.tar.xz | tar xJC ~
   - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
   - wget https://bitbucket.org/georgd/eb-garamond/downloads/EBGaramond-0.016.zip
   - unzip EBGaramond-0.016.zip
