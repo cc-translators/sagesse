@@ -113,7 +113,7 @@ upgrade-microtype: microtype.tar.xz
 gh-pages:
 	@tmpdir=`mktemp --tmpdir -d` ; \
 	    trap 'rm -rf "$$tmpdir"' EXIT ; \
-	    pdf2htmlEX sagesse_lulu.pdf $$tmpdir/index.html ; \
+	    pdf2htmlEX sagesse_lulu.pdf "$$tmpdir/index.html" ; \
 	    git checkout gh-pages ; \
 	    mv $$tmpdir/index.html index.html ; \
 	    git commit index.html
