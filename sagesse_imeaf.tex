@@ -61,7 +61,7 @@
             ]{impnattypo}
 \fi
 
-\usepackage{overcolored}
+%\usepackage{overcolored}
 
 \usepackage[breaklinks=true,unicode=true]{hyperref}
 \hypersetup{colorlinks,
@@ -123,10 +123,14 @@
 
 \begin{document}
 
-%\maketitle
-\setlength{\parindent}{0em}
-\input{title}
-\input{copyright}
+\ifluatex
+  %\maketitle
+  \setlength{\parindent}{0em}
+  \include{fake_title}
+  \include{dumemeauteur}
+  \include{title}
+  \include{copyright}
+\fi
 
 \setlength{\parindent}{1em}
 % Debug overfull boxes
