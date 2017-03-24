@@ -179,6 +179,19 @@
 \cleardoublepage
 \printindex
 
+
+% depot legal
+\ifluatex
+  \pagestyle{empty}
+  %\cleardoublepage
+  %\mbox{}
+  %\clearpage
+  \include{depotlegal}
+
+  \clearpage
+  \mbox{}
+\fi
+
 \listoftodos[Notes de l'éditeur]
 
 \end{document}
