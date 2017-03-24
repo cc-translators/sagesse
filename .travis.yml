@@ -5,16 +5,18 @@ install:
 matrix:
   include:
   - env: BUILD=pdf DEPLOY=true
-    script: make sagesse_lulu.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
+    script: make sagesse_lulu.pdf sagesse_imeaf.pdf LATEX_INTERACTION="nonstopmode -halt-on-error"
   - env: BUILD=epub
-    script: make sagesse_lulu.epub
+    script: make sagesse_lulu.epub sagesse_imeaf.epub
   allow_failures:
   - env: BUILD=epub
 deploy:
   provider: releases
   api_key:
     secure: TR2xilnOmKA59j1ZbVL893GKri+/Prke0ggQK58GusqciOZ80Dn6ikgeabvldc6MTrph/KsgpFdqdF5daWERtlR17u/l/SbJMT8m4h91XEAlKe19DP65k6qrt0NyI/miVXpAxUehvf0iAFN8wxQ8B2D7oraYTVz2m6tymDq5Tp4=
-  file: sagesse_lulu.pdf
+  file:
+    - sagesse_lulu.pdf
+    - sagesse_imeaf.pdf
   on:
     tags: true
     all_branches: true
