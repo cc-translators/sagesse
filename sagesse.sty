@@ -340,11 +340,19 @@
 % L' doesn't look good in titles with Minion... Fix that
 %\newcommand{\ap}{\kern.5pt{'}}
 
+% Load etoolbox before using its commands
+\usepackage{etoolbox}
 
 % Patch bibleref to sort Bible books properly
-\usepackage{etoolbox}
 \makeatletter
-\patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}
+% Make sure @bible@verse is defined before patching
+\@ifundefined{@bible@verse}{%
+  % If not defined, we'll just define a placeholder and proceed
+  \newcommand{\@bible@verse}[1]{#1}
+}{%
+  % If defined, try to patch it safely
+  \patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}{}{}
+}
 \makeatother
 
 \renewcommand*{\bvidxpgformat}{transform}
