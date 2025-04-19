@@ -1,5 +1,5 @@
 BOOK_NAME=sagesse
-TEXINPUTS=microtype:
+TEXINPUTS=
 FONTSDIR=fonts
 TODAY=$(shell date --iso)
 TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
@@ -104,7 +104,7 @@ clean:
 	rm -f *.epub *.mobi
 
 microtype.tar.xz:
-	wget http://tlcontrib.metatex.org/2010/archive/microtype.tar.xz
+	wget http://tlcontrib.metatex.org/2025/archive/microtype.tar.xz
 
 upgrade-microtype: microtype.tar.xz
 	rm -rf microtype
