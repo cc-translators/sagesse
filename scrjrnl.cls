@@ -20,7 +20,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{scrjrnl}
-    [2012/09/24 0.1 A class to typeset diaries or journals]
+    [2025/04/21 0.2 A class to typeset diaries or journals]
 %% Index by day
 %% Get the date for the recorded day
 %% Go through index items
@@ -108,12 +108,12 @@
   \stepcounter{jrnlday}%
   \stepcounter{jrnltotalday}%
   \if@jrnl@cleardaypages
-  \cleardoublepage
+  \if@openright\cleardoublepage\else\clearpage\fi
   \fi
   \newpage\section{#2}%
   % TODO: provide index macros to be used with jrnlpagedate\thepage
   \expandafter\xdef\csname jrnldaydate\thejrnltotalday\endcsname{%
-    \noexpand\jrnlformatindexdate{\thejrnlday}{\thejrnlmonth}{\thejrnlyear}%
+    \jrnlday@ante\noexpand\jrnlformatindexdate{\thejrnlday}{\thejrnlmonth}{\thejrnlyear}\jrnlday@post%
 }%
   \HTMLsecHook{\jrnlday@ante\jrnlformatdate{\thejrnlday}{\thejrnlmonth}{\thejrnlyear}\jrnlday@post}{#2}%
 }
