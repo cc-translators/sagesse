@@ -63,8 +63,6 @@
 % Show margins
 %\usepackage{showframe}
 
-% Fix for the loading package in group error
-\usepackage{datetime}
 %\usepackage[frenchb]{babel} %language selection
 \usepackage[frenchb,shorthands=off]{babel}
 \usepackage{ifluatex}
@@ -133,14 +131,6 @@
   {\vspace{-26mm}\filcenter}
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
-
-%–– override the default no-year hack and only show “<day> <month>” ––
-\renewcommand{\jrnlformatdate}[3]{%
-  \shortmonthdate{#1}{#2}{#3}%
-}
-\renewcommand{\jrnlformatindexdate}[3]{%
-  \shortmonthdate{#1}{#2}{#3}%
-}
 
 % Reviewing interface
 %\usepackage[dateinlist]{review}
