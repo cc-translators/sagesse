@@ -40,23 +40,19 @@
 \ProcessOptions\relax
 \LoadClass{\jrnl@class}
 \RequirePackage{titlesec}
-\AfterPackage{babel}{\RequirePackage{datetime}}
+\AfterPackage{babel}{%
+  \RequirePackage{tracklang}%
+  \TrackPredefinedDialect{french}%
+  \RequirePackage[useregional=text]{datetime2}%
+}
 \newcommand\jrnlformatdate\formatdateny
 \newcommand\jrnlformatindexdate\formatdateny
-\def\formatdateny{\csname noyear\languagename\expandafter\endcsname\formatdate}
+\newcommand\formatdateny[3]{%
+  \DTMsetbool{french}{showyear}{false}%
+  \DTMdisplaydate{#3}{#2}{#1}{-1}%
+  \DTMsetbool{french}{showyear}{true}%
+}
 
-\def\noyearenglish#1, \the\@year{#1}
-\let\noyearamerican\noyearenglish
-\let\noyearbritish\noyearenglish
-\def\noyearfrench#1\space\number\@year{#1}
-\let\noyeargerman\noyearfrench
-\let\noyearaustrian\noyeargerman
-\let\noyearswedish\noyearfrench
-\let\noyearbreton\noyearfrench
-\def\noyearrussian#1\ \number\@year~\cyrg.{#1}
-\def\noyearspanish#1\ de~\number\@year{#1}
-\let\noyearcatalan\noyearspanish
-\def\noyearbasque#1\number\@year.eko\space{#1}
 \newlength{\jrnldaysepskip}
 \setlength{\jrnldaysepskip}{0pt}
 \newlength{\jrnldayafterskip}
@@ -64,7 +60,7 @@
 %%\if@jrnl@fancytabs
 \RequirePackage{fancytabs}[2012/09/24]
 %%\fi
-\newcommand{\jrnl@monthname}[1]{\monthname[#1]}
+\newcommand{\jrnl@monthname}[1]{\DTMfrenchmonthname{#1}}
 \newcommand{\jrnl@curmonth}{\jrnl@monthname{\thejrnlmonth}}
 \newcounter{jrnlstartchapter}
 \newcounter{jrnlday}

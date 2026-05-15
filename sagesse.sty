@@ -57,17 +57,6 @@
 % Package scrpage2 for headers
 \usepackage{scrlayer-scrpage}
 
-% colon, frenchb's definition
-\newcommand\frcolon{%
-      \ifhmode
-        \ifdim\lastskip>\z@
-          \unskip\penalty\@M\Fcolonspace
-        \else
-          \FDP@colonspace
-        \fi
-      \fi
-      \string:\space}
-
 % setting lettrines
 \usepackage{type1cm} % scalable fonts
 \usepackage{lettrine}
@@ -145,14 +134,14 @@
 
 
 % Note du traducteur
-\newcommand{\NdT}[1]{\footnote{NdT\frcolon #1}}
+\newcommand{\NdT}[1]{\footnote{NdT: #1}}
 % Use footnote package when footnotes (or NdT)
 % are called from within \dvquote
 % Warning:Load footnote after xcolor
 \usepackage{footnote}
 \usepackage[bottom,symbol*]{footmisc}
 %\setfnsymbol{wiley}
-\frenchbsetup{
+\frenchsetup{
   FrenchFootnotes=false,
   AutoSpaceFootnotes=false
 }
@@ -374,8 +363,7 @@
 \def\hfill{\hskip 15pt plus 1fill}
 
 % Use short month names for index
-\newdateformat{shortmonthdate}{\ordinaldatefrench{\THEDAY}~\shortmonthname[\THEMONTH]}
-\renewcommand\jrnlformatindexdate{\shortmonthdate\formatdate}
+\renewcommand\jrnlformatindexdate[3]{\DTMfrenchordinal{#1}\DTMfrenchdaymonthsep\DTMfrenchshortmonthname{#2}}
 
 % Ensure *voir* entries are not cut
 \renewcommand*\see[2]{\mbox{\emph{\seename} #1}}
